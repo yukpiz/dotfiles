@@ -139,6 +139,9 @@ set autoindent
 set wildmenu
 set wildchar=<Tab>
 set history=100                 "Keep 100 lines of command line history.
+set iminsert=0
+set imsearch=0
+
 
 "View
 if &term =~ "screen-256color"

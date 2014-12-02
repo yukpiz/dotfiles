@@ -213,6 +213,9 @@ augroup FileTypeCustomize
     autocmd FileType rst set sw=3 ts=3 et
     autocmd FileType ruby,python,c,cpp,css,coffee,haskell set sw=4 ts=4 et
     autocmd FileType javascript,java,php,vb,sh,make set sw=4 ts=4 et
+    "Fold marker of file type.
+    autocmd FileType vbnet set foldmarker=Region,End\ Region
+    autocmd FileType vim set foldmarker={{{,}}}
 augroup END
 
 augroup CppPath

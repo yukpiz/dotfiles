@@ -19,6 +19,7 @@
 
 filetype off
 filetype plugin indent off
+
 if has("vim_starting")
     set runtimepath+=~/.vim/bundle/neobundle.vim
     "Packages manager
@@ -27,77 +28,81 @@ if has("vim_starting")
     call neobundle#end()
 endif
 
-if has("ruby")
-    " Convertion Markup Files
-    NeoBundle "https://yukpiz@bitbucket.org/yukpiz/kramdown.vim.git"
+if has('unix') "Unix platform?
+    if has("ruby") "Have Ruby extension?
+        "Convertion Markup Files
+        NeoBundle "https://yukpiz@bitbucket.org/yukpiz/kramdown.vim.git"
+    endif
+
+    "Calendar
+    NeoBundle "itchyny/calendar.vim"
+
+    "Vim utilities
+    NeoBundle "osyo-manga/vim-gift"
+
+    "Utilities
+    NeoBundle "Shougo/vimproc.vim"
+    NeoBundle "mattn/webapi-vim"
+    NeoBundle "kannokanno/previm"
+    NeoBundle "tyru/open-browser.vim"
+    NeoBundle "Shougo/vimshell.vim"
+
+    "Languages
+        "Coffee Script
+        NeoBundle "kchmck/vim-coffee-script"
+        "Scala
+        NeoBundle "derekwyatt/vim-scala"
+        "Haskell
+        NeoBundle "dag/vim2hs"
+        "C++
+        NeoBundle "vim-jp/cpp-vim"
+        "Java
+        NeoBundle "https://yukpiz@bitbucket.org/yukpiz/android-build.vim.git"
+
+    "Debug & Test
+    NeoBundle "thinca/vim-quickrun"
+    NeoBundle "rhysd/wandbox-vim"
+
+    "Package Manager
+        "Git
+        NeoBundle "rhysd/committia.vim"
+
+    "SNS
+        "Twitter
+        NeoBundle "basyura/twibill.vim"
+
+    "Game
+    NeoBundle "deris/vim-duzzle"
+
+    "Sound
+    NeoBundle "supermomonga/Shaberu.vim"
+
+    "RDBMS Tool
+    NeoBundle "mattn/vdbi-vim"
 endif
 
-if has("lua")
+"Common environment
+if has("lua") "Have Lua extension?
     "Edit Completion
     NeoBundle "Shougo/neocomplete.vim"
 endif
 
-"Calendar
-NeoBundle "itchyny/calendar.vim"
-
 "File Explorer
 NeoBundle "scrooloose/nerdtree"
-
-"Utilities
-NeoBundle "Shougo/vimproc.vim"
-NeoBundle "mattn/webapi-vim"
-NeoBundle "kannokanno/previm"
-NeoBundle "tyru/open-browser.vim"
-NeoBundle "Shougo/vimshell.vim"
-
-"NeoBundle "https://yukpiz@bitbucket.org/yukpiz/anthy-dic-tool.vim.git"
-
-"Vim utilities
-NeoBundle "osyo-manga/vim-gift"
 
 "Syntax
 NeoBundle "osyo-manga/vim-brightest"
 NeoBundle "nathanaelkane/vim-indent-guides"
 
+"Color Scheme
+NeoBundle "jpo/vim-railscasts-theme"
+
 "Languages
     "Common
     NeoBundle "Shougo/neosnippet"
     NeoBundle "Shougo/neosnippet-snippets"
-    "Coffee Script
-    NeoBundle "kchmck/vim-coffee-script"
-    "Scala
-    NeoBundle "derekwyatt/vim-scala"
-    "Haskell
-    NeoBundle "dag/vim2hs"
-    "NeoBundle "kana/vim-filetype-haskell"
     "VB.NET
-    NeoBundle "hachibeeDI/vim-vbnet"
-    "C++
-    NeoBundle "vim-jp/cpp-vim"
-    "Java
-    NeoBundle "https://yukpiz@bitbucket.org/yukpiz/android-build.vim.git"
-    "NeoBundle "adragomir/javacomplete"
-
-"Debug & Test
-NeoBundle "thinca/vim-quickrun"
-NeoBundle "rhysd/wandbox-vim"
-
-"Package Manager
-    "Git
-    NeoBundle "rhysd/committia.vim"
-
-"SNS
-    "Twitter
-    NeoBundle "basyura/twibill.vim"
-
-"Game
-NeoBundle "deris/vim-duzzle"
-
-"Sound
-NeoBundle "supermomonga/Shaberu.vim"
-
-"RDBMS Tool
-NeoBundle "mattn/vdbi-vim"
+    NeoBundle "yukpiz/vim-vbnet"
 
 filetype plugin indent on
 
@@ -303,36 +308,36 @@ endfunction
 "
 
 " Cursor mappings
-nmap <Up> <Nop>
-nmap <Down> <Nop>
-nmap <Left> <Nop>
-nmap <Right> <Nop>
-imap <Up> <Nop>
-imap <Down> <Nop>
-imap <Left> <Nop>
-imap <Right> <Nop>
-imap <C-k> <Up>
-imap <C-j> <Down>
-imap <C-h> <Left>
-imap <C-l> <Right>
-nmap <C-f> <End>
-nmap <C-d> <Home>
-imap <C-d> <Home>
-imap <C-f> <End>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+nnoremap <C-f> <End>
+nnoremap <C-d> <Home>
+inoremap <C-d> <Home>
+inoremap <C-f> <End>
 
 " Highlight mappings
-nmap <silent> <Esc><Esc> :noh<CR>
+nnoremap <silent> <Esc><Esc> :noh<CR>
 
 " Function mappings
-nmap <F2> :call SwitchNERDTree()<CR>
-nmap <F9> :call FileInfo()<CR>
-nmap <F10> :call SwitchNumber()<CR>
-nmap <F3> :call SwitchCalendar()<CR>
+nnoremap <F2> :call SwitchNERDTree()<CR>
+nnoremap <F9> :call FileInfo()<CR>
+nnoremap <F10> :call SwitchNumber()<CR>
+nnoremap <F3> :call SwitchCalendar()<CR>
 
 " Call VimShell
-nmap [vimshell] <Nop>
-nmap ,v [vimshell]
-nmap <silent> [vimshell]s :VimShell<CR>
+nnoremap [vimshell] <Nop>
+nnoremap ,v [vimshell]
+nnoremap <silent> [vimshell]s :VimShell<CR>
 
 " }}}
 " --- Plugin Settings[neocomplete.vim] {{{

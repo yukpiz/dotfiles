@@ -173,6 +173,9 @@ set list listchars=tab:>.,trail:_
 set list listchars+=extends:>,precedes:<
 set display=uhex
 
+"GUI Options
+set guifont=Ricty:h9
+
 if has("syntax")
     function! ActivateInvisibleIndicator()
         syntax match InvisibleJISX0208Space "　"
@@ -191,7 +194,6 @@ if has("syntax")
 
     set background=dark
     colorscheme railscasts
-    "colorscheme inkpot
 
 endif
 

@@ -1,0 +1,437 @@
+" --- About {{{
+" -----------------------------------------------------------------------------
+"   ______   ______     ___            ______
+"  / / / /  / ___\ \   / (_)_ __ ___   \ \ \ \
+" / / / /  | |  _ \ \ / /| | '_ ` _ \   \ \ \ \
+" \ \ \ \  | |_| | \ V / | | | | | | |  / / / /
+"  \_\_\_\  \____|  \_/  |_|_| |_| |_| /_/_/_/
+"
+" └(՞ةڼ◔)」Configuration file for Vim!
+"
+" [Author]     @yukpiz<yukpiz@gmail.com>
+" [Created]    2014.12.02
+" [Repository] https://bitbucket.org/yukpiz/dotfiles.git
+"
+" This vimrc is specialized in Windows environment.
+"
+" -----------------------------------------------------------------------------
+"}}}
+
+" --- Plugins Manager {{{
+
+filetype off
+filetype plugin indent off
+if has("vim_starting")
+    set runtimepath+=~/.vim/bundle/neobundle.vim
+    "Packages manager
+    call neobundle#begin(expand('~/.vim/bundle/'))
+    NeoBundleFetch 'Shougo/neobundle.vim'
+    call neobundle#end()
+endif
+
+if has("lua")
+    "Edit Completion
+    NeoBundle "Shougo/neocomplete.vim"
+endif
+
+"Utilities
+NeoBundle "Shougo/vimproc.vim"
+NeoBundle "scrooloose/nerdtree"
+
+"Syntax
+NeoBundle "osyo-manga/vim-brightest"
+NeoBundle "nathanaelkane/vim-indent-guides"
+NeoBundle "jpo/vim-railscasts-theme"
+
+"Languages
+    "Common
+    NeoBundle "Shougo/neosnippet"
+    NeoBundle "Shougo/neosnippet-snippets"
+    "VB.NET
+    NeoBundle "yukpiz/vim-vbnet"
+
+filetype plugin indent on
+
+"}}}
+" --- Common Settings {{{
+
+"Basic
+set nocompatible
+set autoread
+set noundofile          "No create undo file.
+set encoding=utf-8      "Internal encoding of Vim.
+set fileencoding=utf-8  "File encoding.
+scriptencoding utf-8    "Encoding of vimrc own.
+set ffs=unix,dos,mac    "Line feed code.
+set nobackup            "Doesn't back up.
+set nowritebackup       "Not create back up file.
+set nomodeline
+set textwidth=0         "Doesn't wrap words by default.
+"Search
+set wrapscan
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+"Operation
+set backspace=indent,eol,start  "none
+set clipboard+=autoselect
+set clipboard+=unnamedplus
+set shiftwidth=4                
+set expandtab                   "Replaced with a space, tab characters that have been input.
+set tabstop=4                   "Width the tab char.
+set autoindent
+set wildmenu
+set wildchar=<Tab>
+set history=100                 "Keep 100 lines of command line history.
+set iminsert=0
+set imsearch=0
+
+"View
+if &term =~ "screen-256color"
+    set t_Co=256      "Use 256 colors
+else
+    set t_Co=16       "Use 16 colors
+endif
+set title
+set titlestring=Hello\ VIM٩(ˊᗜˋ*)ﻭ
+set scrolloff=5
+set lazyredraw
+set ruler             "Show in the status line the cursor position.
+set nonumber
+set numberwidth=6
+set wrap
+set ambiwidth=double
+set showmatch
+set matchtime=1
+set laststatus=2
+set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=\ [%v,%l/%L]\ %P
+
+augroup CurrentWindowCursorLine
+    autocmd! CurrentWindowCursorLine
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+augroup END
+
+"Syntax
+set foldmethod=marker
+set foldenable
+set list listchars=tab:>.,trail:_
+set list listchars+=extends:>,precedes:<
+set display=uhex
+
+"GUI Options
+set guifont=Ricty:h9
+set guitablabel=%N:\ %{GetGuiTabLabel()}
+set guioptions+=C
+set guioptions-=T
+
+if has("syntax")
+    function! ActivateInvisibleIndicator()
+        syntax match InvisibleJISX0208Space "　"
+                    \ display containedin=ALL
+        highlight InvisibleJISX0208Space
+                    \ term=underline
+                    \ ctermbg=LightGray
+                    \ guibg=LightGray
+    endfunction
+    augroup Invisible
+        autocmd! Invisible
+        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+    augroup END
+    execute "set colorcolumn=" . join(range(81, 9999), ",")
+    syntax on
+
+    set background=dark
+    colorscheme railscasts
+    "colorscheme inkpot
+
+endif
+
+augroup FileTypeCustomize
+    autocmd! FileTypeCustomize
+    autocmd FileType * set formatoptions=""
+    "Recognize the file type.
+    autocmd BufNewFile,BufRead .tmux.conf,tmuxrc set filetype=tmux
+    autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+    autocmd BufNewFile,BufRead *.vb set filetype=vbnet
+    "Indent of each file type.
+    autocmd FileType xml,html,yaml set sw=2 ts=2 et
+    autocmd FileType rst set sw=3 ts=3 et
+    autocmd FileType ruby,python,c,cpp,css,coffee,haskell set sw=4 ts=4 et
+    autocmd FileType javascript,java,php,vb,sh,make set sw=4 ts=4 et
+    "Fold marker of file type.
+    autocmd FileType vbnet set foldmarker=Region,End\ Region
+    autocmd FileType vim set foldmarker={{{,}}}
+augroup END
+
+augroup CppPath
+    autocmd! CppPath
+    autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
+augroup END
+
+ "}}}
+" --- Functions {{{
+
+function! FileInfo()
+    echo "===> This file infomation <============="
+    echo " File path     : " . expand("%:p")
+    echo " File type     : " . &filetype
+    echo " File format   : " . &fileformat
+    echo " File encoding : " . &fileencoding
+    echo "========================================"
+endfunction
+
+function! SwitchNumber()
+    if &nu == 0
+        set nu
+    else
+        set nonu
+    endif
+endfunction
+
+let g:calendar_on = 0
+function! SwitchCalendar()
+    call AllCloseCalendar()
+    if g:calendar_on == 0
+        Calendar -view=month -split=horizontal -position=below -height=25
+        "開いたカレンダーウィンドウ変数にcalendar_window=1を設定
+        let w:calendar_window = 1
+        let g:calendar_on = 1
+    else
+        let g:calendar_on = 0
+    endif
+endfunction
+
+function! AllCloseCalendar()
+    "開かれている全てのカレンダーウィンドウを閉じる
+    "開かれているタブページとウィンドウのリストを得る
+    let l:li = gift#tabpagewinnr_list()
+    for tw in l:li
+        "ウィンドウ変数を有効にする為にカレントウィンドウに設定
+        call gift#jump_window(tw)
+        "ウィンドウ変数calendar_windowが1ならそのウィンドウを閉じる
+        if exists("w:calendar_window") == 1
+            if w:calendar_window == 1
+                "close_windowに[タブページ番号,ウィンドウ番号]のリストを渡すと正しく閉じる
+                call gift#close_window(tw)
+                "ウィンドウ番号が変わるので再帰する
+                call AllCloseCalendar()
+            endif
+        endif
+    endfor
+endfunction
+
+function! SwitchNERDTree()
+    if !exists("s:showNERDTree")
+        let s:showNERDTree = 0
+    endif
+    if s:showNERDTree == 0
+        let s:showNERDTree = 1
+        NERDTree
+    else
+        let s:showNERDTree = 0
+        NERDTreeClose
+    endif
+endfunction
+
+function! GetGuiTabLabel()
+
+    let l:label = ""
+    let l:bufnrlist = tabpagebuflist(v:lnum)
+    let l:bufname = fnamemodify(bufname(l:bufnrlist[tabpagewinnr(v:lnum) - 1]), ':t')
+    let l:label .= l:bufname == '' ? 'No title' : l:bufname
+
+    let l:wincount = tabpagewinnr(v:lnum, '$')
+    if l:wincount > 1
+        let l:label .= '[' . l:wincount . ']'
+    endif
+
+    for bufnr in l:bufnrlist
+        if getbufvar(bufnr, "&modified")
+            let l:label .= '[+]'
+            break
+        endif
+    endfor
+
+    return l:label
+
+endfunction
+
+
+"}}}
+" --- Key Mappings {{{
+
+" # Key Mappings Cheet Sheet
+" +---------------+--------+--------+---------+--------+
+" | Command       | Normal | Insert | Command | Visual |
+" |:------------- |:------:|:------:|:-------:|:------:|
+" | map/noremap   | o      | x      | x       | o      |
+" | nmap/nnoremap | o      | x      | x       | x      |
+" | imap/inoremap | x      | o      | x       | x      |
+" | cmap/cnoremap | x      | x      | o       | x      |
+" | vmap/vnoremap | x      | x      | x       | o      |
+" | map!/noremap! | x      | o      | o       | x      |
+" +---------------+--------+--------+---------+--------+
+
+"
+" | Arguments | Description 
+" |:--------- |:------------------
+" | <buffer>  |
+" | <nowait>  |
+" | <silent>  |
+" | <special> |
+" | <script>  |
+" | <expr>    |
+" | <unique>  |
+"
+
+" Cursor mappings
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+nnoremap <C-f> <End>
+nnoremap <C-d> <Home>
+inoremap <C-d> <Home>
+inoremap <C-f> <End>
+
+" Highlight mappings
+nnoremap <silent> <Esc><Esc> :noh<CR>
+
+" Function mappings
+nnoremap <F2> :call SwitchNERDTree()<CR>
+nnoremap <F9> :call FileInfo()<CR>
+nnoremap <F10> :call SwitchNumber()<CR>
+
+" Tab page control
+
+" }}}
+" --- Plugin Settings[neocomplete.vim] {{{
+
+"   ______                                             _      _        ______
+"  / / / /  _ __   ___  ___   ___ ___  _ __ ___  _ __ | | ___| |_ ___  \ \ \ \
+" / / / /  | '_ \ / _ \/ _ \ / __/ _ \| '_ ` _ \| '_ \| |/ _ \ __/ _ \  \ \ \ \
+" \ \ \ \  | | | |  __/ (_) | (_| (_) | | | | | | |_) | |  __/ ||  __/  / / / /
+"  \_\_\_\ |_| |_|\___|\___/ \___\___/|_| |_| |_| .__/|_|\___|\__\___| /_/_/_/
+"                                               |_|
+
+"Vimの起動時にneocompleteも起動する
+let g:neocomplete#enable_at_startup=1
+"大文字が入力されたら大文字と小文字を区別して補完する
+let g:neocomplete#enable_smart_case=1
+"小文字だけなら大文字と小文字を区別しないで補完する
+let g:neocomplete#enable_ignore_case=1
+"キャメルケースな入力を補完する(FA->F*A*)
+"重くなるので無効化
+let g:neocomplete#enable_camel_case=0
+"補完ポップアップメニューの上限数
+"実際に表示される数は設定した数+1
+let g:neocomplete#max_list=14
+"ポップアップメニューの横幅の上限
+let g:neocomplete#max_keyword_width=80
+"補完対象から外す最小の文字数
+"設定した値以下の文字数の場合、補完対象にならない
+let g:neocomplete#min_keyword_length=2
+"neocompleteを無効にするバッファ名のパターン
+"ku.vimなど、neocompleteと相性の悪いプラグインとの併用
+"let g:neocomplete#lock_buffer_name_pattern="\*ku\*"
+
+"ファイルタイプ別の補完辞書ファイルを設定
+"ファイルタイプと辞書ファイルへのパスを設定
+"let g:neocomplete#sources#dictionary#dictionaries = {
+"            \ "default": "",
+"            \ "vimshell": $HOME."/.vimshell_hist",
+"            \ "scheme": $HOME."/.gosh_completions",
+"            \}
+
+"補完を実行するキーワードパターンの設定
+"neocompleteが対応していないファイルタイプを補完する場合に設定する
+"TODO: existsする必要がある？
+if !exists("g:neocomplete#keyword_patterns")
+    let g:neocomplete#keyword_patterns={}
+    let g:neocomplete#keyword_patterns["default"]="\h\w"
+endif
+
+if !exists("g:neocomplete#sources#omni#input_patterns")
+    let g:neocomplete#sources#omni#input_patterns={}
+    let g:neocomplete#sources#omni#input_patterns.perl="\h\w*->\h\w*\|\h\w*::"
+endif
+
+"inoremap <expr><C-g> neocomplete#undo_completion()
+"inoremap <expr><C-l> neocomplete#complete_common_string()
+
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+    return neocomplete#close_popup() . "\<CR>"
+endfunction
+
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y> neocomplete#close_popup()
+"inoremap <expr><C-e> neocomplete#cancel_popup()
+
+"補完ポップアップメニューの色設定
+hi Pmenu ctermbg=101 ctermfg=232
+hi PmenuSel ctermbg=58 ctermfg=231
+
+autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setl omnifunc=pythoncomplete#Complete
+autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
+set completeopt-=preview
+
+"}}}
+" --- Plugin Settings[vim-brightest] {{{
+
+let g:brightest#highlight = {
+            \ "group": "BrightestUnderline"
+            \ }
+
+let g:brightest#enable_filetypes = {
+            \ "markdown": 0
+            \ }
+
+"}}}
+" --- Plugin Settings[vim-indent-guides] {{{
+
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=1
+
+" }}}
+" --- Plugin Settings[neosnippet] {{{
+
+" Plugin key-mappings.
+imap <C-TAB>     <Plug>(neosnippet_expand_or_jump)
+smap <C-TAB>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-TAB>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)"
+            \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)"
+            \: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+      set conceallevel=2 concealcursor=i
+endif
+
+" }}}

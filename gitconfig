@@ -1,0 +1,8 @@
+[user]
+    email = yukpiz@gmail.com
+    name = Yuuki Zayasu
+[core]
+    editor = vim
+    quotepath = false
+[github]
+    user = yukpiz

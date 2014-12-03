@@ -1,0 +1,113 @@
+# --- Charactor Encodings. {{{
+# エンコーディングの指定
+ENCODING=UTF-8
+# Bidiレンダリングを行う
+use_bidi=false
+# 結合文字を処理する
+use_combining=false
+# 結合文字を動的に処理する
+# trueにした場合、use_combining=trueに戻される
+use_dynamic_comb=false
+# UNICODEのEastAsianWidth.txtのAプロパティのカラム数
+#col_size_of_width_a=2
+# 1文字で複数列を占有する文字を処理を行う
+use_multi_column_char=true
+# }}}
+# --- Window & Terminal Style {{{
+# Visualの深さ(8,16,24,32)
+# depth=32の場合、bg_colorにrgba:RR/GG/BB/AAを指定すると半透明にできる
+# "rgba:RR/GG/BB/AA"を指定する事で、半透明にできる
+depth=32
+# 端末画面の色
+fg_color=#F3F3F3
+#bg_color=#2E3436
+bg_color=rgb:26/26/26
+# タイトルバー文字列
+title=Hello mlterm٩(ˊᗜˋ*)و
+# アイコンのファイルパス
+icon_path=/usr/share/pixmaps/mlterm-icon-wmaker.png
+# ウィンドウの幅、高さ
+#screen_width_ratio=130
+#screen_height_ratio=120
+# ウィンドウ内の余白
+# "H,V"形式にすると縦横を別に指定できる
+inner_border=2
+# スクロールバーを表示する
+use_scrollbar=true
+# スクロールバーの位置
+scrollbar_mode=right
+# スクロールバーのスタイル
+# (simple,sample,sample2,sample3,next,motif,athena,mozmodern)
+scrollbar_view_name=athena
+# スクロールバーの色
+sb_fg_color=#4C5F49
+sb_bg_color=#373737
+# カーソルの色
+cursor_fg_color=#668e6a
+cursor_bg_color=#668e6a
+# 壁紙のファイルパス
+#wall_picture=
+# 背景画像・透過処理の輝度
+brightness=50
+# 背景画像・透過処理のコントラスト
+contrast=50
+# 背景画像・透過処理のガンマ値
+gamma=50
+# 背景画像・透過処理のアルファ値
+alpha=220
+# 行間の広さ
+line_space=1
+# 字間の広さ
+letter_space=1
+# カーソルを点滅させる
+blink_cursor=true
+# }}}
+# --- Terminal Settings. {{{
+# ログインシェルを使う
+#use_login_shell=true
+# 端末タイプの指定
+termtype=mlterm
+# 同時起動できるptyの最大数
+#max_ptys=32
+# 起動時に立ち上げるウィンドウの数
+#startup_screens=1
+# }}}
+# --- Font Style. {{{
+# フォントサイズ
+fontsize=15
+# 変更可能なフォントサイズの範囲[min]-[max]
+font_size_range=6-50
+# 可変長カラム幅を使う
+#use_variable_column_width=true
+# アンチエイリアスフォントを強制的に使用
+use_anti_alias=true
+# JISX0208のUnicode変換にCP932の変換テーブルを使う
+#use_cp932_ucs_for_xft=true
+# Unicodeを適当な文字集合にマップしてUnicodeフォントを使わずに表示する
+not_use_unicode_font=true
+# 全ての文字をUnicodeフォントだけを使って表示する
+only_use_unicode_font=true
+# US_ASCIIの表示には必ずISO8859-1フォントを使用する
+#iso88591_font_for_usascii=false
+# }}}
+# --- Input Settings. {{{
+# 使用するインプットメソッド
+input_method=xim
+# }}}
+# --- Operating Settings. {{{
+conf_menu_path_1=mlterm-menu
+conf_menu_path_2=mlterm-zoom
+conf_menu_path_3=mlconfig
+# }}}
+# --- Other Settings. {{{
+# ログの行数
+logsize=1024
+# 単語選択時の区切り文字
+#word_separators=
+# クリップボードを使用する
+use_clipboard=true
+# バックスクロール中に端末出力があっても画面が流れないようにする
+static_backscroll_mode=true
+# バックスクロール中に端末出力があった場合、バックスクロールを抜ける
+exit_backscroll_by_pty=false
+# }}}

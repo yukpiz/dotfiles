@@ -1,0 +1,34 @@
+# Shift+space=XIM_OPEN
+# UNUSED=XIM_CLOSE
+# Control+backslash=EXT_KBD
+# Control+F1=OPEN_SCREEN
+# UNUSED=OPEN_PTY
+# UNUSED=NEXT_PTY
+# UNUSED=PREV_PTY
+# Shift+Prior=PAGE_UP
+# Shift+Up=SCROLL_UP
+# Shift+Insert=INSERT_SELECTION
+# UNUSED=INIT_PARSER
+# UNUSED=EXIT_PROGRAM
+# Control+F2="HELO WORLD"
+
+# 新しいptyを新しいウィンドウで開く
+Control+F1=OPEN_SCREEN
+# 新しいptyを現在のウィンドウで開く
+Control+F2=OPEN_PTY
+# ページアップ
+Prior=PAGE_UP
+# ページダウン
+Next=PAGE_DOWN
+# スクロールは無効化
+# ページ移動と併用するとおかしい
+UNUSED=SCROLL_UP
+UNUSED=SCROLL_DOWN
+# 前のptyを表示
+Control+F3=PREV_PTY
+# 次のptyを表示
+Control+F4=NEXT_PTY
+# 文字サイズ拡大
+Control+F12="proto:fontsize=larger"
+# 文字サイズ縮小
+Control+F11="proto:fontsize=smaller"

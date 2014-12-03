@@ -1,0 +1,25 @@
+# ISO8859_1 = 10,a10;12,6x12;14,7x14;16,8x16;
+# US_ASCII_BOLD = 10,a10B;14,7x14bold;
+# JISX0201_KATA = 10,r10;12,r12;14,r14;16,r16;
+# JISX0201_KATA_BOLD = 10,r10;
+# JISX0201_ROMAN = 10,r10;12,r12;14,r14;16,r16;
+# JISX0208_1983 = 10,k10;12,k12;14,k14;12,kanji16;
+# JISX0208_1983_BOLD = 10,k10B;
+TCVN5712 = 14,-*-.vntime-*--14-*-iso8859-1;
+ISO10646_UCS4_1 = -efont-fixed-medium-r-normal--%d-*-iso10646-1;13,-misc-fixed-medium-r-semicondensed--13-*-iso10646-1;18,-misc-fixed-medium-r-normal--18-*-iso10646-1;
+ISO10646_UCS4_1_BIWIDTH = -efont-biwidth-medium-r-normal--%d-*-iso10646-1;13,-misc-fixed-medium-r-normal-ja-13-*-iso10646-1;18,-misc-fixed-medium-r-normal-ja-18-*-iso10646-1;
+
+# Arab speakers may want to use the following line:
+#ISO10646_UCS4_1 = -gnu-unifont-medium-r-normal--*-iso10646-1;
+
+#DEC_SPECIAL = 10,mplus_j10r-iso;12,mplus_j12r-iso;
+#ISO8859_1 = 10,mplus_j10r-iso;11,mplus_f10r;12,mplus_j12r-iso;
+#ISO8859_1_BOLD = 10,mplus_j10b-iso;11,mplus_f10b;12,mplus_j12b-iso;
+#JISX0201_KATA = 10,mplus_j10r-jisx;12,mplus_j12r-jisx;
+#JISX0201_KATA_BOLD = 10,mplus_j10b-jisx;12,mplus_j12b-jisx;
+#JISX0201_ROMAN = 10,mplus_j10r-jisx;12,mplus_j12r-jisx;
+#JISX0201_ROMAN_BOLD = 10,mplus_j10b-jisx;12,mplus_j12b-jisx;
+#JISX0208_1983 = 10,-mplus-gothic-medium-r-normal--10-100-75-75-c-100-jisx0208.1983-0;12,-m
+#JISX0208_1983_BOLD = 10,-mplus-gothic-bold-r-normal--10-100-75-75-c-100-jisx0208.1983-0;12
+#JISX0208_1990 = 10,mplus_j10r;12,mplus_j12r;
+#JISX0208_1990_BOLD = 10,mplus_j10b;12,mplus_j12b;

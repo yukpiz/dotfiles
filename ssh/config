@@ -1,0 +1,9 @@
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/github.com.yukpiz
+    User yukpiz
+
+Host bitbucket.org
+    HostName bitbucket.org
+    IdentityFile ~/.ssh/bitbucket.org.yukpiz
+    User yukpiz

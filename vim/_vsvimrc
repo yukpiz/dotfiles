@@ -45,4 +45,7 @@ inoremap <C-d> <Home>
 
 nnoremap <silent> <Esc><Esc> :noh<CR>
 
+nnoremap <silent> ,nu :set nu<CR>
+nnoremap <silent> ,nonu :set nonu<CR>
+
 " }}}

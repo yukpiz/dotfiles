@@ -96,6 +96,8 @@ NeoBundle "nathanaelkane/vim-indent-guides"
 
 "Color Scheme
 NeoBundle "jpo/vim-railscasts-theme"
+"Line Style
+NeoBundle "miyakogi/conoline.vim"
 
 "Languages
     "Common
@@ -524,5 +526,20 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
       set conceallevel=2 concealcursor=i
 endif
+
+" }}}
+" --- Plugin Settings[conoline.vim] {{{
+
+"   ______                        _ _                  _            ______
+"  / / / /   ___ ___  _ __   ___ | (_)_ __   _____   _(_)_ __ ___   \ \ \ \
+" / / / /   / __/ _ \| '_ \ / _ \| | | '_ \ / _ \ \ / / | '_ ` _ \   \ \ \ \
+" \ \ \ \  | (_| (_) | | | | (_) | | | | | |  __/\ V /| | | | | | |  / / / /
+"  \_\_\_\  \___\___/|_| |_|\___/|_|_|_| |_|\___(_)_/ |_|_| |_| |_| /_/_/_/
+
+let g:conoline_auto_enable=1
+let g:conoline_color_normal_dark="ctermbg=236"
+let g:conoline_color_insert_dark="ctermbg=239"
+
+
 
 " }}}

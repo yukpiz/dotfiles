@@ -280,19 +280,6 @@ function! AllCloseCalendar()
     endfor
 endfunction
 
-function! SwitchNERDTree()
-    if !exists("s:showNERDTree")
-        let s:showNERDTree = 0
-    endif
-    if s:showNERDTree == 0
-        let s:showNERDTree = 1
-        NERDTree
-    else
-        let s:showNERDTree = 0
-        NERDTreeClose
-    endif
-endfunction
-
 function! GetGuiTabLabel()
     let l:label = ""
     let l:bufnrlist = tabpagebuflist(v:lnum)
@@ -360,15 +347,15 @@ inoremap <C-f> <End>
 nnoremap <silent> <Esc><Esc> :noh<CR>
 
 " Function mappings
-nnoremap <F2> :call SwitchNERDTree()<CR>
 nnoremap <F9> :call FileInfo()<CR>
 nnoremap <F10> :call SwitchNumber()<CR>
 nnoremap <F3> :call SwitchCalendar()<CR>
 
 " Call VimShell
-nnoremap [vimshell] <Nop>
-nnoremap ,v [vimshell]
-nnoremap <silent> [vimshell]s :VimShell<CR>
+nnoremap ,vs :VimShell<CR>
+
+" Call NERDTree
+nnoremap ,nt :NERDTreeToggle<CR>
 
 " }}}
 " --- Plugin Settings[neocomplete.vim] {{{

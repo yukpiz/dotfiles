@@ -357,6 +357,9 @@ nnoremap ,vs :VimShell<CR>
 " Call NERDTree
 nnoremap ,nt :NERDTreeToggle<CR>
 
+" Call Switch Number
+nnoremap ,nu :call SwitchNumber()<CR>
+
 " }}}
 " --- Plugin Settings[neocomplete.vim] {{{
 
@@ -526,7 +529,5 @@ endif
 let g:conoline_auto_enable=1
 let g:conoline_color_normal_dark="ctermbg=236"
 let g:conoline_color_insert_dark="ctermbg=239"
-
-
 
 " }}}

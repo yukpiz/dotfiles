@@ -173,9 +173,7 @@ set showmatch                    "閉じ括弧が入力された時に対応す�
 set matchtime=3                  "閉じ括弧へジャンプする秒数
 set laststatus=2                 "ステータスラインを最下部に常に表示する
 set statusline=
-    \%<%f\ %m\ %r%h%w\
-    \%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=\ 
-    \[%v,%l/%L]\ %P              "ステータスラインの文字列
+    \%!GetStatusLineLabel()      "ステータスラインの文字列を設定
 
 "画面を分割表示した時、アクティブなバッファのみカーソルラインの強調をする
 augroup CurrentWindowCursorLine
@@ -251,13 +249,14 @@ augroup END
  "}}}
 " --- Functions {{{
 
-function! FileInfo()
-    echo "===> This file infomation <============="
-    echo " File path     : " . expand("%:p")
-    echo " File type     : " . &filetype
-    echo " File format   : " . &fileformat
-    echo " File encoding : " . &fileencoding
-    echo "========================================"
+function! GetStatusLineLabel()
+    "ステータスラインの文字列を生成して返す
+    return "[%F]%h%m%r ".
+          \"%{'['.(&ft!=''?&ft:'').']'}".
+          \"%{'['.(&fenc!=''?&fenc:&enc).']'}".
+          \"%{'['.(&ff!=''?&ff:'').']'}".
+          \"%=".
+          \"[%v, %l/%L] %P [%b:0x%B]"
 endfunction
 
 function! SwitchNumber()

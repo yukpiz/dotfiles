@@ -112,82 +112,101 @@ filetype plugin indent on
 " --- Common Settings {{{
 
 "Basic
-set nocompatible
-set autoread
-set noundofile          "No create undo file.
-set encoding=utf-8      "Internal encoding of Vim.
-set fileencoding=utf-8  "File encoding.
-scriptencoding utf-8    "Encoding of vimrc own.
-set ffs=unix,dos,mac    "Line feed code.
-set nobackup            "Doesn't back up.
-set nowritebackup       "Not create back up file.
-set nomodeline
-set textwidth=0         "Doesn't wrap words by default.
+set nocompatible                 "Vi互換を使用しない(vimrcが見つからなくてもオフにする)
+set autoread                     "外部で変更があった場合に自動的に読み直す
+set noundofile                   "ファイルを開いた時に復元するUndoファイルを作成しない
+set encoding=utf-8               "Vim自身のエンコーディング
+set fileencoding=utf-8           "ファイルを保存する時のエンコーディング
+set fileencodings=
+    \ucs-bom,utf-8,default,latin1 "ファイルを開く時のエンコーディング
+scriptencoding utf-8             "VimScriptのエンコーディング
+set fileformats=unix,dos,mac     "使用する改行コード
+set writebackup                  "上書き前にバックアップファイルを作成する
+set nobackup                     "書き込み成功したらバックアップファイルを削除する
+set nomodeline                   "モードラインを使用しない(VimL以外のファイル)
+set textwidth=0                  "空白で改行されるテキスト幅を0(無効)にする
+
 "Search
-set wrapscan
-set ignorecase
-set smartcase
-set incsearch
-set hlsearch
+set wrapscan                     "末尾まで検索したら先頭に戻る
+set ignorecase                   "大文字と小文字を区別しない検索
+set smartcase                    "大文字を含む場合は大文字と小文字を区別する検索
+set incsearch                    "インクリメンタルサーチを行う
+set hlsearch                     "検索結果を強調表示する
 
 "Operation
-set backspace=indent,eol,start  "none
-set clipboard+=autoselect
-set clipboard+=unnamedplus
-set shiftwidth=4                
-set expandtab                   "Replaced with a space, tab characters that have been input.
-set tabstop=4                   "Width the tab char.
-set autoindent
-set wildmenu
-set wildchar=<Tab>
-set history=100                 "Keep 100 lines of command line history.
-set iminsert=0
-set imsearch=0
-
+set backspace=indent,eol,start   "indent: autoindentを超えてバックスペースを有効にする
+                                 "eol: 改行を超えてバックスペースを有効にする
+                                 "start: 行頭でバックスペースを止めない
+if has('xterm_clipboard')
+    "クリップボード用レジスタ(+,*)を使う
+    set clipboard+=autoselect
+    set clipboard+=unnamed
+    set clipboard+=unnamedplus
+endif
+set expandtab                    "<Tab>文字を入力した時に代わりに半角空白を使う
+set tabstop=4                    "<Tab>文字の幅(expandtabなら入力される半角空白の個数)
+set shiftwidth=4                 "cindentオプション,<<,>>コマンドで使用するインデント幅
+set autoindent                   "新しい行の開始時に自動インデントを挿入する
+set smartindent                  "より高度な自動インデント
+if has('wildmenu')
+    set wildmenu                 "コマンドライン補完を行う
+    set wildchar=<Tab>           "コマンドライン補完を行う為の入力キー
+    set wildmode=full            "選択しているマッチで完全に補完する
+endif
+set history=50                   "保存するコマンド履歴数
+set iminsert=0                   "インサートモード時の初期IMEをオフ、復元もしない
+set imsearch=0                   "検索文字列の入力時の初期IMEをオフ、復元もしない
 
 "View
-if &term =~ "screen-256color"
-    set t_Co=256      "Use 256 colors
-else
-    set t_Co=16       "Use 16 colors
-endif
-set title
-set titlestring=Hello\ VIM٩(ˊᗜˋ*)ﻭ
-set scrolloff=5
-set lazyredraw
-set ruler             "Show in the status line the cursor position.
-set nonumber
-set numberwidth=6
-set wrap
-set ambiwidth=double
-set showmatch
-set matchtime=1
-set laststatus=2
-set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=\ [%v,%l/%L]\ %P
+set t_Co=256                     "256色数を使用する
+set title                        "ウィンドウのタイトルをtitlestringの値にする
+set titlestring=
+    \Hello\ VIM٩(ˊᗜˋ*)ﻭ         "ウィンドウのタイトルに設定する文字列
+set scrolloff=5                  "カーソル上下のスクロールバッファ
+set lazyredraw                   "キーボードから打ち込まれないコマンド実行時に画面描画を止める
+set ruler                        "ステータスラインにルーラーを表示する
+set nonumber                     "行番号を表示しない
+set numberwidth=6                "行番号エリアの幅
+set wrap                         "長い行を折り返す
+set ambiwidth=double             "East Asian Width Class Ambiguousの文字をASCIIの2倍にする
+set showmatch                    "閉じ括弧が入力された時に対応する括弧にmatchtime秒ジャンプ
+set matchtime=3                  "閉じ括弧へジャンプする秒数
+set laststatus=2                 "ステータスラインを最下部に常に表示する
+set statusline=
+    \%<%f\ %m\ %r%h%w\
+    \%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=\ 
+    \[%v,%l/%L]\ %P              "ステータスラインの文字列
 
+"画面を分割表示した時、アクティブなバッファのみカーソルラインの強調をする
 augroup CurrentWindowCursorLine
     autocmd! CurrentWindowCursorLine
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
+    autocmd WinLeave,BufLeave * set nocursorline "カーソルが離れた時に強調を消す
+    autocmd WinEnter,BufRead * set cursorline    "カーソルを得た時に強調する
 augroup END
 
 "Syntax
-set foldmethod=marker
-set foldenable
-set list listchars=tab:>.,trail:_
-set list listchars+=extends:>,precedes:<
-set display=uhex
+set foldmethod=marker            "マーカーで折り畳みを指定する
+set foldenable                   "ファイルを開いた時は全ての折り畳みを閉じる
+set list listchars=tab:>.       "<Tab>文字を置き換える(=でeolを消す)
+set list listchars+=trail:_      "行末の半角空白を置き換える
+"set list listchars+=extends:>   "nowrapにより右端より長い行の末尾に記号を表示する
+"set list listchars+=precedes:<  "nowrapにより右端にスクロールした時に行頭に記号を表示する
+set display=uhex                 "印字できない文字を16進数で表示(^C,~C形式を使わない)
 
 "GUI Options
-set guifont=Ricty:h9
-set guitablabel=%N:\ %{GetGuiTabLabel()}
-set guioptions+=C
-set guioptions-=T
+set guifont=Ricty:h9             "GVimで使うフォントのリスト
+set guitablabel=
+    \%N:\ %{GetGuiTabLabel()}    "GVimでのタブページのラベル文字列
+set guioptions+=m                "GVimでメニューバーを表示する
+set guioptions+=C                "GVimでタイトルバーを非表示にする
+set guioptions-=T                "GVimでツールバーを非表示にする
 
 if has("syntax")
     function! ActivateInvisibleIndicator()
+        "全角空白を可視化する
         syntax match InvisibleJISX0208Space "　"
                     \ display containedin=ALL
+        "全角空白の背景色を設定
         highlight InvisibleJISX0208Space
                     \ term=underline
                     \ ctermbg=LightGray
@@ -197,34 +216,35 @@ if has("syntax")
         autocmd! Invisible
         autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
     augroup END
-    execute "set colorcolumn=" . join(range(81, 9999), ",")
+
+    "行の長さの目安を強調表示する
+    execute "set colorcolumn=" . join(range(91, 9999), ",")
     syntax on
 
+    "カラースキームの設定
     set background=dark
     colorscheme railscasts
 
 endif
 
 augroup FileTypeCustomize
+    "ファイルタイプ別の設定
     autocmd! FileTypeCustomize
     autocmd FileType * set formatoptions=""
-    "Recognize the file type.
+    "独自でファイルタイプの設定をする場合
     autocmd BufNewFile,BufRead .tmux.conf,tmuxrc set filetype=tmux
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
     autocmd BufNewFile,BufRead *.vb set filetype=vbnet
-    "Indent of each file type.
+    "ファイルタイプ別のインデント関連の設定
     autocmd FileType xml,html,yaml set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
     autocmd FileType ruby,python,c,cpp,css,coffee,haskell set sw=4 ts=4 et
     autocmd FileType javascript,java,php,vb,sh,make set sw=4 ts=4 et
-    "Fold marker of file type.
+    "ファイルタイプ別の折り畳みマーカーの設定
     autocmd FileType vbnet set foldmarker=Region,End\ Region
     autocmd FileType vim set foldmarker={{{,}}}
-augroup END
-
-augroup CppPath
-    autocmd! CppPath
+    "C++のインクルードディレクトリの指定
     autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
 augroup END
 
@@ -526,8 +546,11 @@ endif
 " \ \ \ \  | (_| (_) | | | | (_) | | | | | |  __/\ V /| | | | | | |  / / / /
 "  \_\_\_\  \___\___/|_| |_|\___/|_|_|_| |_|\___(_)_/ |_|_| |_| |_| /_/_/_/
 
+"Vim起動時にconoline.vimを起動する
 let g:conoline_auto_enable=1
+"ノーマルモードでのカーソル行を強調
 let g:conoline_color_normal_dark="ctermbg=236"
+"インサートモードでのカーソル行を強調
 let g:conoline_color_insert_dark="ctermbg=239"
 
 " }}}

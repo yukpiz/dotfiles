@@ -21,6 +21,7 @@ filetype off
 filetype plugin indent off
 
 if has("vim_starting")
+    "Initialize NeoBundle!! ;)
     set runtimepath+=~/.vim/bundle/neobundle.vim
     "Packages manager
     call neobundle#begin(expand('~/.vim/bundle/'))
@@ -28,83 +29,84 @@ if has("vim_starting")
     call neobundle#end()
 endif
 
-if has('unix') "Unix platform?
-    if has("ruby") "Have Ruby extension?
-        "Convertion Markup Files
-        NeoBundle "https://yukpiz@bitbucket.org/yukpiz/kramdown.vim.git"
-    endif
+" --- Utilities for Vim {{{
 
-    "Calendar
-    NeoBundle "itchyny/calendar.vim"
-
-    "Vim utilities
-    NeoBundle "osyo-manga/vim-gift"
-
-    "Utilities
-    NeoBundle "Shougo/vimproc.vim"
-    NeoBundle "mattn/webapi-vim"
-    NeoBundle "kannokanno/previm"
-    NeoBundle "tyru/open-browser.vim"
-    NeoBundle "Shougo/vimshell.vim"
-
-    "Languages
-        "Coffee Script
-        NeoBundle "kchmck/vim-coffee-script"
-        "Scala
-        NeoBundle "derekwyatt/vim-scala"
-        "Haskell
-        NeoBundle "dag/vim2hs"
-        "C++
-        NeoBundle "vim-jp/cpp-vim"
-        "Java
-        NeoBundle "https://yukpiz@bitbucket.org/yukpiz/android-build.vim.git"
-
-    "Debug & Test
-    NeoBundle "thinca/vim-quickrun"
-    NeoBundle "rhysd/wandbox-vim"
-
-    "Package Manager
-        "Git
-        NeoBundle "rhysd/committia.vim"
-
-    "SNS
-        "Twitter
-        NeoBundle "basyura/twibill.vim"
-
-    "Game
-    NeoBundle "deris/vim-duzzle"
-
-    "Sound
-    NeoBundle "supermomonga/Shaberu.vim"
-
-    "RDBMS Tool
-    NeoBundle "mattn/vdbi-vim"
-endif
-
-"Common environment
-if has("lua") "Have Lua extension?
-    "Edit Completion
-    NeoBundle "Shougo/neocomplete.vim"
-endif
-
-"File Explorer
+NeoBundle "Shougo/vimproc.vim"
+NeoBundle "itchyny/calendar.vim"
+NeoBundle "osyo-manga/vim-gift"
+NeoBundle "mattn/webapi-vim"
+NeoBundle "Shougo/vimshell.vim"
 NeoBundle "scrooloose/nerdtree"
 
-"Syntax
+" }}}
+
+" --- Utilities for Markdown file {{{
+
+NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/kramdown.vim.git"
+NeoBundleLazy "tyru/open-browser.vim"
+NeoBundleLazy "kannokanno/previm"
+
+" }}}
+
+" --- Syntax for programming languages {{{
+
+NeoBundleLazy "kchmck/vim-coffee-script"
+NeoBundleLazy "derekwyatt/vim-scala"
+NeoBundleLazy "dag/vim2hs"
+NeoBundleLazy "vim-jp/cpp-vim"
+NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/android-build.vim.git"
+NeoBundleLazy "yukpiz/vim-vbnet"
+
 NeoBundle "osyo-manga/vim-brightest"
 NeoBundle "nathanaelkane/vim-indent-guides"
-
-"Color Scheme
 NeoBundle "jpo/vim-railscasts-theme"
-"Line Style
 NeoBundle "miyakogi/conoline.vim"
+NeoBundle "Shougo/neosnippet"
+NeoBundle "Shougo/neosnippet-snippets"
 
-"Languages
-    "Common
-    NeoBundle "Shougo/neosnippet"
-    NeoBundle "Shougo/neosnippet-snippets"
-    "VB.NET
-    NeoBundle "yukpiz/vim-vbnet"
+" }}}
+
+" --- Auxiliary for programming {{{
+
+NeoBundle "rhysd/committia.vim"
+NeoBundle "Shougo/neocomplete.vim"
+NeoBundleLazy "thinca/vim-quickrun"
+NeoBundleLazy "rhysd/wandbox-vim"
+
+" }}}
+
+" --- Utilities for database system {{{
+
+NeoBundle "mattn/vdbi-vim"
+
+" }}}
+
+" --- Communications {{{
+
+NeoBundle "basyura/twibill.vim"
+
+" }}}
+
+" --- Let play the game in secretly {{{
+
+NeoBundle "deris/vim-duzzle"
+
+" }}}
+
+" --- foo!! {{{
+
+NeoBundle "supermomonga/Shaberu.vim"
+
+" }}}
+
+if has("ruby") "Have Ruby extension?
+endif
+
+if has('unix') "Unix platform?
+endif
+
+if has("lua") "Have Lua extension?
+endif
 
 filetype plugin indent on
 

@@ -366,8 +366,6 @@ inoremap <C-f> <End>
 nnoremap <silent> <Esc><Esc> :noh<CR>
 
 " Function mappings
-nnoremap <F9> :call FileInfo()<CR>
-nnoremap <F10> :call SwitchNumber()<CR>
 nnoremap <F3> :call SwitchCalendar()<CR>
 
 " Call VimShell

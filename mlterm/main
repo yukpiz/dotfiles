@@ -74,7 +74,7 @@ termtype=mlterm
 # }}}
 # --- Font Style. {{{
 # フォントサイズ
-fontsize=15
+fontsize=14
 # 変更可能なフォントサイズの範囲[min]-[max]
 font_size_range=6-50
 # 可変長カラム幅を使う

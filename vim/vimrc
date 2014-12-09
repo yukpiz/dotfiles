@@ -267,7 +267,7 @@ augroup FileTypeCustomize
     autocmd! FileTypeCustomize
     autocmd FileType * set formatoptions=""
     "独自でファイルタイプの設定をする場合
-    autocmd BufNewFile,BufRead .tmux.conf,tmuxrc set filetype=tmux
+    "autocmd BufNewFile,BufRead .tmux.conf,tmuxrc set filetype=tmux
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
     autocmd BufNewFile,BufRead *.vb set filetype=vbnet

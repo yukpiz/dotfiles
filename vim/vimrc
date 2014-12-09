@@ -46,6 +46,11 @@ NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/kramdown.vim.git"
 NeoBundleLazy "tyru/open-browser.vim"
 NeoBundleLazy "kannokanno/previm"
 
+augroup MarkdownPlugins
+    autocmd! MarkdownPlugins
+    autocmd FileType markdown NeoBundleSource kramdown.vim open-browser.vim previm
+augroup END
+
 " }}}
 
 " --- Syntax for programming languages {{{
@@ -56,6 +61,36 @@ NeoBundleLazy "dag/vim2hs"
 NeoBundleLazy "vim-jp/cpp-vim"
 NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/android-build.vim.git"
 NeoBundleLazy "yukpiz/vim-vbnet"
+
+augroup CoffeeScriptPlugins
+    autocmd! CoffeeScriptPlugins
+    autocmd FileType coffee NeoBundleSource vim-coffee-script
+augroup END
+
+augroup ScalaPlugins
+    autocmd! ScalaPlugins
+    autocmd FileType scala NeoBundleSource vim-scala
+augroup END
+
+augroup HaskellPlugins
+    autocmd! HaskellPlugins
+    autocmd FileType haskell NeoBundleSource vim2hs
+augroup END
+
+augroup CppPlugins
+    autocmd! CppPlugins
+    autocmd FileType cpp NeoBundleSource cpp-vim
+augroup END
+
+augroup JavaPlugins
+    autocmd! JavaPlugins
+    autocmd FileType java NeoBundleSource android-build.vim
+augroup END
+
+augroup VbNetPlugins
+    autocmd! VbNetPlugins
+    autocmd FileType vbnet NeoBundleSource vim-vbnet
+augroup END
 
 NeoBundle "osyo-manga/vim-brightest"
 NeoBundle "nathanaelkane/vim-indent-guides"
@@ -236,6 +271,7 @@ augroup FileTypeCustomize
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
     autocmd BufNewFile,BufRead *.vb set filetype=vbnet
+    autocmd BufNewFile,BufRead *.scala set filetype=scala
     "ファイルタイプ別のインデント関連の設定
     autocmd FileType xml,html,yaml set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et

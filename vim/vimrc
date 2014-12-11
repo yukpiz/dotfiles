@@ -235,6 +235,7 @@ set list listchars+=trail:_      "行末の半角空白を置き換える
 "set list listchars+=extends:>   "nowrapにより右端より長い行の末尾に記号を表示する
 "set list listchars+=precedes:<  "nowrapにより右端にスクロールした時に行頭に記号を表示する
 set display=uhex                 "印字できない文字を16進数で表示(^C,~C形式を使わない)
+let g:vim_indent_cont=0          "VimLの\改行時の自動インデント幅
 
 "GUI Options
 set guifont=Ricty:h9             "GVimで使うフォントのリスト

@@ -33,10 +33,17 @@ endif
 
 NeoBundle "Shougo/vimproc.vim"
 NeoBundle "itchyny/calendar.vim"
-NeoBundle "osyo-manga/vim-gift"
-NeoBundle "mattn/webapi-vim"
 NeoBundle "Shougo/vimshell.vim"
 NeoBundle "scrooloose/nerdtree"
+
+" }}}
+
+" --- Auxiliary Vim Script {{{
+
+NeoBundle "mattn/webapi-vim"
+NeoBundle "osyo-manga/vim-gift"
+NeoBundle "vim-jp/vital.vim"
+NeoBundle "Shougo/unite.vim"
 
 " }}}
 
@@ -125,6 +132,7 @@ NeoBundle "basyura/twibill.vim"
 " --- Let play the game in secretly {{{
 
 NeoBundle "deris/vim-duzzle"
+NeoBundle "katono/rogue.vim"
 
 " }}}
 

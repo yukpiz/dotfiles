@@ -68,35 +68,18 @@ NeoBundleLazy "dag/vim2hs"
 NeoBundleLazy "vim-jp/cpp-vim"
 NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/android-build.vim.git"
 NeoBundleLazy "yukpiz/vim-vbnet"
+NeoBundleLazy "hynek/vim-python-pep8-indent"
 
-augroup CoffeeScriptPlugins
-    autocmd! CoffeeScriptPlugins
+
+augroup ProgLangPlugins
+    autocmd! ProgLangPlugins
     autocmd FileType coffee NeoBundleSource vim-coffee-script
-augroup END
-
-augroup ScalaPlugins
-    autocmd! ScalaPlugins
     autocmd FileType scala NeoBundleSource vim-scala
-augroup END
-
-augroup HaskellPlugins
-    autocmd! HaskellPlugins
     autocmd FileType haskell NeoBundleSource vim2hs
-augroup END
-
-augroup CppPlugins
-    autocmd! CppPlugins
     autocmd FileType cpp NeoBundleSource cpp-vim
-augroup END
-
-augroup JavaPlugins
-    autocmd! JavaPlugins
     autocmd FileType java NeoBundleSource android-build.vim
-augroup END
-
-augroup VbNetPlugins
-    autocmd! VbNetPlugins
     autocmd FileType vbnet NeoBundleSource vim-vbnet
+    autocmd FileType python NeoBundleSource vim-python-pep8-indent
 augroup END
 
 NeoBundle "osyo-manga/vim-brightest"

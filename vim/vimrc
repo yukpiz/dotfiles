@@ -35,6 +35,7 @@ NeoBundle "Shougo/vimproc.vim"
 NeoBundle "itchyny/calendar.vim"
 NeoBundle "Shougo/vimshell.vim"
 NeoBundle "scrooloose/nerdtree"
+NeoBundle "yukpiz/unite-rss.vim"
 
 " }}}
 

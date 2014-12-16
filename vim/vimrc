@@ -36,6 +36,7 @@ NeoBundle "itchyny/calendar.vim"
 NeoBundle "Shougo/vimshell.vim"
 NeoBundle "scrooloose/nerdtree"
 NeoBundle "yukpiz/unite-rss.vim"
+NeoBundle "haya14busa/incsearch.vim"
 
 " }}}
 
@@ -85,7 +86,7 @@ augroup END
 
 NeoBundle "osyo-manga/vim-brightest"
 NeoBundle "nathanaelkane/vim-indent-guides"
-NeoBundle "jpo/vim-railscasts-theme"
+NeoBundle "yukpiz/vim-railscasts-theme"
 NeoBundle "miyakogi/conoline.vim"
 NeoBundle "Shougo/neosnippet"
 NeoBundle "Shougo/neosnippet-snippets"
@@ -279,7 +280,7 @@ augroup FileTypeCustomize
     autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
 augroup END
 
- "}}}
+" }}}
 " --- Functions {{{
 
 function! GetStatusLineLabel()
@@ -582,5 +583,12 @@ let g:conoline_auto_enable=1
 let g:conoline_color_normal_dark="ctermbg=236"
 "インサートモードでのカーソル行を強調
 let g:conoline_color_insert_dark="ctermbg=239"
+
+" }}}
+" --- Plugin Settings[incsearch.vim] {{{
+
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 " }}}

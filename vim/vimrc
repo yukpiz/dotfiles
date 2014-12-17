@@ -148,7 +148,7 @@ set noundofile                   "ファイルを開いた時に復元するUndo
 set encoding=utf-8               "Vim自身のエンコーディング
 set fileencoding=utf-8           "ファイルを保存する時のエンコーディング
 set fileencodings=
-    \ucs-bom,utf-8,default,latin1 "ファイルを開く時のエンコーディング
+   \ucs-bom,utf-8,default,latin1 "ファイルを開く時のエンコーディング
 scriptencoding utf-8             "VimScriptのエンコーディング
 set fileformats=unix,dos,mac     "使用する改行コード
 set writebackup                  "上書き前にバックアップファイルを作成する

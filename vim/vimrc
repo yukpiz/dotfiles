@@ -396,6 +396,9 @@ nnoremap <C-d> <Home>
 inoremap <C-d> <Home>
 inoremap <C-f> <End>
 
+nnoremap j gj
+nnoremap k gk
+
 " Highlight mappings
 nnoremap <silent> <Esc><Esc> :noh<CR>
 

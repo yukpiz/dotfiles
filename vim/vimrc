@@ -20,7 +20,7 @@
 filetype off
 filetype plugin indent off
 
-if has("vim_starting")
+if has('vim_starting')
     "Initialize NeoBundle!! ;)
     set runtimepath+=~/.vim/bundle/neobundle.vim
     "Packages manager
@@ -127,13 +127,13 @@ NeoBundle "supermomonga/Shaberu.vim"
 
 " }}}
 
-if has("ruby") "Have Ruby extension?
+if has('ruby') "Have Ruby extension?
 endif
 
 if has('unix') "Unix platform?
 endif
 
-if has("lua") "Have Lua extension?
+if has('lua') "Have Lua extension?
 endif
 
 filetype plugin indent on
@@ -142,7 +142,6 @@ filetype plugin indent on
 " --- Common Settings {{{
 
 "Basic
-set nocompatible                 "Vi互換を使用しない(vimrcが見つからなくてもオフにする)
 set autoread                     "外部で変更があった場合に自動的に読み直す
 set noundofile                   "ファイルを開いた時に復元するUndoファイルを作成しない
 set encoding=utf-8               "Vim自身のエンコーディング
@@ -214,8 +213,9 @@ augroup END
 
 "Syntax
 set foldmethod=marker            "マーカーで折り畳みを指定する
+set foldopen+=jump               "ジャンプした時に折りたたみを自動展開する
 set foldenable                   "ファイルを開いた時は全ての折り畳みを閉じる
-set list listchars=tab:>.       "<Tab>文字を置き換える(=でeolを消す)
+set list listchars=tab:>.        "<Tab>文字を置き換える(=でeolを消す)
 set list listchars+=trail:_      "行末の半角空白を置き換える
 "set list listchars+=extends:>   "nowrapにより右端より長い行の末尾に記号を表示する
 "set list listchars+=precedes:<  "nowrapにより右端にスクロールした時に行頭に記号を表示する
@@ -229,7 +229,7 @@ set guioptions+=m                "GVimでメニューバーを表示する
 set guioptions+=C                "GVimでタイトルバーを非表示にする
 set guioptions-=T                "GVimでツールバーを非表示にする
 
-if has("syntax")
+if has('syntax')
     function! ActivateInvisibleIndicator()
         "全角空白を可視化する
         syntax match InvisibleJISX0208Space "　"
@@ -246,7 +246,7 @@ if has("syntax")
     augroup END
 
     "行の長さの目安を強調表示する
-    execute "set colorcolumn=" . join(range(91, 9999), ",")
+    execute 'set colorcolumn=' . join(range(91, 9999), ',')
     syntax on
 
     "カラースキームの設定
@@ -285,12 +285,12 @@ augroup END
 
 function! GetStatusLineLabel()
     "ステータスラインの文字列を生成して返す
-    return "[%F]%h%m%r ".
-          \"%{'['.(&ft!=''?&ft:'').']'}".
-          \"%{'['.(&fenc!=''?&fenc:&enc).']'}".
-          \"%{'['.(&ff!=''?&ff:'').']'}".
-          \"%=".
-          \"[%v, %l/%L] %P [%b:0x%B]"
+    return '[%F]%h%m%r '.
+          \'%{"[".(&ft!=""?&ft:"")."]"}'.
+          \'%{"[".(&fenc!=""?&fenc:&enc)."]"}'.
+          \'%{"[".(&ff!=""?&ff:"")."]"}'.
+          \'%='.
+          \'[%v, %l/%L] %P [%b:0x%B]'
 endfunction
 
 function! SwitchNumber()
@@ -322,7 +322,7 @@ function! AllCloseCalendar()
         "ウィンドウ変数を有効にする為にカレントウィンドウに設定
         call gift#jump_window(tw)
         "ウィンドウ変数calendar_windowが1ならそのウィンドウを閉じる
-        if exists("w:calendar_window") == 1
+        if exists('w:calendar_window') == 1
             if w:calendar_window == 1
                 "close_windowに[タブページ番号,ウィンドウ番号]のリストを渡すと正しく閉じる
                 call gift#close_window(tw)
@@ -334,7 +334,7 @@ function! AllCloseCalendar()
 endfunction
 
 function! GetGuiTabLabel()
-    let l:label = ""
+    let l:label = ''
     let l:bufnrlist = tabpagebuflist(v:lnum)
     let l:bufname = fnamemodify(bufname(l:bufnrlist[tabpagewinnr(v:lnum) - 1]), ':t')
     let l:label .= l:bufname == '' ? 'No title' : l:bufname
@@ -343,7 +343,7 @@ function! GetGuiTabLabel()
         let l:label .= '[' . l:wincount . ']'
     endif
     for bufnr in l:bufnrlist
-        if getbufvar(bufnr, "&modified")
+        if getbufvar(bufnr, '&modified')
             let l:label .= '[+]'
             break
         endif
@@ -458,14 +458,14 @@ let g:neocomplete#min_keyword_length=2
 "補完を実行するキーワードパターンの設定
 "neocompleteが対応していないファイルタイプを補完する場合に設定する
 "TODO: existsする必要がある？
-if !exists("g:neocomplete#keyword_patterns")
+if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns={}
-    let g:neocomplete#keyword_patterns["default"]="\h\w"
+    let g:neocomplete#keyword_patterns['default']='\h\w'
 endif
 
-if !exists("g:neocomplete#sources#omni#input_patterns")
+if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns={}
-    let g:neocomplete#sources#omni#input_patterns.perl="\h\w*->\h\w*\|\h\w*::"
+    let g:neocomplete#sources#omni#input_patterns.perl='\h\w*->\h\w*\|\h\w*::'
 endif
 
 "inoremap <expr><C-g> neocomplete#undo_completion()
@@ -486,11 +486,13 @@ endfunction
 hi Pmenu ctermbg=101 ctermfg=232
 hi PmenuSel ctermbg=58 ctermfg=231
 
-autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setl omnifunc=pythoncomplete#Complete
-autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
+augroup NeoCompleteStyle
+    autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setl omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
+augroup END
 set completeopt-=preview
 
 "}}}
@@ -511,7 +513,7 @@ let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
     setl spell
 
-    if a:info.vcs ==# "git" && getline(1) ==# ""
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
         startinsert
     end
 
@@ -548,7 +550,7 @@ let g:indent_guides_guide_size=1
 " }}}
 " --- Plugin Settings[calendar.vim] {{{
 
-let g:calendar_frame = "default"
+let g:calendar_frame = 'default'
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 
@@ -585,9 +587,9 @@ endif
 "Vim起動時にconoline.vimを起動する
 let g:conoline_auto_enable=1
 "ノーマルモードでのカーソル行を強調
-let g:conoline_color_normal_dark="ctermbg=236"
+let g:conoline_color_normal_dark='ctermbg=236'
 "インサートモードでのカーソル行を強調
-let g:conoline_color_insert_dark="ctermbg=239"
+let g:conoline_color_insert_dark='ctermbg=239'
 
 " }}}
 " --- Plugin Settings[incsearch.vim] {{{

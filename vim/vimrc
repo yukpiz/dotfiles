@@ -53,6 +53,7 @@ call submode#map('winsize', 'n', '', '-', '<C-w>-')
 " }}}
 
 NeoBundle "Shougo/vimproc.vim"
+
 NeoBundle "itchyny/calendar.vim"
 " calendar.vim settings {{{
 

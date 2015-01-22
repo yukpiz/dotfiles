@@ -563,7 +563,7 @@ vnoremap k gk
 nnoremap <silent> <Esc><Esc> :noh<CR>
 
 " Function mappings
-nnoremap <F3> :call SwitchCalendar()<CR>
+nnoremap ,cl :call SwitchCalendar()<CR>
 
 " Call VimShell
 nnoremap ,vs :VimShell<CR>

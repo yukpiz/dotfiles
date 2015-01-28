@@ -483,6 +483,7 @@ function! AllCloseCalendar()
         if exists('w:calendar_window') == 1
             if w:calendar_window == 1
                 "close_windowに[タブページ番号,ウィンドウ番号]のリストを渡すと正しく閉じる
+                "TODO:最後のウィンドウを閉じる場合の挙動
                 call gift#close_window(tw)
                 "ウィンドウ番号が変わるので再帰する
                 call AllCloseCalendar()

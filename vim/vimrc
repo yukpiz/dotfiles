@@ -52,8 +52,11 @@ call submode#map('winsize', 'n', '', '-', '<C-w>-')
 
 " }}}
 
+"Tabpage and the window of Utilities.
+NeoBundle "osyo-manga/vim-gift"
 NeoBundle "Shougo/vimproc.vim"
 
+"Show calendar.
 NeoBundle "itchyny/calendar.vim"
 " calendar.vim settings {{{
 
@@ -77,7 +80,6 @@ map g/ <Plug>(incsearch-stay)
 " }}}
 
 NeoBundle "mattn/webapi-vim"
-NeoBundle "osyo-manga/vim-gift"
 NeoBundle "vim-jp/vital.vim"
 NeoBundle "Shougo/unite.vim"
 
@@ -98,8 +100,8 @@ NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/android-build.vim.git"
 NeoBundleLazy "yukpiz/vim-vbnet"
 NeoBundleLazy "hynek/vim-python-pep8-indent"
 
-augroup ProgLangPlugins
-    autocmd! ProgLangPlugins
+augroup ProgrammingPlugins
+    autocmd! ProgrammingPlugins
     autocmd FileType coffee NeoBundleSource vim-coffee-script
     autocmd FileType scala NeoBundleSource vim-scala
     autocmd FileType haskell NeoBundleSource vim2hs
@@ -289,6 +291,7 @@ let g:gmail_user_name = 'yukpiz@gmail.com'
 " Dependent on w3m command.
 "  the compilation method.
 NeoBundle "yuratomo/w3m.vim"
+
 NeoBundle "deris/vim-duzzle"
 NeoBundle "katono/rogue.vim"
 NeoBundle "mattn/mahjong-vim"

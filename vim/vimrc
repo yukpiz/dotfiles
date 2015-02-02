@@ -29,6 +29,9 @@ if has('vim_starting')
     call neobundle#end()
 endif
 
+"
+NeoBundle "thinca/vim-prettyprint"
+
 "Can predict and complement,
 " to many plug-in commands.
 NeoBundle "thinca/vim-ambicmd"

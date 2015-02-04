@@ -516,6 +516,13 @@ function! GetGuiTabLabel()
     return l:label
 endfunction
 
+function! OpenBrowserParsedURL()
+    let mlist = matchlist(getline('.'), '\v[(|\[|\s](https?:\/\/[^>]*)[)|\]|\s]')
+    if mlist != []
+        call openbrowser#open(mlist[1])
+    endif
+endfunction
+
 "}}}
 " --- Key Mappings {{{
 
@@ -560,6 +567,8 @@ nnoremap <C-f> <End>
 nnoremap <C-d> <Home>
 inoremap <C-d> <Home>
 inoremap <C-f> <End>
+nnoremap <C-o> :call OpenBrowserParsedURL()<CR>
+inoremap <C-o> <ESC>:call OpenBrowserParsedURL()<CR>
 
 nnoremap j gj
 nnoremap k gk

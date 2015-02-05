@@ -1,49 +1,50 @@
 " --- About {{{
-" -----------------------------------------------------------------------------
 "   ______ __     ___            ______
 "  / / / / \ \   / (_)_ __ ___   \ \ \ \
 " / / / /   \ \ / /| | '_ ` _ \   \ \ \ \
 " \ \ \ \    \ V / | | | | | | |  / / / /
 "  \_\_\_\    \_/  |_|_| |_| |_| /_/_/_/
 "
-" └(՞ةڼ◔)」Configuration file for Vim!
+" └(՞ةڼ◔)」
+" Vim configuration.
 "
-" [Author]     @yukpiz<yukpiz@gmail.com>
-" [Created]    2012.6.12
-" [Repository] https://github.com/yukpiz/dotfiles.git
+" This configuration of the repository here.
+" https://github.com/yukpiz/dotfiles.git
 "
-" -----------------------------------------------------------------------------
+" Contact us yukpiz<yukpiz@gmail.com>
+"
 "}}}
 
-" --- Plugins Manager {{{
+" --- plug-ins {{{
 
 filetype off
 filetype plugin indent off
 
+" When started the Vim.
 if has('vim_starting')
-    "Initialize NeoBundle!! ;)
+    " Initialize NeoBundle!! ;)
+    " neobundle.vim manage the plug-ins of Vim.
+    " https://github.com/Shougo/neobundle.vim
     set runtimepath+=~/.vim/bundle/neobundle.vim
-    "Packages manager
     call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
     call neobundle#end()
 endif
 
-"
+" vim-prettyprint to conveniently debug print,
+" be printed shaping the dictionary of VimScript.
 NeoBundle "thinca/vim-prettyprint"
 
-"Can predict and complement,
-" to many plug-in commands.
+" vim-ambicmd can predict and complement, to many plug-in commands.
+" :nbi<Space> and typing, and complemented by camel case,
+" will be output as :NeoBundleInstall
 NeoBundle "thinca/vim-ambicmd"
 " vim-ambicmd settings {{{
-
 cnoremap <expr> <Space> ambicmd#expand('<Space>')
-
 " }}}
 
 NeoBundle "kana/vim-submode"
 " vim-submode settings {{{
-
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
 call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
 call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
@@ -52,21 +53,19 @@ call submode#map('winsize', 'n', '', '>', '<C-w>>')
 call submode#map('winsize', 'n', '', '<', '<C-w><')
 call submode#map('winsize', 'n', '', '+', '<C-w>+')
 call submode#map('winsize', 'n', '', '-', '<C-w>-')
-
 " }}}
 
-"Tabpage and the window of Utilities.
+" Tabpage and the window of Utilities.
 NeoBundle "osyo-manga/vim-gift"
 NeoBundle "Shougo/vimproc.vim"
 
-"Show calendar.
+" Display a very beautiful calendar on the Vim.
+" Cooperation also possible, with Google calendar.
 NeoBundle "itchyny/calendar.vim"
 " calendar.vim settings {{{
-
 let g:calendar_frame = 'default'
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
-
 " }}}
 
 NeoBundle "Shougo/vimshell.vim"
@@ -75,11 +74,9 @@ NeoBundle "yukpiz/unite-rss.vim"
 
 NeoBundle "haya14busa/incsearch.vim"
 " incsearch.vim settings {{{
-
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-
 " }}}
 
 NeoBundle "mattn/webapi-vim"
@@ -116,69 +113,59 @@ augroup END
 
 NeoBundle "osyo-manga/vim-brightest"
 " vim-brightest settings {{{
-
 let g:brightest#highlight = {
-            \ "group": "BrightestUnderline"
-            \ }
-
+\"group": "BrightestUnderline"
+\}
 let g:brightest#enable_filetypes = {
-            \ "markdown": 0
-            \ }
-
+\"markdown": 0
+\}
 " }}}
 
 NeoBundle "nathanaelkane/vim-indent-guides"
 " vim-indent-guides settings {{{
-
 let g:indent_guides_auto_colors=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
-
 " }}}
 
 NeoBundle "yukpiz/vim-railscasts-theme"
 NeoBundle "miyakogi/conoline.vim"
 
 " conoline.vim settings {{{
-
 "Vim起動時にconoline.vimを起動する
 let g:conoline_auto_enable=1
 "ノーマルモードでのカーソル行を強調
 let g:conoline_color_normal_dark='ctermbg=236'
 "インサートモードでのカーソル行を強調
 let g:conoline_color_insert_dark='ctermbg=239'
-
 " }}}
 
 NeoBundle "Shougo/neosnippet"
 NeoBundle "Shougo/neosnippet-snippets"
 " neosnippet settings {{{
-
 " Plugin key-mappings.
 imap <C-TAB>     <Plug>(neosnippet_expand_or_jump)
 smap <C-TAB>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-TAB>     <Plug>(neosnippet_expand_target)
-
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)"
-            \: pumvisible() ? "\<C-n>" : "\<TAB>"
+\"\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)"
-            \: "\<TAB>"
+\"\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
-      set conceallevel=2 concealcursor=i
+    set conceallevel=2 concealcursor=i
 endif
 
 " }}}
 
 NeoBundle "rhysd/committia.vim"
 " committia.vim settings {{{
-
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
     setl spell
@@ -190,13 +177,10 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
     imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
 endfunction
-
-
 " }}}
 
 NeoBundle "Shougo/neocomplete.vim"
 " neocomplete.vim settings {{{
-
 "Vimの起動時にneocompleteも起動する
 let g:neocomplete#enable_at_startup=1
 "大文字が入力されたら大文字と小文字を区別して補完する
@@ -228,7 +212,6 @@ let g:neocomplete#min_keyword_length=2
 
 "補完を実行するキーワードパターンの設定
 "neocompleteが対応していないファイルタイプを補完する場合に設定する
-"TODO: existsする必要がある？
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns={}
     let g:neocomplete#keyword_patterns['default']='\h\w'
@@ -265,18 +248,15 @@ augroup NeoCompleteStyle
     autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 augroup END
 set completeopt-=preview
-
 " }}}
 
 NeoBundleLazy "thinca/vim-quickrun"
 " vim-quickrun settings {{{
-
 let g:quickrun_config = {}
 let g:quickrun_config.cpp = {
 \ "command" : "g++",
 \ "cmdopt" : "-std=c++11",
 \ }
-
 " }}}
 
 NeoBundleLazy "rhysd/wandbox-vim"
@@ -286,9 +266,7 @@ NeoBundle "basyura/TweetVim"
 
 NeoBundle "yuratomo/gmail.vim"
 " gmail.vim settings {{{
-
 let g:gmail_user_name = 'yukpiz@gmail.com'
-
 " }}}
 
 " Dependent on w3m command.
@@ -311,7 +289,7 @@ set noundofile                   "ファイルを開いた時に復元するUndo
 set encoding=utf-8               "Vim自身のエンコーディング
 set fileencoding=utf-8           "ファイルを保存する時のエンコーディング
 set fileencodings=
-   \ucs-bom,utf-8,default,latin1 "ファイルを開く時のエンコーディング
+\ucs-bom,utf-8,default,latin1    "ファイルを開く時のエンコーディング
 scriptencoding utf-8             "VimScriptのエンコーディング
 set fileformats=unix,dos,mac     "使用する改行コード
 set writebackup                  "上書き前にバックアップファイルを作成する
@@ -354,7 +332,7 @@ set imsearch=0                   "検索文字列の入力時の初期IMEをオ�
 set t_Co=256                     "256色数を使用する
 set title                        "ウィンドウのタイトルをtitlestringの値にする
 set titlestring=
-    \Hello\ VIM٩(ˊᗜˋ*)ﻭ         "ウィンドウのタイトルに設定する文字列
+\Hello\ VIM٩(ˊᗜˋ*)ﻭ            "ウィンドウのタイトルに設定する文字列
 set scrolloff=5                  "カーソル上下のスクロールバッファ
 set lazyredraw                   "キーボードから打ち込まれないコマンド実行時に画面描画を止める
 set ruler                        "ステータスラインにルーラーを表示する
@@ -366,7 +344,7 @@ set showmatch                    "閉じ括弧が入力された時に対応す�
 set matchtime=3                  "閉じ括弧へジャンプする秒数
 set laststatus=2                 "ステータスラインを最下部に常に表示する
 set statusline=
-    \%!GetStatusLineLabel()      "ステータスラインの文字列を設定
+\%!GetStatusLineLabel()          "ステータスラインの文字列を設定
 
 "画面を分割表示した時、アクティブなバッファのみカーソルラインの強調をする
 augroup CurrentWindowCursorLine
@@ -388,7 +366,7 @@ set display=uhex                 "印字できない文字を16進数で表示(^
 "GUI Options
 set guifont=Ricty:h9             "GVimで使うフォントのリスト
 set guitablabel=
-    \%N:\ %{GetGuiTabLabel()}    "GVimでのタブページのラベル文字列
+\%N:\ %{GetGuiTabLabel()}        "GVimでのタブページのラベル文字列
 set guioptions+=m                "GVimでメニューバーを表示する
 set guioptions+=C                "GVimでタイトルバーを非表示にする
 set guioptions-=T                "GVimでツールバーを非表示にする
@@ -397,12 +375,12 @@ if has('syntax')
     function! ActivateInvisibleIndicator()
         "全角空白を可視化する
         syntax match InvisibleJISX0208Space "　"
-                    \ display containedin=ALL
+        \ display containedin=ALL
         "全角空白の背景色を設定
         highlight InvisibleJISX0208Space
-                    \ term=underline
-                    \ ctermbg=LightGray
-                    \ guibg=LightGray
+        \ term=underline
+        \ ctermbg=LightGray
+        \ guibg=LightGray
     endfunction
     augroup Invisible
         autocmd! Invisible
@@ -416,7 +394,6 @@ if has('syntax')
     "カラースキームの設定
     set background=dark
     colorscheme railscasts
-
 endif
 
 augroup FileTypeCustomize
@@ -449,12 +426,12 @@ augroup END
 
 function! GetStatusLineLabel()
     "ステータスラインの文字列を生成して返す
-    return '[%F]%h%m%r '.
-          \'%{"[".(&ft!=""?&ft:"")."]"}'.
-          \'%{"[".(&fenc!=""?&fenc:&enc)."]"}'.
-          \'%{"[".(&ff!=""?&ff:"")."]"}'.
-          \'%='.
-          \'[%v, %l/%L] %P [%b:0x%B]'
+    return '[%F]%h%m%r ' .
+    \ '%{"[".(&ft!=""?&ft:"")."]"}' .
+    \ '%{"[".(&fenc!=""?&fenc:&enc)."]"}' .
+    \ '%{"[".(&ff!=""?&ff:"")."]"}' .
+    \ '%=' .
+    \ '[%v, %l/%L] %P [%b:0x%B]'
 endfunction
 
 function! SwitchNumber()

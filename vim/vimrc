@@ -1,4 +1,4 @@
-" --- About {{{
+" --- ABOUT {{{
 "   ______ __     ___            ______
 "  / / / / \ \   / (_)_ __ ___   \ \ \ \
 " / / / /   \ \ / /| | '_ ` _ \   \ \ \ \
@@ -281,7 +281,7 @@ NeoBundle "supermomonga/Shaberu.vim"
 filetype plugin indent on
 
 "}}}
-" --- Common Settings {{{
+" --- commons {{{
 
 "Basic
 set autoread                     "外部で変更があった場合に自動的に読み直す
@@ -422,7 +422,7 @@ augroup FileTypeCustomize
 augroup END
 
 " }}}
-" --- Functions {{{
+" --- functions {{{
 
 function! GetStatusLineLabel()
     "ステータスラインの文字列を生成して返す
@@ -503,7 +503,7 @@ function! OpenBrowserParsedURL()
 endfunction
 
 "}}}
-" --- Key Mappings {{{
+" --- key mappings {{{
 
 " # Key Mappings Cheet Sheet
 " +---------------+--------+--------+---------+--------+

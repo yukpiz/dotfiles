@@ -467,7 +467,7 @@ endfunction
 
 let g:calendar_on = 0
 function! SwitchCalendar()
-    call AllCloseCalendar()
+    call s:all_close_calendar()
     if g:calendar_on == 0
         Calendar -view=month -split=horizontal -position=below -height=25
         "開いたカレンダーウィンドウ変数にcalendar_window=1を設定
@@ -478,7 +478,7 @@ function! SwitchCalendar()
     endif
 endfunction
 
-function! AllCloseCalendar()
+function! s:all_close_calendar()
     "開かれている全てのカレンダーウィンドウを閉じる
     "開かれているタブページとウィンドウのリストを得る
     let l:li = gift#tabpagewinnr_list()
@@ -492,7 +492,7 @@ function! AllCloseCalendar()
                 "TODO:最後のウィンドウを閉じる場合の挙動
                 call gift#close_window(tw)
                 "ウィンドウ番号が変わるので再帰する
-                call AllCloseCalendar()
+                call s:all_close_calendar()
             endif
         endif
     endfor
@@ -502,7 +502,7 @@ function! GetGuiTabLabel()
     let l:label = ''
     let l:bufnrlist = tabpagebuflist(v:lnum)
     let l:bufname = fnamemodify(bufname(l:bufnrlist[tabpagewinnr(v:lnum) - 1]), ':t')
-    let l:label .= l:bufname == '' ? 'No title' : l:bufname
+    let l:label .= l:bufname ==# '' ? 'No title' : l:bufname
     let l:wincount = tabpagewinnr(v:lnum, '$')
     if l:wincount > 1
         let l:label .= '[' . l:wincount . ']'
@@ -520,6 +520,8 @@ function! OpenBrowserParsedURL()
     let mlist = matchlist(getline('.'), '\v[(|\[|\s](https?:\/\/[^>]*)[)|\]|\s]')
     if mlist != []
         call openbrowser#open(mlist[1])
+    else
+        echo 'URL is not found in the current line.'
     endif
 endfunction
 

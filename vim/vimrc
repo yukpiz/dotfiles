@@ -412,7 +412,7 @@ augroup FileTypeCustomize
     autocmd FileType ruby,python,c,cpp,css,coffee,haskell set sw=4 ts=4 et
     autocmd FileType javascript,java,php,vb,sh,make set sw=4 ts=4 et
     "ファイルタイプ別の折り畳みマーカーの設定
-    autocmd FileType vbnet set foldmarker=Region,End\ Region
+    autocmd FileType vbnet set foldmarker=#Region,#End\ Region
     autocmd FileType vim set foldmarker={{{,}}}
     "ファイルタイプ別の自動インデント幅
     autocmd FileType vim let g:vim_indent_cont = 0 "VimLの\入力時の自動インデントをしない

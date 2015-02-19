@@ -31,6 +31,9 @@ if has('vim_starting')
     call neobundle#end()
 endif
 
+" 
+NeoBundle "yukpiz/google-translate.vim"
+
 " vim-prettyprint to conveniently debug print,
 " be printed shaping the dictionary of VimScript.
 NeoBundle "thinca/vim-prettyprint"
@@ -82,9 +85,9 @@ map g/ <Plug>(incsearch-stay)
 NeoBundle "mattn/webapi-vim"
 NeoBundle "vim-jp/vital.vim"
 NeoBundle "Shougo/unite.vim"
+NeoBundle "tyru/open-browser.vim"
 
 NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/kramdown.vim.git"
-NeoBundleLazy "tyru/open-browser.vim"
 NeoBundleLazy "kannokanno/previm"
 
 augroup MarkdownPlugins
@@ -294,7 +297,7 @@ scriptencoding utf-8             "VimScriptのエンコーディング
 set fileformats=unix,dos,mac     "使用する改行コード
 set writebackup                  "上書き前にバックアップファイルを作成する
 set nobackup                     "書き込み成功したらバックアップファイルを削除する
-set nomodeline                   "モードラインを使用しない(VimL以外のファイル)
+set modeline                     "モードラインを使用しない(VimL以外のファイル)
 set textwidth=0                  "空白で改行されるテキスト幅を0(無効)にする
 
 "Search
@@ -414,6 +417,8 @@ augroup FileTypeCustomize
     "ファイルタイプ別の折り畳みマーカーの設定
     autocmd FileType vbnet set foldmarker=#Region,#End\ Region
     autocmd FileType vim set foldmarker={{{,}}}
+    autocmd FileType markdown set foldexpr='>1'
+    autocmd FileType markdown set foldmethod=expr
     "ファイルタイプ別の自動インデント幅
     autocmd FileType vim let g:vim_indent_cont = 0 "VimLの\入力時の自動インデントをしない
     autocmd FileTYpe python set indentkeys+=0#

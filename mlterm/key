@@ -32,3 +32,5 @@ Control+F4=NEXT_PTY
 Control+F12="proto:fontsize=larger"
 # 文字サイズ縮小
 Control+F11="proto:fontsize=smaller"
+#<C-v>を有効化
+Control+v=INSERT_SELECTION

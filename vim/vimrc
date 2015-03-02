@@ -31,7 +31,6 @@ if has('vim_starting')
     call neobundle#end()
 endif
 
-" 
 NeoBundle "yukpiz/google-translate.vim"
 
 " vim-prettyprint to conveniently debug print,

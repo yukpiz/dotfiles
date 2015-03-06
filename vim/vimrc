@@ -418,8 +418,6 @@ augroup FileTypeCustomize
     "ファイルタイプ別の折り畳みマーカーの設定
     autocmd FileType vbnet set foldmarker=#Region,#End\ Region
     autocmd FileType vim set foldmarker={{{,}}}
-    autocmd FileType markdown set foldexpr='>1'
-    autocmd FileType markdown set foldmethod=expr
     "ファイルタイプ別の自動インデント幅
     autocmd FileType vim let g:vim_indent_cont = 0 "VimLの\入力時の自動インデントをしない
     autocmd FileTYpe python set indentkeys+=0#

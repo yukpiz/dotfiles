@@ -32,7 +32,6 @@ if has('vim_starting')
 endif
 
 NeoBundle "yukpiz/microsoft-translate.vim"
-NeoBundle "yukpiz/google-translate.vim"
 
 " vim-prettyprint to conveniently debug print,
 " be printed shaping the dictionary of VimScript.

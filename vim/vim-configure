@@ -1,0 +1,14 @@
+#!/bin/sh
+#    CFLAGS="-g" \
+
+./configure \
+    --with-features=huge \
+    --with-compiledby="yukpiz <yukpiz@gmail.com>" \
+    --with-lua-prefix=/usr \
+    --enable-fail-if-missing \
+    --enable-multibyte \
+    --enable-luainterp \
+    --enable-pythoninterp \
+    --enable-rubyinterp \
+    --disable-darwin \
+    --disable-selinux

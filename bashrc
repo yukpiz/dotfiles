@@ -55,7 +55,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-if [ "$USER" = "yukpiz" ]; then
+if [ $USER = yukpiz ]; then
     h="[\h]"
     c="[\u@\w]"
     u=""
@@ -76,27 +76,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -104,7 +87,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
 
 # Auto starting single ssh-agent & ssh-add
 #if [ $? == 2 ]; then
@@ -121,7 +103,7 @@ fi
 #fi
 
 # dir colors
-#eval $(dircolors -b ~/.dir_colors)
+eval $(dircolors -b ~/.dir_colors)
 
 # init rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -130,37 +112,34 @@ if [ `which rbenv` ]; then
 fi
 
 # create tmux session
-#if [ -z "$TMUX" -a -z "$STY" ]; then
-#    if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
-#        tmux -2 attach && echo "tmux attached session."
-#    else
-#        tmux -2 new-session && echo "tmux created new session."
-#    fi
-#fi
+if [ -z "$TMUX" -a -z "$STY" ]; then
+    if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+        tmux -2 attach && echo "tmux attached session."
+    else
+        tmux -2 new-session && echo "tmux created new session."
+    fi
+fi
 
 # init android
-#export PATH="/usr/local/lib/android-sdk-linux/platform-tools:$PATH"
-#export PATH="/usr/local/lib/android-sdk-linux/tools:$PATH"
-#export PATH="/usr/local/lib/eclipse:$PATH"
+export PATH="/usr/local/lib/android-sdk-linux/platform-tools:$PATH"
+export PATH="/usr/local/lib/android-sdk-linux/tools:$PATH"
+export PATH="/usr/local/lib/eclipse:$PATH"
 
-# root adb server
-#alias adb-kill-server="sudo /usr/local/lib/android-sdk-linux/platform-tools/adb kill-server"
-#alias adb-start-server="sudo /usr/local/lib/android-sdk-linux/platform-tools/adb start-server"
-#alias adb-restart-server="sudo /usr/local/lib/android-sdk-linux/platform-tools/adb kill-server; sudo /usr/local/lib/android-sdk-linux/platform-tools/adb start-server"
-
+#wine1.7
+export WINEARCH=win32
 
 # Java settings
 if [ `uname` = "Darwin" ]; then
     export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.6"`
     PATH=${JAVA_HOME}/bin:${PATH}
-#elif [ `uname` = "Linux" ]; then
+elif [ `uname` = "Linux" ]; then
     # Java export
-    #export JAVA_HOME="/usr/local/lib/jdk/jdk1.7.0_67"
-    #PATH=${JAVA_HOME}/bin:${PATH}
+    export JAVA_HOME="/usr/local/lib/jdk/jdk1.7.0_67"
+    PATH=${JAVA_HOME}/bin:${PATH}
 
     # Scala export
-    #PATH="/usr/local/lib/sbt/bin":${PATH}
-    #PATH="/usr/local/lib/conscript/bin":${PATH}
+    PATH="/usr/local/lib/sbt/bin":${PATH}
+    PATH="/usr/local/lib/conscript/bin":${PATH}
 fi
 
 # Vi mode

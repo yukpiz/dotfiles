@@ -87,7 +87,8 @@ NeoBundle "Shougo/unite.vim"
 NeoBundle "tyru/open-browser.vim"
 
 NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/kramdown.vim.git"
-NeoBundleLazy "kannokanno/previm"
+"NeoBundleLazy "kannokanno/previm"
+NeoBundle "suan/vim-instant-markdown"
 
 augroup MarkdownPlugins
     autocmd! MarkdownPlugins

@@ -1,0 +1,78 @@
+scriptencoding utf8
+
+"--------------------------
+"  [ Configuration Menu ]
+"--------------------------
+"
+" -- Plugins
+" -- Options
+"    -- Encodings
+"    -- Edit Behavior
+"    -- Key Stroke
+"    -- Indents
+"    -- Colors
+"    -- Text Search
+"
+
+
+
+"------------------------------------------
+" [ About of this config ]
+"------------------------------------------
+" Configuration of Vim !!
+"
+" -- Repository
+"
+"      https://github.com/yukpiz/dotfiles.git
+"
+" -- Contact
+"
+"      Twitter: @yukpiz
+"      Email:   yukpiz@gmail.com
+
+
+
+" --- Plugins {{{
+" }}}
+
+
+
+" --- Options {{{
+" Setting in 'set' command to write here.
+
+" --- Encodings {{{
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,default,latin1
+"Line break code to be used.
+set fileformats=unix,dos,mac
+" }}}
+
+" --- Edit Behavior {{{
+set autoread
+set noundofile
+
+"The combination of 'writebackup' and 'nobackup',
+" and then delete the backup file when have successfully save.
+set writebackup
+set nobackup
+" }}}
+
+" --- Key Stroke {{{
+
+" Enable the backspace to auto indent, line break and beginning of line.
+set backspace=indent,eol,start
+
+" }}}
+
+" --- Indents {{{
+" }}}
+
+" --- Colors {{{
+" }}}
+
+" --- Text Search {{{
+" }}}
+
+" }}}
+

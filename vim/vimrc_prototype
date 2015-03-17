@@ -5,13 +5,19 @@ scriptencoding utf8
 "--------------------------
 "
 " -- Plugins
+"
+"    -- Plugins Manager
+"    -- Color Schemes
+"
 " -- Options
+"
 "    -- Encodings
 "    -- Edit Behavior
 "    -- Key Stroke
 "    -- Indents
 "    -- Colors
 "    -- Text Search
+"    -- Text Styles
 "
 
 
@@ -27,18 +33,35 @@ scriptencoding utf8
 "
 " -- Contact
 "
-"      Twitter: @yukpiz
-"      Email:   yukpiz@gmail.com
+"      Twitter: @yukpiz "      Email:   yukpiz@gmail.com
 
 
 
 " --- Plugins {{{
+
+" --- Plugins Manager {{{
+
+if has('vim_starting')
+    "Initialize NeoBundle.
+    set runtimepath+=~/.vim/bundle/neobundle.vim
+    call neobundle#begin(expand('~/.vim/bundle/'))
+    NeoBundleFetch 'Shougo/neobundle.vim'
+    call neobundle#end()
+endif
+
+" }}}
+
+" --- Color Schemes {{{
+NeoBundle "yukpiz/vim-railscasts-theme"
+" }}}
+
+
 " }}}
 
 
 
 " --- Options {{{
-" Setting in 'set' command to write here.
+"Setting in 'set' command to write here.
 
 " --- Encodings {{{
 set encoding=utf-8
@@ -49,7 +72,10 @@ set fileformats=unix,dos,mac
 " }}}
 
 " --- Edit Behavior {{{
+"When a file is changed, reread automatically.
 set autoread
+
+"Not create undofile.
 set noundofile
 
 "The combination of 'writebackup' and 'nobackup',
@@ -60,18 +86,37 @@ set nobackup
 
 " --- Key Stroke {{{
 
-" Enable the backspace to auto indent, line break and beginning of line.
+"Enable the backspace to auto indent,
+" line break and beginning of line.
 set backspace=indent,eol,start
 
 " }}}
 
 " --- Indents {{{
+"Enable the indentation setting by the modeline.
+set modeline
+"When exceeds the width, and to new line at blank,
+" but when the value is 0, it is disabled.
+set textwidth=0
 " }}}
 
 " --- Colors {{{
+syntax on
+colorscheme railscasts
 " }}}
 
 " --- Text Search {{{
+"After search until the end line,
+" to return to the top line.
+set wrapscan
+set ignorecase
+set smartcase
+"Do the incremental search.
+set incsearch
+set hlsearch
+" }}}
+
+" --- Text Styles {{{
 " }}}
 
 " }}}

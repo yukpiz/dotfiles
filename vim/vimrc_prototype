@@ -64,6 +64,9 @@ NeoBundle "yukpiz/vim-railscasts-theme"
 "Setting in 'set' command to write here.
 
 " --- Encodings {{{
+"Used in Vim internal encoding,
+" it buffer and register of text,
+" and in expression internal text, etc.
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,default,latin1

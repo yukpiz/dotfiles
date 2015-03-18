@@ -20,12 +20,15 @@ scriptencoding utf8
 "    -- Colors
 "    -- Text Search
 "    -- Text Styles
+"    -- Fold
 "    -- Register
 "    -- Command Mode
 "    -- Insert Mode
 "    -- User Interface
 "    -- Cursor
 "    -- Tuning
+"
+" -- Functions
 "
 
 
@@ -175,6 +178,19 @@ set imsearch=0
 " }}}
 
 " --- Text Styles {{{
+set wrap
+set ambiwidth=double
+set showmatch
+set matchtime=3
+set list listchars=tab:>.
+set list listchars+=trail:_
+set display=uhex
+" }}}
+
+" --- Fold {{{
+set foldmethod=marker
+set foldopen+=jump
+set foldenable
 " }}}
 
 " --- Register {{{
@@ -208,15 +224,29 @@ set iminsert=0
 set title
 set titlestring=Hello\ VIM٩(ˊᗜˋ*)
 
-"
+"Show ruler at status line.
 set ruler
 
-"
+"Not show line number.
 set nonumber
+set numberwidth=6
+
+set laststatus=1
+set statusline=%!GetStatusLineLabel()
+augroup CurrentWindowCursorLine
+    autocmd! CurrentWindowCursorLine
+    autocmd WinLeave,BufLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+augroup END
+set guifont=Ricty:h9
+set guitablabel=%N:\ %{GetGuiTabLabel()}
+set guioptions+=m
+set guioptions+=C
+set guioptions-=T
 " }}}
 
 " --- Cursor {{{
-"
+"Buffer of area of scrolling.
 set scrolloff=5
 " }}}
 
@@ -224,5 +254,34 @@ set scrolloff=5
 set lazyredraw
 " }}}
 
+" }}}
+
+" --- Functions {{{
+function! GetStatusLineLabel()
+    return '[%F]%h%m%r ' .
+    \ '%{"[".(&ft!=""?&ft:"")."]"}' .
+    \ '%{"[".(&fenc!=""?&fenc:&enc)."]"}' .
+    \ '%{"[".(&ff!=""?&ff:"")."]"}' .
+    \ '%=' .
+    \ '[%v, %l/%L] %P [%b:0x%B]'
+endfunction
+
+function! GetGuiTabLabel()
+    let l:label = ''
+    let l:bufnrlist = tabpagebuflist(v:lnum)
+    let l:bufname = fnamemodify(bufname(l:bufnrlist[tabpagewinnr(v:lnum) - 1]), ':t')
+    let l:label .= l:bufname ==# '' ? 'No title' : l:bufname
+    let l:wincount = tabpagewinnr(v:lnum, '$')
+    if l:wincount > 1
+        let l:label .= '[' . l:wincount . ']'
+    endif
+    for bufnr in l:bufnrlist
+        if getbufvar(bufnr, '&modified')
+            let l:label .= '[+]'
+            break
+        endif
+    endfor
+    return l:label
+endfunction
 " }}}
 

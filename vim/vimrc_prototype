@@ -543,6 +543,17 @@ augroup FileTypeCustomize
     autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
 augroup END
 
+augroup EnablePlugins
+    autocmd! EnablePlugins
+    autocmd FileType markdown NeoBundleSource previm
+    autocmd FileType coffee NeoBundleSource vim-coffee-script
+    autocmd FileType scala NeoBundleSource vim-scala
+    autocmd FileType haskell NeoBundleSource vim2hs
+    autocmd FileType cpp NeoBundleSource cpp-vim
+    autocmd FileType vbnet NeoBundleSource vim-vbnet
+    autocmd FileType python NeoBundleSource vim-python-pep8-indent
+augroup END
+
 " }}}
 
 

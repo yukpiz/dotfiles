@@ -1,52 +1,143 @@
-" --- ABOUT {{{
-"   ______ __     ___            ______
-"  / / / / \ \   / (_)_ __ ___   \ \ \ \
-" / / / /   \ \ / /| | '_ ` _ \   \ \ \ \
-" \ \ \ \    \ V / | | | | | | |  / / / /
-"  \_\_\_\    \_/  |_|_| |_| |_| /_/_/_/
-"
-" └(՞ةڼ◔)」
-" Vim configuration.
-"
-" This configuration of the repository here.
-" https://github.com/yukpiz/dotfiles.git
-"
-" Contact us yukpiz<yukpiz@gmail.com>
-"
-"}}}
+scriptencoding utf8
 
-" --- plug-ins {{{
+"--------------------------
+"  [ Configuration Menu ]
+"--------------------------
+"
+" -- Start-up Process
+"
+" -- Plugins
+"
+"    -- Shougo/neobundle.vim
+"    -- yukpiz/vim-railscasts-theme
+"    -- yukpiz/microsoft-translate.vim
+"    -- thinca/vim-prettyprint
+"    -- thinca/vim-ambicmd
+"    -- kana/vim-submode
+"    -- osyo-manga/vim-gift
+"    -- Shougo/vimproc.vim
+"    -- itchyny/calendar.vim
+"    -- Shougo/vimshell.vim
+"    -- scrooloose/nerdtree
+"    -- haya14busa/incsearch.vim
+"    -- vim-jp/vital.vim
+"    -- Shougo/unite.vim
+"    -- tyru/open-browser.vim
+"    -- osyo-manga/vim-brightest
+"    -- nathanaelkane/vim-indent-guides
+"    -- miyakogi/conoline.vim
+"    -- Shougo/neosnippet
+"    -- Shougo/neosnippet-snippets
+"    -- rhysd/committia.vim
+"    -- Shougo/neocomplete.vim
+"    -- basyura/twibill.vim
+"    -- basyura/TweetVim
+"    -- yuratomo/w3m.vim
+"    -- kannokanno/previm
+"    -- kchmck/vim-coffee-script
+"    -- derekwyatt/vim-scala
+"    -- dag/vim2hs
+"    -- vim-jp/cpp-vim
+"    -- yukpiz/vim-vbnet
+"    -- hynek/vim-python-pep8-indent
+"    -- thinca/vim-quickrun
+"
+" -- Set Options
+"
+"    -- Encodings
+"    -- Edit Behavior
+"    -- Key Stroke
+"    -- Indents
+"    -- Text Search
+"    -- Syntax & Styles
+"    -- Fold
+"    -- Register
+"    -- Command Mode
+"    -- Insert Mode
+"    -- User Interface
+"    -- Cursor
+"    -- Tuning
+"
+" -- File Types
+"
+" -- Functions
+"
+" -- Key Mappings
+"
+"    -- Cheet Sheet
+"    -- Cursor
+"    -- Highlight
+"    -- Shortcut
+
+
+
+"------------------------------------------
+" [ About of this config ]
+"------------------------------------------
+" Configuration of Vim !!
+"
+" -- Repository
+"
+"      https://github.com/yukpiz/dotfiles.git
+"
+" -- Contact
+"
+"      Twitter: @yukpiz
+"      Email:   yukpiz@gmail.com
+
+
+" --- Start-up Process {{{
+
+let s:is_windows = has('win32')
+let s:is_cygwin = has('win32unix')
+let s:is_kaoriya = has('kaoriya')
+let s:is_doswin = s:is_windows && !s:is_cygwin && !has('gui')
+let s:is_unix = has('unix')
+let s:is_mac = has('mac')
+let s:is_macosx = has('macunix')
+
+" }}}
+
+
+" --- Plugins {{{
 
 filetype off
 filetype plugin indent off
 
-" When started the Vim.
+" --- Shougo/neobundle.vim {{{
 if has('vim_starting')
-    " Initialize NeoBundle!! ;)
-    " neobundle.vim manage the plug-ins of Vim.
-    " https://github.com/Shougo/neobundle.vim
+    "Initialize NeoBundle.
     set runtimepath+=~/.vim/bundle/neobundle.vim
     call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
     call neobundle#end()
 endif
+" }}}
 
-NeoBundle "yukpiz/microsoft-translate.vim"
+" --- yukpiz/vim-railscasts-theme {{{
+NeoBundle 'yukpiz/vim-railscasts-theme'
+" }}}
 
-" vim-prettyprint to conveniently debug print,
+" --- yukpiz/microsoft-translate.vim {{{
+NeoBundle 'yukpiz/microsoft-translate.vim'
+" }}}
+
+" --- thinca/vim-prettyprint {{{
+"vim-prettyprint to conveniently debug print,
 " be printed shaping the dictionary of VimScript.
-NeoBundle "thinca/vim-prettyprint"
+NeoBundle 'thinca/vim-prettyprint'
+" }}}
 
+" --- thinca/vim-ambicmd {{{
 " vim-ambicmd can predict and complement, to many plug-in commands.
 " :nbi<Space> and typing, and complemented by camel case,
 " will be output as :NeoBundleInstall
-NeoBundle "thinca/vim-ambicmd"
-" vim-ambicmd settings {{{
+NeoBundle 'thinca/vim-ambicmd'
 cnoremap <expr> <Space> ambicmd#expand('<Space>')
 " }}}
 
-NeoBundle "kana/vim-submode"
-" vim-submode settings {{{
+" --- kana/vim-submode {{{
+NeoBundle 'kana/vim-submode'
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
 call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
 call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
@@ -57,75 +148,62 @@ call submode#map('winsize', 'n', '', '+', '<C-w>+')
 call submode#map('winsize', 'n', '', '-', '<C-w>-')
 " }}}
 
-" Tabpage and the window of Utilities.
-NeoBundle "osyo-manga/vim-gift"
-NeoBundle "Shougo/vimproc.vim"
+" --- osyo-manga/vim-gift {{{
+NeoBundle 'osyo-manga/vim-gift'
+" }}}
 
+" --- Shougo/vimproc.vim {{{
+NeoBundle 'Shougo/vimproc.vim'
+" }}}
+
+" --- itchyny/calendar.vim {{{
 " Display a very beautiful calendar on the Vim.
 " Cooperation also possible, with Google calendar.
-NeoBundle "itchyny/calendar.vim"
-" calendar.vim settings {{{
+NeoBundle 'itchyny/calendar.vim'
 let g:calendar_frame = 'default'
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 " }}}
 
-NeoBundle "Shougo/vimshell.vim"
-NeoBundle "scrooloose/nerdtree"
-NeoBundle "yukpiz/unite-rss.vim"
+" --- Shougo/vimshell.vim {{{
+NeoBundle 'Shougo/vimshell.vim'
+" }}}
 
-NeoBundle "haya14busa/incsearch.vim"
-" incsearch.vim settings {{{
+" --- scrooloose/nerdtree {{{
+NeoBundle 'scrooloose/nerdtree'
+" }}}
+
+" --- haya14busa/incsearch.vim {{{
+NeoBundle 'haya14busa/incsearch.vim'
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 " }}}
 
-NeoBundle "mattn/webapi-vim"
-NeoBundle "vim-jp/vital.vim"
-NeoBundle "Shougo/unite.vim"
-NeoBundle "tyru/open-browser.vim"
+" --- vim-jp/vital.vim {{{
+NeoBundle 'vim-jp/vital.vim'
+" }}}
 
-NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/kramdown.vim.git"
-"NeoBundleLazy "kannokanno/previm"
-NeoBundle "suan/vim-instant-markdown"
+" --- Shougo/unite.vim {{{
+NeoBundle 'Shougo/unite.vim'
+" }}}
 
-augroup MarkdownPlugins
-    autocmd! MarkdownPlugins
-    autocmd FileType markdown NeoBundleSource kramdown.vim open-browser.vim previm
-augroup END
+" --- tyru/open-browser.vim {{{
+NeoBundle 'tyru/open-browser.vim'
+" }}}
 
-NeoBundleLazy "kchmck/vim-coffee-script"
-NeoBundleLazy "derekwyatt/vim-scala"
-NeoBundleLazy "dag/vim2hs"
-NeoBundleLazy "vim-jp/cpp-vim"
-NeoBundleLazy "https://yukpiz@bitbucket.org/yukpiz/android-build.vim.git"
-NeoBundleLazy "yukpiz/vim-vbnet"
-NeoBundleLazy "hynek/vim-python-pep8-indent"
-
-augroup ProgrammingPlugins
-    autocmd! ProgrammingPlugins
-    autocmd FileType coffee NeoBundleSource vim-coffee-script
-    autocmd FileType scala NeoBundleSource vim-scala
-    autocmd FileType haskell NeoBundleSource vim2hs
-    autocmd FileType cpp NeoBundleSource cpp-vim
-    autocmd FileType java NeoBundleSource android-build.vim
-    autocmd FileType vbnet NeoBundleSource vim-vbnet
-    autocmd FileType python NeoBundleSource vim-python-pep8-indent
-augroup END
-
-NeoBundle "osyo-manga/vim-brightest"
-" vim-brightest settings {{{
+" --- osyo-manga/vim-brightest {{{
+NeoBundle 'osyo-manga/vim-brightest'
 let g:brightest#highlight = {
-\"group": "BrightestUnderline"
+\  'group': 'BrightestUnderline'
 \}
 let g:brightest#enable_filetypes = {
-\"markdown": 0
+\  'markdown': 0
 \}
 " }}}
 
-NeoBundle "nathanaelkane/vim-indent-guides"
-" vim-indent-guides settings {{{
+" --- nathanaelkane/vim-indent-guides {{{
+NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=235
@@ -133,116 +211,67 @@ let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 " }}}
 
-NeoBundle "yukpiz/vim-railscasts-theme"
-NeoBundle "miyakogi/conoline.vim"
-
-" conoline.vim settings {{{
-"Vim起動時にconoline.vimを起動する
+" --- miyakogi/conoline.vim {{{
+NeoBundle 'miyakogi/conoline.vim'
 let g:conoline_auto_enable=1
-"ノーマルモードでのカーソル行を強調
 let g:conoline_color_normal_dark='ctermbg=236'
-"インサートモードでのカーソル行を強調
 let g:conoline_color_insert_dark='ctermbg=239'
+
 " }}}
 
-NeoBundle "Shougo/neosnippet"
-NeoBundle "Shougo/neosnippet-snippets"
-" neosnippet settings {{{
-" Plugin key-mappings.
+" --- Shougo/neosnippet {{{
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 imap <C-TAB>     <Plug>(neosnippet_expand_or_jump)
 smap <C-TAB>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-TAB>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\"\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
+\  "\<Plug>(neosnippet_expand_or_jump)"
+\  : pumvisible() ? '\<C-n>' : '\<TAB>'
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\"\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+\  "\<Plug>(neosnippet_expand_or_jump)"
+\  : '\<TAB>'
 
-" For snippet_complete marker.
 if has('conceal')
     set conceallevel=2 concealcursor=i
 endif
-
 " }}}
 
-NeoBundle "rhysd/committia.vim"
-" committia.vim settings {{{
+" --- rhysd/committia.vim {{{
+NeoBundle 'rhysd/committia.vim'
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
     setl spell
-
     if a:info.vcs ==# 'git' && getline(1) ==# ''
         startinsert
     end
-
     imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
     imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
 endfunction
 " }}}
 
-NeoBundle "Shougo/neocomplete.vim"
-" neocomplete.vim settings {{{
-"Vimの起動時にneocompleteも起動する
+" --- Shougo/neocomplete.vim {{{
+NeoBundle 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup=1
-"大文字が入力されたら大文字と小文字を区別して補完する
 let g:neocomplete#enable_smart_case=1
-"小文字だけなら大文字と小文字を区別しないで補完する
 let g:neocomplete#enable_ignore_case=1
-"キャメルケースな入力を補完する(FA->F*A*)
-"重くなるので無効化
 let g:neocomplete#enable_camel_case=0
-"補完ポップアップメニューの上限数
-"実際に表示される数は設定した数+1
 let g:neocomplete#max_list=14
-"ポップアップメニューの横幅の上限
 let g:neocomplete#max_keyword_width=80
-"補完対象から外す最小の文字数
-"設定した値以下の文字数の場合、補完対象にならない
 let g:neocomplete#min_keyword_length=2
-"neocompleteを無効にするバッファ名のパターン
-"ku.vimなど、neocompleteと相性の悪いプラグインとの併用
-"let g:neocomplete#lock_buffer_name_pattern="\*ku\*"
-
-"ファイルタイプ別の補完辞書ファイルを設定
-"ファイルタイプと辞書ファイルへのパスを設定
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"            \ "default": "",
-"            \ "vimshell": $HOME."/.vimshell_hist",
-"            \ "scheme": $HOME."/.gosh_completions",
-"            \}
-
-"補完を実行するキーワードパターンの設定
-"neocompleteが対応していないファイルタイプを補完する場合に設定する
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns={}
     let g:neocomplete#keyword_patterns['default']='\h\w'
 endif
-
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns={}
     let g:neocomplete#sources#omni#input_patterns.perl='\h\w*->\h\w*\|\h\w*::'
 endif
-
-"inoremap <expr><C-g> neocomplete#undo_completion()
-"inoremap <expr><C-l> neocomplete#complete_common_string()
-
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-    return neocomplete#close_popup() . "\<CR>"
+    return neocomplete#close_popup() . '\<CR>'
 endfunction
-
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y> neocomplete#close_popup()
-"inoremap <expr><C-e> neocomplete#cancel_popup()
-
-"補完ポップアップメニューの色設定
 hi Pmenu ctermbg=101 ctermfg=232
 hi PmenuSel ctermbg=58 ctermfg=231
-
 augroup NeoCompleteStyle
     autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
     autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
@@ -253,133 +282,158 @@ augroup END
 set completeopt-=preview
 " }}}
 
-NeoBundleLazy "thinca/vim-quickrun"
-" vim-quickrun settings {{{
+" --- basyura/twibill.vim {{{
+NeoBundle 'basyura/twibill.vim'
+" }}}
+
+" --- basyura/TweetVim {{{
+NeoBundle 'basyura/TweetVim'
+" }}}
+
+" --- yuratomo/w3m.vim {{{
+if s:is_unix
+    NeoBundle 'yuratomo/w3m.vim'
+endif
+" }}}
+
+" --- kannokanno/previm {{{
+NeoBundleLazy 'kannokanno/previm'
+" }}}
+
+" --- kchmck/vim-coffee-script {{{
+NeoBundleLazy 'kchmck/vim-coffee-script'
+" }}}
+
+" --- derekwyatt/vim-scala {{{
+NeoBundleLazy 'derekwyatt/vim-scala'
+" }}}
+
+" --- dag/vim2hs {{{
+NeoBundleLazy 'dag/vim2hs'
+" }}}
+
+" --- vim-jp/cpp-vim {{{
+NeoBundleLazy 'vim-jp/cpp-vim'
+" }}}
+
+" --- yukpiz/vim-vbnet {{{
+NeoBundleLazy 'yukpiz/vim-vbnet'
+" }}}
+
+" --- hynek/vim-python-pep8-indent {{{
+NeoBundleLazy 'hynek/vim-python-pep8-indent'
+" }}}
+
+" --- thinca/vim-quickrun {{{
+NeoBundleLazy 'thinca/vim-quickrun'
 let g:quickrun_config = {}
 let g:quickrun_config.cpp = {
-\ "command" : "g++",
-\ "cmdopt" : "-std=c++11",
-\ }
+\  'command' : 'g++',
+\  'cmdopt' : '-std=c++11',
+\}
 " }}}
-
-NeoBundleLazy "rhysd/wandbox-vim"
-NeoBundle "mattn/vdbi-vim"
-NeoBundle "basyura/twibill.vim"
-NeoBundle "basyura/TweetVim"
-
-NeoBundle "yuratomo/gmail.vim"
-" gmail.vim settings {{{
-let g:gmail_user_name = 'yukpiz@gmail.com'
-" }}}
-
-" Dependent on w3m command.
-"  the compilation method.
-NeoBundle "yuratomo/w3m.vim"
-
-NeoBundle "deris/vim-duzzle"
-NeoBundle "katono/rogue.vim"
-NeoBundle "mattn/mahjong-vim"
-NeoBundle "supermomonga/Shaberu.vim"
 
 filetype plugin indent on
 
-"}}}
-" --- commons {{{
+" }}}
 
-"Basic
-set autoread                     "外部で変更があった場合に自動的に読み直す
-set noundofile                   "ファイルを開いた時に復元するUndoファイルを作成しない
-set encoding=utf-8               "Vim自身のエンコーディング
-set fileencoding=utf-8           "ファイルを保存する時のエンコーディング
-set fileencodings=
-\ucs-bom,utf-8,default,latin1    "ファイルを開く時のエンコーディング
-scriptencoding utf-8             "VimScriptのエンコーディング
-set fileformats=unix,dos,mac     "使用する改行コード
-set writebackup                  "上書き前にバックアップファイルを作成する
-set nobackup                     "書き込み成功したらバックアップファイルを削除する
-set modeline                     "モードラインを使用しない(VimL以外のファイル)
-set textwidth=0                  "空白で改行されるテキスト幅を0(無効)にする
 
-"Search
-set wrapscan                     "末尾まで検索したら先頭に戻る
-set ignorecase                   "大文字と小文字を区別しない検索
-set smartcase                    "大文字を含む場合は大文字と小文字を区別する検索
-set incsearch                    "インクリメンタルサーチを行う
-set hlsearch                     "検索結果を強調表示する
+" --- Set Options {{{
+"Setting in 'set' command to write here.
 
-"Operation
-set backspace=indent,eol,start   "indent: autoindentを超えてバックスペースを有効にする
-                                 "eol: 改行を超えてバックスペースを有効にする
-                                 "start: 行頭でバックスペースを止めない
-if has('xterm_clipboard')
-    "クリップボード用レジスタ(+,*)を使う
-    set clipboard+=autoselect
-    set clipboard+=unnamed
-    set clipboard+=unnamedplus
-endif
-set expandtab                    "<Tab>文字を入力した時に代わりに半角空白を使う
-set tabstop=4                    "<Tab>文字の幅(expandtabなら入力される半角空白の個数)
-set shiftwidth=4                 "cindentオプション,<<,>>コマンドで使用するインデント幅
-set autoindent                   "新しい行の開始時に自動インデントを挿入する
-set smartindent                  "より高度な自動インデント
-if has('wildmenu')
-    set wildmenu                 "コマンドライン補完を行う
-    set wildchar=<Tab>           "コマンドライン補完を行う為の入力キー
-    set wildmode=full            "選択しているマッチで完全に補完する
-endif
-set history=50                   "保存するコマンド履歴数
-set iminsert=0                   "インサートモード時の初期IMEをオフ、復元もしない
-set imsearch=0                   "検索文字列の入力時の初期IMEをオフ、復元もしない
+" --- Encodings {{{
+"Used in Vim internal encoding,
+" it buffer and register of text,
+" and in expression internal text, etc.
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,sjis,ucs-bom,default,latin1
+"Line break code to be used.
+set fileformats=unix,dos,mac
+" }}}
 
-"View
-set t_Co=256                     "256色数を使用する
-set title                        "ウィンドウのタイトルをtitlestringの値にする
-set titlestring=
-\Hello\ VIM٩(ˊᗜˋ*)ﻭ            "ウィンドウのタイトルに設定する文字列
-set scrolloff=5                  "カーソル上下のスクロールバッファ
-set lazyredraw                   "キーボードから打ち込まれないコマンド実行時に画面描画を止める
-set ruler                        "ステータスラインにルーラーを表示する
-set nonumber                     "行番号を表示しない
-set numberwidth=6                "行番号エリアの幅
-set wrap                         "長い行を折り返す
-set ambiwidth=double             "East Asian Width Class Ambiguousの文字をASCIIの2倍にする
-set showmatch                    "閉じ括弧が入力された時に対応する括弧にmatchtime秒ジャンプ
-set matchtime=3                  "閉じ括弧へジャンプする秒数
-set laststatus=2                 "ステータスラインを最下部に常に表示する
-set statusline=
-\%!GetStatusLineLabel()          "ステータスラインの文字列を設定
+" --- Edit Behavior {{{
+"When a file is changed, reread automatically.
+set autoread
 
-"画面を分割表示した時、アクティブなバッファのみカーソルラインの強調をする
-augroup CurrentWindowCursorLine
-    autocmd! CurrentWindowCursorLine
-    autocmd WinLeave,BufLeave * set nocursorline "カーソルが離れた時に強調を消す
-    autocmd WinEnter,BufRead * set cursorline    "カーソルを得た時に強調する
-augroup END
+"Not create undofile.
+set noundofile
 
-"Syntax
-set foldmethod=marker            "マーカーで折り畳みを指定する
-set foldopen+=jump               "ジャンプした時に折りたたみを自動展開する
-set foldenable                   "ファイルを開いた時は全ての折り畳みを閉じる
-set list listchars=tab:>.        "<Tab>文字を置き換える(=でeolを消す)
-set list listchars+=trail:_      "行末の半角空白を置き換える
-"set list listchars+=extends:>   "nowrapにより右端より長い行の末尾に記号を表示する
-"set list listchars+=precedes:<  "nowrapにより右端にスクロールした時に行頭に記号を表示する
-set display=uhex                 "印字できない文字を16進数で表示(^C,~C形式を使わない)
+"The combination of 'writebackup' and 'nobackup',
+" and then delete the backup file when have successfully save.
+set writebackup
+set nobackup
+" }}}
 
-"GUI Options
-set guifont=Ricty:h9             "GVimで使うフォントのリスト
-set guitablabel=
-\%N:\ %{GetGuiTabLabel()}        "GVimでのタブページのラベル文字列
-set guioptions+=m                "GVimでメニューバーを表示する
-set guioptions+=C                "GVimでタイトルバーを非表示にする
-set guioptions-=T                "GVimでツールバーを非表示にする
+" --- Key Stroke {{{
 
+"Enable the backspace to auto indent,
+" line break and beginning of line.
+set backspace=indent,eol,start
+
+" }}}
+
+" --- Indents {{{
+"Enable the indentation setting by the modeline.
+set modeline
+
+"When exceeds the width, and to new line at blank,
+" but when the value is 0, it is disabled.
+set textwidth=0
+
+"Replaces <Tab> to blank.
+set expandtab
+
+"When entered the <Tab>, replaces to four blank.
+set tabstop=4
+
+"The number of blank to be used during the automatic indentation.
+set shiftwidth=4
+
+"When entered the new line,
+" do automatic indentation.
+set autoindent
+
+"Unknown...
+set smartindent
+
+" }}}
+
+" --- Text Search {{{
+"After search until the end line,
+" to return to the top line.
+set wrapscan
+
+"When the search,
+" it is not distinguish between upper case and lower case.
+set ignorecase
+
+"When entered at upper case,
+" it is distinguish between upper case and lower case.
+set smartcase
+
+"Do the incremental search.
+set incsearch
+
+"Highlighting the search result.
+set hlsearch
+
+"When search, to disabled the IME mode.
+set imsearch=0
+" }}}
+
+" --- Syntax & Styles {{{
+set wrap
+set ambiwidth=double
+set showmatch
+set matchtime=3
+set list listchars=tab:>.
+set list listchars+=trail:_
+set display=uhex
 if has('syntax')
     function! ActivateInvisibleIndicator()
-        "全角空白を可視化する
         syntax match InvisibleJISX0208Space "　"
         \ display containedin=ALL
-        "全角空白の背景色を設定
         highlight InvisibleJISX0208Space
         \ term=underline
         \ ctermbg=LightGray
@@ -390,93 +444,127 @@ if has('syntax')
         autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
     augroup END
 
-    "行の長さの目安を強調表示する
     execute 'set colorcolumn=' . join(range(91, 9999), ',')
     syntax on
 
-    "カラースキームの設定
+    set t_Co=256
     set background=dark
     colorscheme railscasts
     highlight Normal ctermbg=none
 endif
 
+" }}}
+
+" --- Fold {{{
+set foldmethod=marker
+set foldopen+=jump
+set foldenable
+" }}}
+
+" --- Register {{{
+"Use a register of clipboard.
+if has('xterm_clipboard')
+    set clipboard+=autoselect
+    set clipboard+=unnamed
+    set clipboard+=unnamedplus
+endif
+" }}}
+
+" --- Command Mode {{{
+"Use a completion of the command mode.
+if has('wildmenu')
+    set wildmenu
+    set wildchar=<Tab>
+    set wildmode=full
+endif
+
+"The number of command history.
+set history=50
+" }}}
+
+" --- Insert Mode {{{
+"When start the insert mode, to disabled the IME mode.
+set iminsert=0
+" }}}
+
+" --- User Interface {{{
+"Text of titlebar of GUI Window.
+set title
+set titlestring=Hello\ VIM٩(ˊᗜˋ*)
+
+"Show ruler at status line.
+set ruler
+
+"Not show line number.
+set nonumber
+set numberwidth=6
+
+set laststatus=1
+set statusline=%!GetStatusLineLabel()
+augroup CurrentWindowCursorLine
+    autocmd! CurrentWindowCursorLine
+    autocmd WinLeave,BufLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+augroup END
+set guifont=Ricty:h9
+set guitablabel=%N:\ %{GetGuiTabLabel()}
+set guioptions-=m
+set guioptions-=T
+" }}}
+
+" --- Cursor {{{
+"Buffer of area of scrolling.
+set scrolloff=5
+" }}}
+
+" --- Tuning {{{
+set lazyredraw
+" }}}
+
+" }}}
+
+
+" --- Filetypes {{{
 augroup FileTypeCustomize
-    "ファイルタイプ別の設定
     autocmd! FileTypeCustomize
     autocmd FileType * set formatoptions=""
-    "独自でファイルタイプの設定をする場合
-    "autocmd BufNewFile,BufRead .tmux.conf,tmuxrc set filetype=tmux
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
     autocmd BufNewFile,BufRead *.vb set filetype=vbnet
     autocmd BufNewFile,BufRead *.scala set filetype=scala
-    "ファイルタイプ別のインデント関連の設定
     autocmd FileType xml,html,yaml set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
     autocmd FileType ruby,python,c,cpp,css,coffee,haskell set sw=4 ts=4 et
     autocmd FileType javascript,java,php,vb,sh,make set sw=4 ts=4 et
-    "ファイルタイプ別の折り畳みマーカーの設定
     autocmd FileType vbnet set foldmarker=#Region,#End\ Region
     autocmd FileType vim set foldmarker={{{,}}}
-    "ファイルタイプ別の自動インデント幅
-    autocmd FileType vim let g:vim_indent_cont = 0 "VimLの\入力時の自動インデントをしない
+    autocmd FileType vim let g:vim_indent_cont = 0
     autocmd FileTYpe python set indentkeys+=0#
-    "C++のインクルードディレクトリの指定
     autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
 augroup END
 
-" }}}
-" --- functions {{{
+augroup EnablePlugins
+    autocmd! EnablePlugins
+    autocmd FileType markdown NeoBundleSource previm
+    autocmd FileType coffee NeoBundleSource vim-coffee-script
+    autocmd FileType scala NeoBundleSource vim-scala
+    autocmd FileType haskell NeoBundleSource vim2hs
+    autocmd FileType cpp NeoBundleSource cpp-vim
+    autocmd FileType vbnet NeoBundleSource vim-vbnet
+    autocmd FileType python NeoBundleSource vim-python-pep8-indent
+augroup END
 
+" }}}
+
+
+" --- Functions {{{
 function! GetStatusLineLabel()
-    "ステータスラインの文字列を生成して返す
     return '[%F]%h%m%r ' .
     \ '%{"[".(&ft!=""?&ft:"")."]"}' .
     \ '%{"[".(&fenc!=""?&fenc:&enc)."]"}' .
     \ '%{"[".(&ff!=""?&ff:"")."]"}' .
     \ '%=' .
     \ '[%v, %l/%L] %P [%b:0x%B]'
-endfunction
-
-function! SwitchNumber()
-    if &nu == 0
-        set nu
-    else
-        set nonu
-    endif
-endfunction
-
-let g:calendar_on = 0
-function! SwitchCalendar()
-    call s:all_close_calendar()
-    if g:calendar_on == 0
-        Calendar -view=month -split=horizontal -position=below -height=25
-        "開いたカレンダーウィンドウ変数にcalendar_window=1を設定
-        let w:calendar_window = 1
-        let g:calendar_on = 1
-    else
-        let g:calendar_on = 0
-    endif
-endfunction
-
-function! s:all_close_calendar()
-    "開かれている全てのカレンダーウィンドウを閉じる
-    "開かれているタブページとウィンドウのリストを得る
-    let l:li = gift#tabpagewinnr_list()
-    for tw in l:li
-        "ウィンドウ変数を有効にする為にカレントウィンドウに設定
-        call gift#jump_window(tw)
-        "ウィンドウ変数calendar_windowが1ならそのウィンドウを閉じる
-        if exists('w:calendar_window') == 1
-            if w:calendar_window == 1
-                "close_windowに[タブページ番号,ウィンドウ番号]のリストを渡すと正しく閉じる
-                "TODO:最後のウィンドウを閉じる場合の挙動
-                call gift#close_window(tw)
-                "ウィンドウ番号が変わるので再帰する
-                call s:all_close_calendar()
-            endif
-        endif
-    endfor
 endfunction
 
 function! GetGuiTabLabel()
@@ -497,6 +585,39 @@ function! GetGuiTabLabel()
     return l:label
 endfunction
 
+function! SwitchNumber()
+    if &nu == 0
+        set nu
+    else
+        set nonu
+    endif
+endfunction
+
+let g:calendar_on = 0
+function! SwitchCalendar()
+    call s:all_close_calendar()
+    if g:calendar_on == 0
+        Calendar -view=month -split=horizontal -position=below -height=25
+        let w:calendar_window = 1
+        let g:calendar_on = 1
+    else
+        let g:calendar_on = 0
+    endif
+endfunction
+
+function! s:all_close_calendar()
+    let l:li = gift#tabpagewinnr_list()
+    for tw in l:li
+        call gift#jump_window(tw)
+        if exists('w:calendar_window') == 1
+            if w:calendar_window == 1
+                call gift#close_window(tw)
+                call s:all_close_calendar()
+            endif
+        endif
+    endfor
+endfunction
+
 function! OpenBrowserParsedURL()
     let mlist = matchlist(getline('.'), '\v[(|\[|\s](https?:\/\/[^>]*)[)|\]|\s]')
     if mlist != []
@@ -506,9 +627,12 @@ function! OpenBrowserParsedURL()
     endif
 endfunction
 
-"}}}
-" --- key mappings {{{
+" }}}
 
+
+" --- Key Mappings {{{
+
+" --- Cheet Sheet {{{
 " # Key Mappings Cheet Sheet
 " +---------------+--------+--------+---------+--------+
 " | Command       | Normal | Insert | Command | Visual |
@@ -531,9 +655,9 @@ endfunction
 " | <script>  |
 " | <expr>    |
 " | <unique>  |
-"
+" }}}
 
-" Cursor mappings
+" --- Cursor {{{
 nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
@@ -557,28 +681,21 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+" }}}
 
-" Highlight mappings
+" --- Highlight {{{
 nnoremap <silent> <Esc><Esc> :noh<CR>
+" }}}
 
-" Function mappings
+" --- Shortcut {{{
+if s:is_unix
+    nnoremap ,vs :VimShell<CR>
+endif
 nnoremap ,cl :call SwitchCalendar()<CR>
-
-" Call VimShell
-nnoremap ,vs :VimShell<CR>
-
-" Call NERDTree
 nnoremap ,nt :NERDTreeToggle<CR>
-
-" Call Switch Number
 nnoremap ,nu :call SwitchNumber()<CR>
+" }}}
 
 " }}}
-" --- Plugin Settings[2html.vim] {{{
 
-let g:html_number_lines = 0
-let g:use_xhtml = 1
-let g:html_no_pre = 1
-let g:html_use_css = 1
 
-" }}}

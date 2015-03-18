@@ -11,15 +11,14 @@ scriptencoding utf8
 "    -- Plugins Manager
 "    -- Color Schemes
 "
-" -- Options
+" -- Set Options
 "
 "    -- Encodings
 "    -- Edit Behavior
 "    -- Key Stroke
 "    -- Indents
-"    -- Colors
 "    -- Text Search
-"    -- Text Styles
+"    -- Syntax & Styles
 "    -- Fold
 "    -- Register
 "    -- Command Mode
@@ -28,8 +27,16 @@ scriptencoding utf8
 "    -- Cursor
 "    -- Tuning
 "
+" -- File Types
+"
 " -- Functions
 "
+" -- Key Mappings
+"
+"    -- Cheet Sheet
+"    -- Cursor
+"    -- Highlight
+"    -- Shortcut
 
 
 
@@ -46,7 +53,6 @@ scriptencoding utf8
 "
 "      Twitter: @yukpiz
 "      Email:   yukpiz@gmail.com
-
 
 
 " --- Start-up Process {{{
@@ -84,8 +90,7 @@ NeoBundle "yukpiz/vim-railscasts-theme"
 " }}}
 
 
-
-" --- Options {{{
+" --- Set Options {{{
 "Setting in 'set' command to write here.
 
 " --- Encodings {{{
@@ -146,14 +151,6 @@ set smartindent
 
 " }}}
 
-" --- Colors {{{
-syntax on
-
-"Use a 256 colors.
-set t_Co=256
-colorscheme railscasts
-" }}}
-
 " --- Text Search {{{
 "After search until the end line,
 " to return to the top line.
@@ -177,7 +174,7 @@ set hlsearch
 set imsearch=0
 " }}}
 
-" --- Text Styles {{{
+" --- Syntax & Styles {{{
 set wrap
 set ambiwidth=double
 set showmatch
@@ -185,6 +182,29 @@ set matchtime=3
 set list listchars=tab:>.
 set list listchars+=trail:_
 set display=uhex
+if has('syntax')
+    function! ActivateInvisibleIndicator()
+        syntax match InvisibleJISX0208Space "　"
+        \ display containedin=ALL
+        highlight InvisibleJISX0208Space
+        \ term=underline
+        \ ctermbg=LightGray
+        \ guibg=LightGray
+    endfunction
+    augroup Invisible
+        autocmd! Invisible
+        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+    augroup END
+
+    execute 'set colorcolumn=' . join(range(91, 9999), ',')
+    syntax on
+
+    set t_Co=256
+    set background=dark
+    colorscheme railscasts
+    highlight Normal ctermbg=none
+endif
+
 " }}}
 
 " --- Fold {{{
@@ -240,8 +260,7 @@ augroup CurrentWindowCursorLine
 augroup END
 set guifont=Ricty:h9
 set guitablabel=%N:\ %{GetGuiTabLabel()}
-set guioptions+=m
-set guioptions+=C
+set guioptions-=m
 set guioptions-=T
 " }}}
 
@@ -255,6 +274,29 @@ set lazyredraw
 " }}}
 
 " }}}
+
+
+" --- Filetypes {{{
+augroup FileTypeCustomize
+    autocmd! FileTypeCustomize
+    autocmd FileType * set formatoptions=""
+    autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+    autocmd BufNewFile,BufRead *.vb set filetype=vbnet
+    autocmd BufNewFile,BufRead *.scala set filetype=scala
+    autocmd FileType xml,html,yaml set sw=2 ts=2 et
+    autocmd FileType rst set sw=3 ts=3 et
+    autocmd FileType ruby,python,c,cpp,css,coffee,haskell set sw=4 ts=4 et
+    autocmd FileType javascript,java,php,vb,sh,make set sw=4 ts=4 et
+    autocmd FileType vbnet set foldmarker=#Region,#End\ Region
+    autocmd FileType vim set foldmarker={{{,}}}
+    autocmd FileType vim let g:vim_indent_cont = 0
+    autocmd FileTYpe python set indentkeys+=0#
+    autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
+augroup END
+
+" }}}
+
 
 " --- Functions {{{
 function! GetStatusLineLabel()
@@ -283,5 +325,116 @@ function! GetGuiTabLabel()
     endfor
     return l:label
 endfunction
+
+function! SwitchNumber()
+    if &nu == 0
+        set nu
+    else
+        set nonu
+    endif
+endfunction
+
+let g:calendar_on = 0
+function! SwitchCalendar()
+    call s:all_close_calendar()
+    if g:calendar_on == 0
+        Calendar -view=month -split=horizontal -position=below -height=25
+        let w:calendar_window = 1
+        let g:calendar_on = 1
+    else
+        let g:calendar_on = 0
+    endif
+endfunction
+
+function! s:all_close_calendar()
+    let l:li = gift#tabpagewinnr_list()
+    for tw in l:li
+        call gift#jump_window(tw)
+        if exists('w:calendar_window') == 1
+            if w:calendar_window == 1
+                call gift#close_window(tw)
+                call s:all_close_calendar()
+            endif
+        endif
+    endfor
+endfunction
+
+function! OpenBrowserParsedURL()
+    let mlist = matchlist(getline('.'), '\v[(|\[|\s](https?:\/\/[^>]*)[)|\]|\s]')
+    if mlist != []
+        call openbrowser#open(mlist[1])
+    else
+        echo 'URL is not found in the current line.'
+    endif
+endfunction
+
 " }}}
+
+
+" --- Key Mappings {{{
+
+" --- Cheet Sheet {{{
+" # Key Mappings Cheet Sheet
+" +---------------+--------+--------+---------+--------+
+" | Command       | Normal | Insert | Command | Visual |
+" |:------------- |:------:|:------:|:-------:|:------:|
+" | map/noremap   | o      | x      | x       | o      |
+" | nmap/nnoremap | o      | x      | x       | x      |
+" | imap/inoremap | x      | o      | x       | x      |
+" | cmap/cnoremap | x      | x      | o       | x      |
+" | vmap/vnoremap | x      | x      | x       | o      |
+" | map!/noremap! | x      | o      | o       | x      |
+" +---------------+--------+--------+---------+--------+
+
+"
+" | Arguments | Description 
+" |:--------- |:------------------
+" | <buffer>  |
+" | <nowait>  |
+" | <silent>  |
+" | <special> |
+" | <script>  |
+" | <expr>    |
+" | <unique>  |
+" }}}
+
+" --- Cursor {{{
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+nnoremap <C-f> <End>
+nnoremap <C-d> <Home>
+inoremap <C-d> <Home>
+inoremap <C-f> <End>
+nnoremap <C-o> :call OpenBrowserParsedURL()<CR>
+inoremap <C-o> <ESC>:call OpenBrowserParsedURL()<CR>
+
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+" }}}
+
+" --- Highlight {{{
+nnoremap <silent> <Esc><Esc> :noh<CR>
+" }}}
+
+" --- Shortcut {{{
+nnoremap ,cl :call SwitchCalendar()<CR>
+nnoremap ,vs :VimShell<CR>
+nnoremap ,nt :NERDTreeToggle<CR>
+nnoremap ,nu :call SwitchNumber()<CR>
+" }}}
+
+" }}}
+
 

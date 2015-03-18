@@ -24,6 +24,8 @@ scriptencoding utf8
 "    -- Command Mode
 "    -- Insert Mode
 "    -- User Interface
+"    -- Cursor
+"    -- Tuning
 "
 
 
@@ -205,6 +207,21 @@ set iminsert=0
 "Text of titlebar of GUI Window.
 set title
 set titlestring=Hello\ VIM٩(ˊᗜˋ*)
+
+"
+set ruler
+
+"
+set nonumber
+" }}}
+
+" --- Cursor {{{
+"
+set scrolloff=5
+" }}}
+
+" --- Tuning {{{
+set lazyredraw
 " }}}
 
 " }}}

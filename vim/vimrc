@@ -175,6 +175,7 @@ NeoBundle 'Shougo/vimshell.vim'
 
 " --- yukpiz/nerdtree {{{
 NeoBundle 'yukpiz/nerdtree'
+let g:NERDTreeChDirMode = 2
 " }}}
 
 " --- haya14busa/incsearch.vim {{{

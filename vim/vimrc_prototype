@@ -20,6 +20,7 @@ scriptencoding utf8
 "    -- Colors
 "    -- Text Search
 "    -- Text Styles
+"    -- Clipboard & Register
 "
 
 
@@ -115,6 +116,7 @@ set backspace=indent,eol,start
 " --- Indents {{{
 "Enable the indentation setting by the modeline.
 set modeline
+
 "When exceeds the width, and to new line at blank,
 " but when the value is 0, it is disabled.
 set textwidth=0
@@ -129,14 +131,32 @@ colorscheme railscasts
 "After search until the end line,
 " to return to the top line.
 set wrapscan
+
+"When the search,
+" it is not distinguish between upper case and lower case.
 set ignorecase
+
+"When entered at upper case,
+" it is distinguish between upper case and lower case.
 set smartcase
+
 "Do the incremental search.
 set incsearch
+
+"Highlighting the search result.
 set hlsearch
 " }}}
 
 " --- Text Styles {{{
+" }}}
+
+" --- Register {{{
+"Use a register of clipboard.
+if has('xterm_clipboard')
+    set clipboard+=autoselect
+    set clipboard+=unnamed
+    set clipboard+=unnamedplus
+endif
 " }}}
 
 " }}}

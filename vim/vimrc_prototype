@@ -4,6 +4,8 @@ scriptencoding utf8
 "  [ Configuration Menu ]
 "--------------------------
 "
+" -- Start-up Process
+"
 " -- Plugins
 "
 "    -- Plugins Manager
@@ -33,7 +35,22 @@ scriptencoding utf8
 "
 " -- Contact
 "
-"      Twitter: @yukpiz "      Email:   yukpiz@gmail.com
+"      Twitter: @yukpiz
+"      Email:   yukpiz@gmail.com
+
+
+
+" --- Start-up Process {{{
+
+let s:is_windows = has('win32')
+let s:is_cygwin = has('win32unix')
+let s:is_kaoriya = has('kaoriya')
+let s:is_doswin = s:is_windows && !s:is_cygwin && !has('gui')
+let s:is_unix = has('unix')
+let s:is_mac = has('mac')
+let s:is_macosx = has('macunix')
+
+" }}}
 
 
 
@@ -69,7 +86,7 @@ NeoBundle "yukpiz/vim-railscasts-theme"
 " and in expression internal text, etc.
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,default,latin1
+set fileencodings=utf-8,sjis,ucs-bom,default,latin1
 "Line break code to be used.
 set fileformats=unix,dos,mac
 " }}}

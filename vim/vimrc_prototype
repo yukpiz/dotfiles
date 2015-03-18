@@ -20,7 +20,9 @@ scriptencoding utf8
 "    -- Colors
 "    -- Text Search
 "    -- Text Styles
-"    -- Clipboard & Register
+"    -- Register
+"    -- Command Mode
+"    -- Insert Mode
 "
 
 
@@ -52,7 +54,6 @@ let s:is_mac = has('mac')
 let s:is_macosx = has('macunix')
 
 " }}}
-
 
 
 " --- Plugins {{{
@@ -120,6 +121,23 @@ set modeline
 "When exceeds the width, and to new line at blank,
 " but when the value is 0, it is disabled.
 set textwidth=0
+
+"Replaces <Tab> to blank.
+set expandtab
+
+"When entered the <Tab>, replaces to four blank.
+set tabstop=4
+
+"The number of blank to be used during the automatic indentation.
+set shiftwidth=4
+
+"When entered the new line,
+" do automatic indentation.
+set autoindent
+
+"Unknown...
+set smartindent
+
 " }}}
 
 " --- Colors {{{
@@ -145,6 +163,9 @@ set incsearch
 
 "Highlighting the search result.
 set hlsearch
+
+"When search, to disabled the IME mode.
+set imsearch=0
 " }}}
 
 " --- Text Styles {{{
@@ -157,6 +178,23 @@ if has('xterm_clipboard')
     set clipboard+=unnamed
     set clipboard+=unnamedplus
 endif
+" }}}
+
+" --- Command Mode {{{
+"Use a completion of the command mode.
+if has('wildmenu')
+    set wildmenu
+    set wildchar=<Tab>
+    set wildmode=full
+endif
+
+"The number of command history.
+set history=50
+" }}}
+
+" --- Insert Mode {{{
+"When start the insert mode, to disabled the IME mode.
+set iminsert=0
 " }}}
 
 " }}}

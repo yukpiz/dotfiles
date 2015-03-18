@@ -96,6 +96,10 @@ let s:is_unix = has('unix')
 let s:is_mac = has('mac')
 let s:is_macosx = has('macunix')
 
+if s:is_windows && @% ==# ''
+    execute 'cd $USERPROFILE'
+endif
+
 " }}}
 
 

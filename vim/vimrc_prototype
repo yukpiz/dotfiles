@@ -23,6 +23,7 @@ scriptencoding utf8
 "    -- Register
 "    -- Command Mode
 "    -- Insert Mode
+"    -- User Interface
 "
 
 
@@ -142,6 +143,9 @@ set smartindent
 
 " --- Colors {{{
 syntax on
+
+"Use a 256 colors.
+set t_Co=256
 colorscheme railscasts
 " }}}
 
@@ -195,6 +199,12 @@ set history=50
 " --- Insert Mode {{{
 "When start the insert mode, to disabled the IME mode.
 set iminsert=0
+" }}}
+
+" --- User Interface {{{
+"Text of titlebar of GUI Window.
+set title
+set titlestring=Hello\ VIM٩(ˊᗜˋ*)
 " }}}
 
 " }}}

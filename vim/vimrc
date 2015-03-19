@@ -246,17 +246,28 @@ let g:neocomplete#enable_camel_case=0
 let g:neocomplete#max_list=14
 let g:neocomplete#max_keyword_width=80
 let g:neocomplete#min_keyword_length=2
+
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns={}
     let g:neocomplete#keyword_patterns['default']='\h\w'
 endif
+
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns={}
     let g:neocomplete#sources#omni#input_patterns.perl='\h\w*->\h\w*\|\h\w*::'
 endif
+
+inoremap <silent> <TAB> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-    return neocomplete#close_popup() . '\<CR>'
+    return neocomplete#close_popup() . "\<CR>"
 endfunction
+
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  neocomplete#close_popup()
+"inoremap <expr><C-e>  neocomplete#cancel_popup()
+
 hi Pmenu ctermbg=101 ctermfg=232
 hi PmenuSel ctermbg=58 ctermfg=231
 augroup NeoCompleteStyle
@@ -339,12 +350,14 @@ endif
 let vbnet_plugin = neobundle#get('vim-vbnet')
 if !empty(vbnet_plugin) && has_key(vbnet_plugin, 'path')
     let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#snippets_directory = ''
     if g:is_windows
         "TODO: Generic config path on Windows.
+        let g:neosnippet#snippets_directory = ''
         let g:neosnippet#snippets_directory = 'C:\Users\yukpiz\.vim\bundle\vim-vbnet\snippet'
     else
-        let g:neosnippet#snippets_directory += vbnet_plugin['path'] . '/snippet'
+        "let g:neosnippet#snippets_directory = vbnet_plugin['path'] . '/snippet'
+        "let g:neosnippet#snippets_directory = '~/.vim/bundle/vim-vbnet/snippet'
+        "call add(g:neosnippet#snippets_directory, vbnet_plugin['path'] . '/snippet'
     endif
 endif
 

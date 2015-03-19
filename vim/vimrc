@@ -481,7 +481,7 @@ if has('syntax')
     set t_Co=256
     set background=dark
     colorscheme railscasts
-    highlight Normal guibg=none ctermbg=none
+    highlight Normal ctermbg=none
     highlight Pmenu ctermbg=243 ctermfg=232
     highlight PmenuSel ctermbg=237 ctermfg=255
 endif

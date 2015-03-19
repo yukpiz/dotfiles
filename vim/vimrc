@@ -26,8 +26,6 @@ scriptencoding utf8
 "    -- osyo-manga/vim-brightest
 "    -- nathanaelkane/vim-indent-guides
 "    -- miyakogi/conoline.vim
-"    -- Shougo/neosnippet
-"    -- Shougo/neosnippet-snippets
 "    -- rhysd/committia.vim
 "    -- Shougo/neocomplete.vim
 "    -- basyura/twibill.vim
@@ -41,6 +39,8 @@ scriptencoding utf8
 "    -- yukpiz/vim-vbnet
 "    -- hynek/vim-python-pep8-indent
 "    -- thinca/vim-quickrun
+"    -- Shougo/neosnippet
+"    -- Shougo/neosnippet-snippets
 "
 " -- Set Options
 "
@@ -88,15 +88,15 @@ scriptencoding utf8
 
 " --- Start-up Process {{{
 
-let s:is_windows = has('win32')
-let s:is_cygwin = has('win32unix')
-let s:is_kaoriya = has('kaoriya')
-let s:is_doswin = s:is_windows && !s:is_cygwin && !has('gui')
-let s:is_unix = has('unix')
-let s:is_mac = has('mac')
-let s:is_macosx = has('macunix')
+let g:is_windows = has('win32')
+let g:is_cygwin = has('win32unix')
+let g:is_kaoriya = has('kaoriya')
+let g:is_doswin = g:is_windows && !g:is_cygwin && !has('gui')
+let g:is_unix = has('unix')
+let g:is_mac = has('mac')
+let g:is_macosx = has('macunix')
 
-if s:is_windows && @% ==# ''
+if g:is_windows && @% ==# ''
     execute 'cd $USERPROFILE'
 endif
 
@@ -224,24 +224,6 @@ let g:conoline_color_insert_dark='ctermbg=239'
 
 " }}}
 
-" --- Shougo/neosnippet {{{
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-imap <C-TAB>     <Plug>(neosnippet_expand_or_jump)
-smap <C-TAB>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-TAB>     <Plug>(neosnippet_expand_target)
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\  "\<Plug>(neosnippet_expand_or_jump)"
-\  : pumvisible() ? '\<C-n>' : '\<TAB>'
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\  "\<Plug>(neosnippet_expand_or_jump)"
-\  : '\<TAB>'
-
-if has('conceal')
-    set conceallevel=2 concealcursor=i
-endif
-" }}}
-
 " --- rhysd/committia.vim {{{
 NeoBundle 'rhysd/committia.vim'
 let g:committia_hooks = {}
@@ -296,7 +278,7 @@ NeoBundle 'basyura/TweetVim'
 " }}}
 
 " --- yuratomo/w3m.vim {{{
-if s:is_unix
+if g:is_unix
     NeoBundle 'yuratomo/w3m.vim'
 endif
 " }}}
@@ -337,6 +319,41 @@ let g:quickrun_config.cpp = {
 \  'cmdopt' : '-std=c++11',
 \}
 " }}}
+
+" --- Shougo/neosnippet {{{
+NeoBundle 'Shougo/neosnippet'
+imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-s>     <Plug>(neosnippet_expand_target)
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\  "\<Plug>(neosnippet_expand_or_jump)"
+\  : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\  "\<Plug>(neosnippet_expand_or_jump)"
+\  : "\<TAB>"
+
+if has('conceal')
+    set conceallevel=2 concealcursor=i
+endif
+
+let vbnet_plugin = neobundle#get('vim-vbnet')
+if !empty(vbnet_plugin) && has_key(vbnet_plugin, 'path')
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#snippets_directory = ''
+    if g:is_windows
+        "TODO: Generic config path on Windows.
+        let g:neosnippet#snippets_directory = 'C:\Users\yukpiz\.vim\bundle\vim-vbnet\snippet'
+    else
+        let g:neosnippet#snippets_directory += vbnet_plugin['path'] . '/snippet'
+    endif
+endif
+
+" }}}
+
+" --- Shougo/neosnippet-snippets {{{
+NeoBundle 'Shougo/neosnippet-snippets'
+" }}}
+
 
 filetype plugin indent on
 
@@ -675,10 +692,10 @@ inoremap <C-k> <Up>
 inoremap <C-j> <Down>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-nnoremap <C-f> <End>
-nnoremap <C-d> <Home>
-inoremap <C-d> <Home>
-inoremap <C-f> <End>
+"nnoremap <C-f> <End>
+"nnoremap <C-d> <Home>
+"inoremap <C-d> <Home>
+"inoremap <C-f> <End>
 nnoremap <C-o> :call OpenBrowserParsedURL()<CR>
 inoremap <C-o> <ESC>:call OpenBrowserParsedURL()<CR>
 
@@ -693,7 +710,7 @@ nnoremap <silent> <Esc><Esc> :noh<CR>
 " }}}
 
 " --- Shortcut {{{
-if s:is_unix
+if g:is_unix
     nnoremap ,vs :VimShell<CR>
 endif
 nnoremap ,cl :call SwitchCalendar()<CR>

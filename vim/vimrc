@@ -262,14 +262,12 @@ function! s:my_cr_function()
     return neocomplete#close_popup() . "\<CR>"
 endfunction
 
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y>  neocomplete#close_popup()
-"inoremap <expr><C-e>  neocomplete#cancel_popup()
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-hi Pmenu ctermbg=101 ctermfg=232
-hi PmenuSel ctermbg=58 ctermfg=231
 augroup NeoCompleteStyle
     autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
     autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
@@ -350,14 +348,12 @@ endif
 let vbnet_plugin = neobundle#get('vim-vbnet')
 if !empty(vbnet_plugin) && has_key(vbnet_plugin, 'path')
     let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#snippets_directory = ''
     if g:is_windows
         "TODO: Generic config path on Windows.
-        let g:neosnippet#snippets_directory = ''
         let g:neosnippet#snippets_directory = 'C:\Users\yukpiz\.vim\bundle\vim-vbnet\snippet'
     else
-        "let g:neosnippet#snippets_directory = vbnet_plugin['path'] . '/snippet'
-        "let g:neosnippet#snippets_directory = '~/.vim/bundle/vim-vbnet/snippet'
-        "call add(g:neosnippet#snippets_directory, vbnet_plugin['path'] . '/snippet'
+        let g:neosnippet#snippets_directory = vbnet_plugin['path'] . '/snippet'
     endif
 endif
 
@@ -485,7 +481,9 @@ if has('syntax')
     set t_Co=256
     set background=dark
     colorscheme railscasts
-    highlight Normal ctermbg=none
+    highlight Normal guibg=none ctermbg=none
+    highlight Pmenu ctermbg=243 ctermfg=232
+    highlight PmenuSel ctermbg=237 ctermfg=255
 endif
 
 " }}}
@@ -551,7 +549,6 @@ set guioptions-=T
 "Buffer of area of scrolling.
 set scrolloff=5
 " }}}
-
 " --- Tuning {{{
 set lazyredraw
 " }}}

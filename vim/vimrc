@@ -573,6 +573,7 @@ augroup FileTypeCustomize
     autocmd FileType vim let g:vim_indent_cont = 0
     autocmd FileTYpe python set indentkeys+=0#
     autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
+    autocmd FileType vbnet call VbNetTrigger()
 augroup END
 
 augroup EnablePlugins
@@ -588,8 +589,38 @@ augroup END
 
 " }}}
 
-
 " --- Functions {{{
+function! VbNetTrigger()
+    autocmd CursorMoved <buffer> call VbNetUpper()
+    autocmd CursorMovedI <buffer> call VbNetUpper()
+    autocmd CursorMoved <buffer> call VbNetSpace()
+    autocmd CursorMovedI <buffer> call VbNetSpace()
+endfunction
+
+let s:prev_line = line('.')
+function! VbNetUpper()
+    if s:prev_line ==# line('.')
+        return
+    endif
+    let line = getline(s:prev_line)
+
+endfunction
+
+function! VbNetSpace()
+    if s:prev_line ==# line('.')
+        return
+    endif
+    let line = getline(s:prev_line)
+    "let line = substitute(line, '\v\s\+\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)', '\1', 'g')
+    "let line = substitute(line, '\v\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)\s\+', '\1', 'g')
+    "let line = substitute(line, '\v\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)', ' \1 ', 'g')
+    "let line = substitute(line, '\s\+\([\=|\&|\*|\/|\\|\^|\+|\-].\)', '\1', 'g')
+    "let line = substitute(line, '\([\=|\&|\*|\/|\\|\^|\+|\-].\)\s\+', '\1', 'g')
+    "let line = substitute(line, '\([\=|\&|\*|\/|\\|\^|\+|\-]\)', ' \1 ', 'g')
+    call setline(s:prev_line, line)
+    let s:prev_line = line('.')
+endfunction
+
 function! GetStatusLineLabel()
     return '[%F]%h%m%r ' .
     \ '%{"[".(&ft!=""?&ft:"")."]"}' .

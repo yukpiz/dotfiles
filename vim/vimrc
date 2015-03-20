@@ -1,13 +1,13 @@
 scriptencoding utf8
 
+" --- Configuration Menu {{{
 "--------------------------
 "  [ Configuration Menu ]
 "--------------------------
 "
+" -- About
 " -- Start-up Process
-"
 " -- Plugins
-"
 "    -- Shougo/neobundle.vim
 "    -- yukpiz/vim-railscasts-theme
 "    -- yukpiz/microsoft-translate.vim
@@ -41,9 +41,7 @@ scriptencoding utf8
 "    -- thinca/vim-quickrun
 "    -- Shougo/neosnippet
 "    -- Shougo/neosnippet-snippets
-"
 " -- Set Options
-"
 "    -- Encodings
 "    -- Edit Behavior
 "    -- Key Stroke
@@ -57,20 +55,16 @@ scriptencoding utf8
 "    -- User Interface
 "    -- Cursor
 "    -- Tuning
-"
 " -- File Types
-"
 " -- Functions
-"
 " -- Key Mappings
-"
 "    -- Cheet Sheet
 "    -- Cursor
 "    -- Highlight
 "    -- Shortcut
+" }}}
 
-
-
+" --- About {{{
 "------------------------------------------
 " [ About of this config ]
 "------------------------------------------
@@ -84,8 +78,7 @@ scriptencoding utf8
 "
 "      Twitter: @yukpiz
 "      Email:   yukpiz@gmail.com
-
-
+" }}}
 " --- Start-up Process {{{
 
 let g:is_windows = has('win32')
@@ -101,8 +94,6 @@ if g:is_windows && @% ==# ''
 endif
 
 " }}}
-
-
 " --- Plugins {{{
 
 filetype off
@@ -367,8 +358,6 @@ NeoBundle 'Shougo/neosnippet-snippets'
 filetype plugin indent on
 
 " }}}
-
-
 " --- Set Options {{{
 "Setting in 'set' command to write here.
 
@@ -554,8 +543,6 @@ set lazyredraw
 " }}}
 
 " }}}
-
-
 " --- Filetypes {{{
 augroup FileTypeCustomize
     autocmd! FileTypeCustomize
@@ -588,7 +575,6 @@ augroup EnablePlugins
 augroup END
 
 " }}}
-
 " --- Functions {{{
 function! VbNetTrigger()
     autocmd CursorMoved <buffer> call VbNetUpper()
@@ -723,8 +709,6 @@ function! OpenBrowserParsedURL()
 endfunction
 
 " }}}
-
-
 " --- Key Mappings {{{
 
 " --- Cheet Sheet {{{

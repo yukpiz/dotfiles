@@ -573,7 +573,7 @@ augroup FileTypeCustomize
     autocmd FileType vim let g:vim_indent_cont = 0
     autocmd FileTYpe python set indentkeys+=0#
     autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
-    autocmd FileType vbnet call VbNetTrigger()
+    "autocmd FileType vbnet call VbNetTrigger()
 augroup END
 
 augroup EnablePlugins
@@ -606,11 +606,43 @@ function! VbNetUpper()
 
 endfunction
 
+"let text1 = 'cur  >=  1 cur  <=  1 cur  !=  1'
+"let text2 = 'cur  &=  1 cur  *=  1 cur  /=  1'
+"let text3 = 'cur  \=  1 cur  ^=  1 cur  +=  1 cur  -=  1'
+"let text4 = 'cur  =  1 cur  <  1 cur  >  1 cur  &  1 cur  *  1'
+"let text5 = 'cur  /  1 cur  \  1 cur  ^  1 cur  +  1 cur  -  1'
+"let text1 = substitute(text1, '\v\s+([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', '\1', 'g')
+"let text2 = substitute(text2, '\v\s+([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', '\1', 'g')
+"let text3 = substitute(text3, '\v\s+([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', '\1', 'g')
+"let text4 = substitute(text4, '\v\s+([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', '\1', 'g')
+"let text5 = substitute(text5, '\v\s+([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', '\1', 'g')
+"let text1 = substitute(text1, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)\s+', '\1', 'g')
+"let text2 = substitute(text2, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)\s+', '\1', 'g')
+"let text3 = substitute(text3, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)\s+', '\1', 'g')
+"let text4 = substitute(text4, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)\s+', '\1', 'g')
+"let text5 = substitute(text5, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)\s+', '\1', 'g')
+"echo substitute(text1, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', ' \1 ', 'g')
+"echo substitute(text2, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', ' \1 ', 'g')
+"echo substitute(text3, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', ' \1 ', 'g')
+"echo substitute(text4, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', ' \1 ', 'g')
+"echo substitute(text5, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', ' \1 ', 'g')
+
+"let text1 = '(1  ,  2  ,  3  ,  4  ,  5  ,  6  ,)'
+"let text1 = substitute(text1, '\v\s+(\,)', '\1', 'g')
+"let text1 = substitute(text1, '\v(\,)\s+', '\1', 'g')
+"echo substitute(text1, '\v(\,)', '\1 ', 'g')
+
 function! VbNetSpace()
     if s:prev_line ==# line('.')
         return
     endif
     let line = getline(s:prev_line)
+    let line = substitute(line, '\v\s+([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', '\1', 'g')
+    let line = substitute(line, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)\s+', '\1', 'g')
+    let line = substitute(line, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', ' \1 ', 'g')
+    let line = substitute(line, '\v\s+(\,)', '\1', 'g')
+    let line = substitute(line, '\v(\,)\s+', '\1', 'g')
+    let line = substitute(line, '\v(\,)', '\1 ', 'g')
     "let line = substitute(line, '\v\s\+\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)', '\1', 'g')
     "let line = substitute(line, '\v\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)\s\+', '\1', 'g')
     "let line = substitute(line, '\v\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)', ' \1 ', 'g')

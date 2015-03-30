@@ -32,6 +32,7 @@ scriptencoding utf8
 "    -- basyura/twibill.vim
 "    -- basyura/TweetVim
 "    -- yuratomo/w3m.vim
+"    -- yukpiz/redmine.vim
 "    -- kannokanno/previm
 "    -- kchmck/vim-coffee-script
 "    -- derekwyatt/vim-scala
@@ -43,6 +44,7 @@ scriptencoding utf8
 "    -- thinca/vim-quickrun
 "    -- Shougo/neosnippet
 "    -- Shougo/neosnippet-snippets
+"    -- plasticboy/vim-markdown
 " -- Set Options
 "    -- Encodings
 "    -- Edit Behavior
@@ -285,6 +287,10 @@ if g:is_unix
 endif
 " }}}
 
+" --- yukpiz/redmine.vim {{{
+NeoBundle 'yukpiz/redmine.vim'
+" }}}
+
 " --- kannokanno/previm {{{
 NeoBundleLazy 'kannokanno/previm'
 " }}}
@@ -361,6 +367,11 @@ endif
 
 " --- Shougo/neosnippet-snippets {{{
 NeoBundle 'Shougo/neosnippet-snippets'
+" }}}
+
+" --- plasticboy/vim-markdown {{{
+NeoBundleLazy 'rcmdnk/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
 " }}}
 
 
@@ -579,7 +590,7 @@ augroup END
 
 augroup EnablePlugins
     autocmd! EnablePlugins
-    autocmd FileType markdown NeoBundleSource previm
+    autocmd FileType markdown NeoBundleSource previm vim-markdown
     autocmd FileType coffee NeoBundleSource vim-coffee-script
     autocmd FileType scala NeoBundleSource vim-scala
     autocmd FileType haskell NeoBundleSource vim2hs

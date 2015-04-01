@@ -33,6 +33,7 @@ scriptencoding utf8
 "    -- basyura/TweetVim
 "    -- yuratomo/w3m.vim
 "    -- yukpiz/redmine.vim
+"    -- lambdalisue/vim-gista
 "    -- kannokanno/previm
 "    -- kchmck/vim-coffee-script
 "    -- derekwyatt/vim-scala
@@ -186,6 +187,7 @@ NeoBundle 'vim-jp/vital.vim'
 
 " --- Shougo/unite.vim {{{
 NeoBundle 'Shougo/unite.vim'
+let g:unite_enable_start_insert=0
 " }}}
 
 " --- tyru/open-browser.vim {{{
@@ -289,6 +291,11 @@ endif
 
 " --- yukpiz/redmine.vim {{{
 NeoBundle 'yukpiz/redmine.vim'
+" }}}
+
+" --- lambdalisue/vim-gista {{{
+NeoBundle 'lambdalisue/vim-gista'
+let g:gista#github_user = 'yukpiz'
 " }}}
 
 " --- kannokanno/previm {{{
@@ -813,6 +820,7 @@ endif
 nnoremap ,cl :call SwitchCalendar()<CR>
 nnoremap ,nt :NERDTreeToggle<CR>
 nnoremap ,nu :call SwitchNumber()<CR>
+nnoremap ,gi :Unite gista<CR>
 " }}}
 
 " }}}

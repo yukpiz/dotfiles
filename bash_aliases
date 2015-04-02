@@ -23,8 +23,8 @@ if [ `which notify-send` ]; then
 fi
 
 # adb tools
-if [ `which adb` ]; then
-    alias adb='sudo adb'
-fi
+#if [ `which adb` ]; then
+#    alias adb='sudo adb'
+#fi
 
-
+alias vim='vim -X'

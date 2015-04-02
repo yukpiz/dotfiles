@@ -590,7 +590,7 @@ augroup FileTypeCustomize
     autocmd FileType vbnet set foldmarker=#Region,#End\ Region
     autocmd FileType vim set foldmarker={{{,}}}
     autocmd FileType vim let g:vim_indent_cont = 0
-    autocmd FileTYpe python set indentkeys+=0#
+    autocmd FileType python set nosi
     autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
     "autocmd FileType vbnet call VbNetTrigger()
 augroup END

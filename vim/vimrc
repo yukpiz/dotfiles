@@ -575,6 +575,11 @@ set lazyredraw
 
 " }}}
 " --- File Types {{{
+augroup XmlConfigurations
+    autocmd! XmlConfigurations
+    autocmd FileType xml call XmlConfigurations()
+augroup END
+
 augroup GoLangConfigurations
     autocmd! GoLangConfigurations
     autocmd FileType go call GoLangConfigurations()
@@ -613,6 +618,10 @@ augroup END
 
 " }}}
 " --- Functions {{{
+function! XmlConfigurations()
+    command! -nargs=0 Fmt :%s/></>\r</g | filetype indent on | setf xml | normal gg=G
+endfunction
+
 function! GoLangConfigurations()
     if empty(system('which go')) ||
     \  empty(system('which gofmt')) ||
@@ -829,5 +838,3 @@ nnoremap ,gi :Unite gista<CR>
 " }}}
 
 " }}}
-
-

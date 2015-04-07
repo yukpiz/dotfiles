@@ -11,6 +11,7 @@ scriptencoding utf8
 "    : Thanks for creators;)
 "    -- Shougo/neobundle.vim
 "    -- yukpiz/vim-railscasts-theme
+"    -- yukpiz/sakuramochi.vim
 "    -- yukpiz/microsoft-translate.vim
 "    -- thinca/vim-prettyprint
 "    -- thinca/vim-ambicmd
@@ -118,6 +119,10 @@ endif
 NeoBundle 'yukpiz/vim-railscasts-theme'
 " }}}
 
+" --- yukpiz/sakuramochi.vim {{{
+NeoBundle 'yukpiz/sakuramochi.vim'
+" }}}
+
 " --- yukpiz/microsoft-translate.vim {{{
 NeoBundle 'yukpiz/microsoft-translate.vim'
 " }}}
@@ -218,10 +223,10 @@ let g:indent_guides_guide_size=1
 " }}}
 
 " --- miyakogi/conoline.vim {{{
-NeoBundle 'miyakogi/conoline.vim'
-let g:conoline_auto_enable=1
-let g:conoline_color_normal_dark='ctermbg=236'
-let g:conoline_color_insert_dark='ctermbg=239'
+"NeoBundle 'miyakogi/conoline.vim'
+"let g:conoline_auto_enable=1
+"let g:conoline_color_normal_dark='ctermbg=236'
+"let g:conoline_color_insert_dark='ctermbg=239'
 
 " }}}
 
@@ -300,6 +305,7 @@ NeoBundle 'yukpiz/redmine.vim'
 " --- lambdalisue/vim-gista {{{
 NeoBundle 'lambdalisue/vim-gista'
 let g:gista#github_user = 'yukpiz'
+let g:gista#update_on_write = 1
 " }}}
 
 " --- kannokanno/previm {{{
@@ -499,11 +505,11 @@ if has('syntax')
     syntax on
 
     set t_Co=256
-    set background=dark
-    colorscheme railscasts
-    highlight Normal ctermbg=none
-    highlight Pmenu ctermbg=243 ctermfg=232
-    highlight PmenuSel ctermbg=237 ctermfg=255
+    "set background=dark
+    colorscheme sakuramochi
+    "highlight Normal ctermbg=none
+    "highlight Pmenu ctermbg=243 ctermfg=232
+    "highlight PmenuSel ctermbg=237 ctermfg=255
 endif
 
 " }}}
@@ -552,7 +558,7 @@ set ruler
 set nonumber
 set numberwidth=6
 
-set laststatus=1
+set laststatus=2
 set statusline=%!GetStatusLineLabel()
 augroup CurrentWindowCursorLine
     autocmd! CurrentWindowCursorLine
@@ -637,21 +643,19 @@ function! GoLangConfigurations()
     setl ts=4 noet
 endfunction
 
-function! VbNetTrigger()
-    autocmd CursorMoved <buffer> call VbNetUpper()
-    autocmd CursorMovedI <buffer> call VbNetUpper()
-    autocmd CursorMoved <buffer> call VbNetSpace()
-    autocmd CursorMovedI <buffer> call VbNetSpace()
-endfunction
+"function! VbNetTrigger()
+"    autocmd BufWritePre <buffer> call VbNetUpper()
+"    autocmd BufWritePre <buffer> call VbNetSpace()
+"endfunction
 
-let s:prev_line = line('.')
-function! VbNetUpper()
-    if s:prev_line ==# line('.')
-        return
-    endif
-    let line = getline(s:prev_line)
-
-endfunction
+"let s:prev_line = line('.')
+"function! VbNetUpper()
+"    if s:prev_line ==# line('.')
+"        return
+"    endif
+"    let line = getline(s:prev_line)
+"
+"endfunction
 
 "let text1 = 'cur  >=  1 cur  <=  1 cur  !=  1'
 "let text2 = 'cur  &=  1 cur  *=  1 cur  /=  1'
@@ -679,26 +683,27 @@ endfunction
 "let text1 = substitute(text1, '\v(\,)\s+', '\1', 'g')
 "echo substitute(text1, '\v(\,)', '\1 ', 'g')
 
-function! VbNetSpace()
-    if s:prev_line ==# line('.')
-        return
-    endif
-    let line = getline(s:prev_line)
-    let line = substitute(line, '\v\s+([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', '\1', 'g')
-    let line = substitute(line, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)\s+', '\1', 'g')
-    let line = substitute(line, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', ' \1 ', 'g')
-    let line = substitute(line, '\v\s+(\,)', '\1', 'g')
-    let line = substitute(line, '\v(\,)\s+', '\1', 'g')
-    let line = substitute(line, '\v(\,)', '\1 ', 'g')
-    "let line = substitute(line, '\v\s\+\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)', '\1', 'g')
-    "let line = substitute(line, '\v\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)\s\+', '\1', 'g')
-    "let line = substitute(line, '\v\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)', ' \1 ', 'g')
-    "let line = substitute(line, '\s\+\([\=|\&|\*|\/|\\|\^|\+|\-].\)', '\1', 'g')
-    "let line = substitute(line, '\([\=|\&|\*|\/|\\|\^|\+|\-].\)\s\+', '\1', 'g')
-    "let line = substitute(line, '\([\=|\&|\*|\/|\\|\^|\+|\-]\)', ' \1 ', 'g')
-    call setline(s:prev_line, line)
-    let s:prev_line = line('.')
-endfunction
+"function! VbNetSpace()
+"    let i = 1
+"    for line in getline(0, '$')
+"        let line = substitute(line, '\v\s+([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', '\1', 'g')
+"        let line = substitute(line, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)\s+', '\1', 'g')
+"        let line = substitute(line, '\v([\>|\<|\!|\&|\*|\/|\\|\^|\+|\-|\=]\=*)', ' \1 ', 'g')
+"        let line = substitute(line, '\v\s+(\,)', '\1', 'g')
+"        let line = substitute(line, '\v(\,)\s+', '\1', 'g')
+"        let line = substitute(line, '\v(\,)', '\1 ', 'g')
+"
+"        call setline(i, line)
+"        let i = i + 1
+"    endfor
+"
+"    "let line = substitute(line, '\v\s\+\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)', '\1', 'g')
+"    "let line = substitute(line, '\v\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)\s\+', '\1', 'g')
+"    "let line = substitute(line, '\v\([\<|\>|\!|\&|*|\/|\\|\^|+|-].=\{,1}\)', ' \1 ', 'g')
+"    "let line = substitute(line, '\s\+\([\=|\&|\*|\/|\\|\^|\+|\-].\)', '\1', 'g')
+"    "let line = substitute(line, '\([\=|\&|\*|\/|\\|\^|\+|\-].\)\s\+', '\1', 'g')
+"    "let line = substitute(line, '\([\=|\&|\*|\/|\\|\^|\+|\-]\)', ' \1 ', 'g')
+"endfunction
 
 function! GetStatusLineLabel()
     return '[%F]%h%m%r ' .

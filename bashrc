@@ -70,19 +70,27 @@ if [ -e "$HOME/.rbenv" ]; then
     fi
 fi
 
-# Java setup
-if [ -e "/usr/local/share/jdk/jdk1.7.0_67" ]; then
-    export JAVA_HOME="/usr/local/share/jdk/jdk1.7.0_67"
-    export PATH="$JAVA_HOME/bin:$PATH"
-fi
-
 # Android SDK setup
 if [ -e "/usr/local/share/android-sdk" ]; then
     export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
     export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK_ROOT/platform-tools"
-    export ANDROID_SDK_TOOLS="$ANDROID_SDK_TOOLS/tools"
+    export ANDROID_SDK_TOOLS="$ANDROID_SDK_ROOT/tools"
     export PATH="$ANDROID_SDK_PLATFORM_TOOLS:$PATH"
     export PATH="$ANDROID_SDK_TOOLS:$PATH"
+fi
+
+# Gradle setup
+if [ -e "/usr/local/share/gradle-2.3" ]; then
+    export GRADLE_HOME="/usr/local/share/gradle-2.3"
+    export GRADLE_BIN="$GRADLE_HOME/bin"
+    export PATH="$GRADLE_BIN:$PATH"
+fi
+
+# Android Studio setup
+if [ -e "/usr/local/share/android-studio" ]; then
+    export ANDROID_STUDIO_HOME="/usr/local/share/android-studio"
+    export ANDROID_STUDIO_BIN="$ANDROID_STUDIO_HOME/bin"
+    export PATH="$ANDROID_STUDIO_BIN:$PATH"
 fi
 
 # Eclipse setup

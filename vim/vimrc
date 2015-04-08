@@ -609,6 +609,8 @@ augroup FileTypeCustomize
     autocmd FileType python set nosi
     autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
     "autocmd FileType vbnet call VbNetTrigger()
+    "Syntax highlight of the standard class in Java.
+    let g:java_highlight_all = 1
 augroup END
 
 augroup EnablePlugins
@@ -624,6 +626,10 @@ augroup END
 
 " }}}
 " --- Functions {{{
+function! GetSyntaxName()
+    return synIDattr(synID(line('.'), col('.'), 0), 'name')
+endfunction
+
 function! XmlConfigurations()
     command! -nargs=0 Fmt :%s/></>\r</g | filetype indent on | setf xml | normal gg=G
 endfunction

@@ -24,7 +24,9 @@ scriptencoding utf8
 "    -- haya14busa/incsearch.vim
 "    -- vim-jp/vital.vim
 "    -- Shougo/unite.vim
+"    -- Shougo/unite-outline
 "    -- tyru/open-browser.vim
+"    -- tyru/caw.vim
 "    -- osyo-manga/vim-brightest
 "    -- nathanaelkane/vim-indent-guides
 "    -- miyakogi/conoline.vim
@@ -199,8 +201,22 @@ NeoBundle 'Shougo/unite.vim'
 let g:unite_enable_start_insert=0
 " }}}
 
+" --- Shougo/unite-outline {{{
+NeoBundle 'Shougo/unite-outline'
+nmap ,out :Unite outline -vertical -winwidth=40<CR>
+" }}}
+
 " --- tyru/open-browser.vim {{{
 NeoBundle 'tyru/open-browser.vim'
+" }}}
+
+" --- tyru/caw.vim {{{
+NeoBundle 'tyru/caw.vim'
+nmap \c <Plug>(caw:I:toggle)
+vmap \c <Plug>(caw:I:toggle)
+
+nmap \C <Plug>(caw:I:uncomment)
+vmap \C <Plug>(caw:I:uncomment)
 " }}}
 
 " --- osyo-manga/vim-brightest {{{
@@ -587,6 +603,11 @@ augroup GoLangConfigurations
     autocmd FileType go call GoLangConfigurations()
 augroup END
 
+augroup CppConfigurations
+    autocmd! CppConfigurations
+    autocmd FileType cpp,c call s:CppConfigurations()
+augroup END
+
 augroup FileTypeCustomize
     autocmd! FileTypeCustomize
     autocmd FileType * set formatoptions=""
@@ -597,14 +618,14 @@ augroup FileTypeCustomize
     autocmd BufNewFile,BufRead *.gradle set filetype=groovy
     autocmd FileType xml,html,yaml set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
-    autocmd FileType ruby,python,c,cpp,css,coffee,haskell set sw=4 ts=4 et
+    autocmd FileType ruby,python,css,coffee,haskell set sw=4 ts=4 et
     autocmd FileType javascript,java,php,vb,sh,make set sw=4 ts=4 et
     autocmd FileType vbnet set foldmarker=#Region,#End\ Region
     autocmd FileType vim set foldmarker={{{,}}}
     autocmd FileType vim let g:vim_indent_cont = 0
     autocmd FileType python set nosi
-    autocmd FileType cpp setlocal path=,/usr/include,/usr/local/include
     "autocmd FileType vbnet call VbNetTrigger()
+
     "Syntax highlight of the standard class in Java.
     let g:java_highlight_all = 1
 augroup END
@@ -624,6 +645,23 @@ augroup END
 " --- Functions {{{
 function! GetSyntaxName()
     return synIDattr(synID(line('.'), col('.'), 0), 'name')
+endfunction
+
+function! s:CppConfigurations()
+    "Set the directory path of the included libraries.
+    setlocal path=,/usr/include,/usr/local/include
+
+    "Setting of indentation characters.
+    setlocal tabstop=4
+    setlocal shiftwidth=4
+    setlocal noexpandtab
+
+    "Jump the end of the #include line, and change to insert mode.
+    nnoremap <buffer><silent> <Space>ii :execute "?".&include<CR> :noh<CR> o
+
+    "Enable the syntax color of the boost libraries.
+    syntax match boost_pp /BOOST_PP_[A-z0-9_]*/
+    highlight link boost_pp cppStatement
 endfunction
 
 function! XmlConfigurations()

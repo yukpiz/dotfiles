@@ -656,6 +656,9 @@ function! s:CppConfigurations()
     setlocal shiftwidth=4
     setlocal noexpandtab
 
+    "Add to parenthese pairs.
+    setlocal matchpairs+=<:>
+
     "Jump the end of the #include line, and change to insert mode.
     nnoremap <buffer><silent> <Space>ii :execute "?".&include<CR> :noh<CR> o
 
@@ -866,6 +869,10 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+" }}}
+
+" --- Buffer {{{
+nnoremap <silent> gp :bprevious<CR>
 " }}}
 
 " --- Highlight {{{

@@ -203,7 +203,7 @@ let g:unite_enable_start_insert=0
 
 " --- Shougo/unite-outline {{{
 NeoBundle 'Shougo/unite-outline'
-nmap ,out :Unite outline -vertical -winwidth=40<CR>
+nmap ,out :Unite outline -winheight=10<CR>
 " }}}
 
 " --- tyru/open-browser.vim {{{
@@ -661,6 +661,9 @@ function! s:CppConfigurations()
 
     "Jump the end of the #include line, and change to insert mode.
     nnoremap <buffer><silent> <Space>ii :execute "?".&include<CR> :noh<CR> o
+
+    "Show included file list.
+    nmap ,inc :Unite file_include -winheight=10<CR>
 
     "Enable the syntax color of the boost libraries.
     syntax match boost_pp /BOOST_PP_[A-z0-9_]*/

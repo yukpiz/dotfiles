@@ -517,7 +517,7 @@ if has('syntax')
         autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
     augroup END
 
-    execute 'set colorcolumn=' . join(range(91, 9999), ',')
+    execute 'set colorcolumn=' . join(range(81, 9999), ',')
     syntax on
 
     set t_Co=256
@@ -593,14 +593,18 @@ set lazyredraw
 
 " }}}
 " --- File Types {{{
+augroup JavaConfigurations
+    autocmd! JavaConfigurations
+    autocmd FileType java call s:JavaConfigurations()
+augroup END
 augroup XmlConfigurations
     autocmd! XmlConfigurations
-    autocmd FileType xml call XmlConfigurations()
+    autocmd FileType xml call s:XmlConfigurations()
 augroup END
 
 augroup GoLangConfigurations
     autocmd! GoLangConfigurations
-    autocmd FileType go call GoLangConfigurations()
+    autocmd FileType go call s:GoLangConfigurations()
 augroup END
 
 augroup CppConfigurations
@@ -647,6 +651,10 @@ function! GetSyntaxName()
     return synIDattr(synID(line('.'), col('.'), 0), 'name')
 endfunction
 
+function! s:JavaConfigurations()
+    nnoremap <buffer><silent> <Space>ii :execute "?^import"<CR> :noh<CR> o
+endfunction
+
 function! s:CppConfigurations()
     "Set the directory path of the included libraries.
     setlocal path=,/usr/include,/usr/local/include
@@ -670,11 +678,11 @@ function! s:CppConfigurations()
     highlight link boost_pp cppStatement
 endfunction
 
-function! XmlConfigurations()
+function! s:XmlConfigurations()
     command! -nargs=0 Fmt :%s/></>\r</g | filetype indent on | setf xml | normal gg=G
 endfunction
 
-function! GoLangConfigurations()
+function! s:GoLangConfigurations()
     if empty(system('which go')) ||
     \  empty(system('which gofmt')) ||
     \  empty(system('which godoc'))

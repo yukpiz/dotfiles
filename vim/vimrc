@@ -310,7 +310,7 @@ NeoBundle 'basyura/TweetVim'
 " }}}
 
 " --- yuratomo/w3m.vim {{{
-if g:is_unix
+if g:is_unix && !g:is_mac && !g:is_macosx
     NeoBundle 'yuratomo/w3m.vim'
 endif
 " }}}
@@ -594,10 +594,16 @@ set lazyredraw
 
 " }}}
 " --- File Types {{{
+augroup CsharpConfigurations
+    autocmd! CsharpConfigurations
+    autocmd FileType cs call s:CsharpConfigurations()
+augroup END
+
 augroup JavaConfigurations
     autocmd! JavaConfigurations
     autocmd FileType java call s:JavaConfigurations()
 augroup END
+
 augroup XmlConfigurations
     autocmd! XmlConfigurations
     autocmd FileType xml call s:XmlConfigurations()
@@ -650,6 +656,14 @@ augroup END
 " --- Functions {{{
 function! GetSyntaxName()
     return synIDattr(synID(line('.'), col('.'), 0), 'name')
+endfunction
+
+function! s:CsharpConfigurations()
+    setlocal tabstop=4
+    setlocal shiftwidth=4
+    setlocal noexpandtab
+
+    nnoremap <buffer><silent> <Space>ii :execute "?^using"<CR> :noh<CR> o
 endfunction
 
 function! s:JavaConfigurations()

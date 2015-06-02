@@ -34,7 +34,6 @@ scriptencoding utf8
 "    -- Shougo/neocomplete.vim
 "    -- basyura/twibill.vim
 "    -- basyura/TweetVim
-"    -- yuratomo/w3m.vim
 "    -- yukpiz/redmine.vim
 "    -- lambdalisue/vim-gista
 "    -- kannokanno/previm
@@ -113,7 +112,6 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim
     call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
-    call neobundle#end()
 endif
 " }}}
 
@@ -309,12 +307,6 @@ NeoBundle 'basyura/twibill.vim'
 NeoBundle 'basyura/TweetVim'
 " }}}
 
-" --- yuratomo/w3m.vim {{{
-if g:is_unix && !g:is_mac && !g:is_macosx
-    NeoBundle 'yuratomo/w3m.vim'
-endif
-" }}}
-
 " --- yukpiz/redmine.vim {{{
 NeoBundle 'yukpiz/redmine.vim'
 " }}}
@@ -409,6 +401,7 @@ let g:vim_markdown_folding_disabled = 1
 " }}}
 
 
+call neobundle#end()
 filetype plugin indent on
 
 " }}}

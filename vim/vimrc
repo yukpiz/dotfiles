@@ -107,12 +107,12 @@ filetype off
 filetype plugin indent off
 
 " --- Shougo/neobundle.vim {{{
-if has('vim_starting')
+"if has('vim_starting')
     "Initialize NeoBundle.
     set runtimepath+=~/.vim/bundle/neobundle.vim
     call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
-endif
+"endif
 " }}}
 
 " --- yukpiz/vim-railscasts-theme {{{
@@ -143,14 +143,7 @@ cnoremap <expr> <Space> ambicmd#expand('<Space>')
 
 " --- kana/vim-submode {{{
 NeoBundle 'kana/vim-submode'
-call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
-call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
-call submode#map('winsize', 'n', '', '>', '<C-w>>')
-call submode#map('winsize', 'n', '', '<', '<C-w><')
-call submode#map('winsize', 'n', '', '+', '<C-w>+')
-call submode#map('winsize', 'n', '', '-', '<C-w>-')
+
 " }}}
 
 " --- osyo-manga/vim-gift {{{
@@ -400,8 +393,17 @@ NeoBundleLazy 'rcmdnk/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 " }}}
 
-
 call neobundle#end()
+"とりあえずcall系のプラグイン設定はここに退避
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
+call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>+')
+call submode#map('winsize', 'n', '', '-', '<C-w>-')
+
 filetype plugin indent on
 
 " }}}

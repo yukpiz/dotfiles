@@ -80,8 +80,8 @@ if [ -e "/usr/local/share/android-sdk" ]; then
 fi
 
 # Gradle setup
-if [ -e "/usr/local/share/gradle-2.3" ]; then
-    export GRADLE_HOME="/usr/local/share/gradle-2.3"
+if [ -e "/usr/local/share/gradle" ]; then
+    export GRADLE_HOME="/usr/local/share/gradle"
     export GRADLE_BIN="$GRADLE_HOME/bin"
     export PATH="$GRADLE_BIN:$PATH"
 fi

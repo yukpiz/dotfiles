@@ -86,6 +86,12 @@ if [ -e "/usr/local/share/gradle" ]; then
     export PATH="$GRADLE_BIN:$PATH"
 fi
 
+# JDK setup
+if [ -e "/usr/local/share/jdk1.7.0_79" ]; then
+    export JAVA_HOME="/usr/local/share/jdk1.7.0_79"
+    export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
 # Android Studio setup
 if [ -e "/usr/local/share/android-studio" ]; then
     export ANDROID_STUDIO_HOME="/usr/local/share/android-studio"

@@ -457,7 +457,7 @@ set expandtab
 set tabstop=4
 
 "The number of blank to be used during the automatic indentation.
-set shiftwidth=4
+set shiftwidth=0
 
 "When entered the new line,
 " do automatic indentation.

@@ -663,6 +663,8 @@ endfunction
 
 function! s:JavaConfigurations()
     nnoremap <buffer><silent> <Space>ii :execute "?^import"<CR> :noh<CR> o
+    setlocal tabstop=2
+    setlocal shiftwidth=2
 endfunction
 
 function! s:CppConfigurations()

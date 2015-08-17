@@ -666,6 +666,7 @@ function! s:JavaConfigurations()
     nnoremap <buffer><silent> <Space>ii :execute "?^import"<CR> :noh<CR> o
     setlocal tabstop=2
     setlocal shiftwidth=2
+    command! -nargs=0 HeadClean :call s:JavaHeadClean()
 endfunction
 
 function! s:CppConfigurations()
@@ -839,6 +840,12 @@ function! OpenBrowserParsedURL()
     else
         echo 'URL is not found in the current line.'
     endif
+endfunction
+
+function! s:JavaHeadClean()
+    let lines = getline(0, line('$'))
+    for line in lines
+    endfor
 endfunction
 
 " }}}

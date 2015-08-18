@@ -834,9 +834,9 @@ function! s:all_close_calendar()
 endfunction
 
 function! OpenBrowserParsedURL()
-    let mlist = matchlist(getline('.'), '\v[(|\[|\s](https?:\/\/[^>]*)[)|\]|\s]')
+    let mlist = matchlist(getline('.'), '\vhttps?\:\/\/[^\>|^\|^\"|^'')]*')
     if mlist != []
-        call openbrowser#open(mlist[1])
+        call openbrowser#open(mlist[0])
     else
         echo 'URL is not found in the current line.'
     endif

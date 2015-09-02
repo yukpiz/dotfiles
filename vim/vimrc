@@ -9,45 +9,6 @@ scriptencoding utf8
 " -- Start-up Process
 " -- Plugins
 "    : Thanks for creators;)
-"    -- Shougo/neobundle.vim
-"    -- yukpiz/vim-railscasts-theme
-"    -- yukpiz/sakuramochi.vim
-"    -- yukpiz/microsoft-translate.vim
-"    -- thinca/vim-prettyprint
-"    -- thinca/vim-ambicmd
-"    -- kana/vim-submode
-"    -- osyo-manga/vim-gift
-"    -- Shougo/vimproc.vim
-"    -- itchyny/calendar.vim
-"    -- Shougo/vimshell.vim
-"    -- yukpiz/nerdtree
-"    -- haya14busa/incsearch.vim
-"    -- vim-jp/vital.vim
-"    -- Shougo/unite.vim
-"    -- Shougo/unite-outline
-"    -- tyru/open-browser.vim
-"    -- tyru/caw.vim
-"    -- osyo-manga/vim-brightest
-"    -- nathanaelkane/vim-indent-guides
-"    -- miyakogi/conoline.vim
-"    -- rhysd/committia.vim
-"    -- Shougo/neocomplete.vim
-"    -- basyura/twibill.vim
-"    -- basyura/TweetVim
-"    -- yukpiz/redmine.vim
-"    -- lambdalisue/vim-gista
-"    -- kannokanno/previm
-"    -- kchmck/vim-coffee-script
-"    -- derekwyatt/vim-scala
-"    -- dag/vim2hs
-"    -- vim-jp/cpp-vim
-"    -- vim-jp/vim-go-extra
-"    -- yukpiz/vim-vbnet
-"    -- hynek/vim-python-pep8-indent
-"    -- thinca/vim-quickrun
-"    -- Shougo/neosnippet
-"    -- Shougo/neosnippet-snippets
-"    -- plasticboy/vim-markdown
 " -- Set Options
 "    -- Encodings
 "    -- Edit Behavior
@@ -306,9 +267,9 @@ set completeopt-=preview
 " }}}
 
 " --- lambdalisue/vim-gista {{{
-"NeoBundle 'lambdalisue/vim-gista'
-"let g:gista#github_user = 'yukpiz'
-"let g:gista#update_on_write = 1
+NeoBundle 'lambdalisue/vim-gista'
+let g:gista#github_user = 'yukpiz'
+let g:gista#update_on_write = 1
 " }}}
 
 " --- kannokanno/previm {{{
@@ -393,6 +354,11 @@ NeoBundleLazy 'hynek/vim-python-pep8-indent'
 NeoBundleLazy 'rcmdnk/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 " }}}
+
+" --- mattn/vim-maketable {{{
+NeoBundleLazy 'mattn/vim-maketable'
+" }}}
+
 
 call neobundle#end()
 "とりあえずcall系のプラグイン設定はここに退避
@@ -639,7 +605,7 @@ augroup END
 
 augroup EnablePlugins
     autocmd! EnablePlugins
-    autocmd FileType markdown NeoBundleSource previm vim-markdown
+    autocmd FileType markdown NeoBundleSource previm vim-markdown vim-maketable
     autocmd FileType coffee NeoBundleSource vim-coffee-script
     autocmd FileType scala NeoBundleSource vim-scala
     autocmd FileType haskell NeoBundleSource vim2hs
@@ -893,13 +859,14 @@ inoremap <C-l> <Right>
 "nnoremap <C-d> <Home>
 "inoremap <C-d> <Home>
 "inoremap <C-f> <End>
-nnoremap <C-o> :call OpenBrowserParsedURL()<CR>
-inoremap <C-o> <ESC>:call OpenBrowserParsedURL()<CR>
 
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+nnoremap <C-o> :call OpenBrowserParsedURL()<CR>
+inoremap <C-o> <ESC>:call OpenBrowserParsedURL()<CR>
 " }}}
 
 " --- Buffer {{{

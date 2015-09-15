@@ -62,6 +62,10 @@ fi
 # }}}
 
 # --- Paths {{{
+
+#Using Vim for Subversion.
+export SVN_EDITOR=vim
+
 if [ -e "$HOME/.rbenv" ]; then
     export RBENV_ROOT="$HOME/.rbenv"
     export PATH="$HOME/.rbenv/bin:$PATH"
@@ -122,13 +126,13 @@ fi
 # }}}
 
 # --- Apps {{{
-if [ -z "$TMUX" -a -z "$STY" ]; then
-    if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
-        tmux -2 attach && echo "tmux attached session."
-    else
-        tmux -2 new-session && echo "tmux created new session."
-    fi
-fi
+# if [ -z "$TMUX" -a -z "$STY" ]; then
+#     if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+#         tmux -2 attach && echo "tmux attached session."
+#     else
+#         tmux -2 new-session && echo "tmux created new session."
+#     fi
+# fi
 # }}}
 
 # --- Keys {{{

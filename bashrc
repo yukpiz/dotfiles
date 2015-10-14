@@ -53,6 +53,11 @@ if [ "$color_prompt" = yes ]; then
     p="\$"
     PS1="\$(printf '\[\033[01;32m\]%s\[\033[00m\]\[\033[00;32m\]%s\[\033[00m\]\[\033[01;33m\]%s\[\033[00m\]\[\033[00;37m\]%s\[\033[00m\]' ${h} ${c} ${u} ${p})"
 fi
+
+#parse_git_branch() {
+#    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* (.*)/(1)/'
+#}
+#export PS1=$(parse_git_branch)
 # }}}
 
 # --- Aliases {{{

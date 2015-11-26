@@ -66,7 +66,9 @@ if [ -e $HOME/.bash_aliases ]; then
 fi
 # }}}
 
-# --- Paths {{{
+# --- Paths & Variables {{{
+
+export VTE_CJK_WIDTH=1
 
 #Using Vim for Subversion.
 export SVN_EDITOR=vim

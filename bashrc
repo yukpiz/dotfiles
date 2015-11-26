@@ -131,13 +131,13 @@ fi
 # }}}
 
 # --- Apps {{{
-# if [ -z "$TMUX" -a -z "$STY" ]; then
-#     if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
-#         tmux -2 attach && echo "tmux attached session."
-#     else
-#         tmux -2 new-session && echo "tmux created new session."
-#     fi
-# fi
+if [ -z "$TMUX" -a -z "$STY" ]; then
+    if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+        tmux -2 attach && echo "tmux attached session."
+    else
+        tmux -2 new-session && echo "tmux created new session."
+    fi
+fi
 # }}}
 
 # --- Keys {{{

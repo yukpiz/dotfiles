@@ -359,6 +359,26 @@ let g:vim_markdown_folding_disabled = 1
 NeoBundleLazy 'mattn/vim-maketable'
 " }}}
 
+" --- etaoins/vim-volt-syntax {{{
+NeoBundleLazy 'etaoins/vim-volt-syntax'
+" }}}
+
+" --- thinca/vim-ref {{{
+"$ mkdir -p $HOME/.vim/vim-ref/cache
+"$ cd /tmp
+"$ wget http://jp1.php.net/distributions/manual/php_manual_ja.tar.gz
+"$ tar -zxvf php_manual_ja.tar.gz -C $HOME/.vim/vim-ref
+NeoBundleLazy 'thinca/vim-ref', {'functions': 'ref#K'}
+let g:ref_no_default_key_mappings=1
+inoremap <silent><C-k> <C-o>:call<Space>ref#K('normal')<CR><ESC>
+nnoremap <silent>K :<C-u>call<Space>ref#K('normal')<CR>
+let s:hooks = neobundle#get_hooks('vim-ref')
+function! s:hooks.on_source(bundle) abort
+    let g:ref_cache_dir = $HOME . '/.vim/vim-ref/cache'
+    let g:ref_phpmanual_path = $HOME . '/.vim/vim-ref/php-chunked-xhtml'
+endfunction
+" }}}
+
 
 call neobundle#end()
 "とりあえずcall系のプラグイン設定はここに退避
@@ -480,7 +500,7 @@ if has('syntax')
         autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
     augroup END
 
-    execute 'set colorcolumn=' . join(range(81, 9999), ',')
+    "execute 'set colorcolumn=' . join(range(81, 9999), ',')
     syntax on
 
     set t_Co=256
@@ -581,6 +601,16 @@ augroup CppConfigurations
     autocmd FileType cpp,c call s:CppConfigurations()
 augroup END
 
+augroup VoltConfigurations
+    autocmd! VoltConfigurations
+    autocmd FileType volt call s:VoltConfigurations()
+augroup END
+
+augroup PhpConfigurations
+    autocmd! PhpConfigurations
+    autocmd FileType php call s:PhpConfigurations()
+augroup END
+
 augroup FileTypeCustomize
     autocmd! FileTypeCustomize
     autocmd FileType * set formatoptions=""
@@ -589,6 +619,7 @@ augroup FileTypeCustomize
     autocmd BufNewFile,BufRead *.vb set filetype=vbnet
     autocmd BufNewFile,BufRead *.scala set filetype=scala
     autocmd BufNewFile,BufRead *.gradle set filetype=groovy
+    autocmd BufNewFile,BufRead *.volt set filetype=volt
     autocmd FileType xml,html,yaml,eruby,css,scss set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
     autocmd FileType ruby,python,css,coffee,haskell set sw=4 ts=4 et
@@ -612,12 +643,29 @@ augroup EnablePlugins
     autocmd FileType cpp NeoBundleSource cpp-vim
     autocmd FileType vbnet NeoBundleSource vim-vbnet
     autocmd FileType python NeoBundleSource vim-python-pep8-indent
+    autocmd FileType volt NeoBundleSource vim-volt-syntax
 augroup END
 
 " }}}
 " --- Functions {{{
 function! GetSyntaxName()
     return synIDattr(synID(line('.'), col('.'), 0), 'name')
+endfunction
+
+function! s:PhpConfigurations()
+    let g:php_baselib=1
+    let g:php_htmlInStrings=1
+    let g:php_noShortTags=1
+    let g:php_sql_query=1
+    let g:sql_type_default='mysql'
+endfunction
+
+function! s:VoltConfigurations()
+    setlocal tabstop=4
+    setlocal shiftwidth=4
+    setlocal noexpandtab
+    setlocal autoindent
+    setlocal smartindent
 endfunction
 
 function! s:CsharpConfigurations()

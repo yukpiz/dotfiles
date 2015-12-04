@@ -379,6 +379,10 @@ function! s:hooks.on_source(bundle) abort
 endfunction
 " }}}
 
+" --- mattn/qiita-vim {{{
+NeoBundleLazy 'mattn/qiita-vim'
+" }}}
+
 
 call neobundle#end()
 "とりあえずcall系のプラグイン設定はここに退避

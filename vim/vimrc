@@ -624,6 +624,7 @@ augroup FileTypeCustomize
     autocmd BufNewFile,BufRead *.scala set filetype=scala
     autocmd BufNewFile,BufRead *.gradle set filetype=groovy
     autocmd BufNewFile,BufRead *.volt set filetype=volt
+    autocmd FileType sql set sw=2 ts=2 et
     autocmd FileType xml,html,yaml,eruby,css,scss set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
     autocmd FileType ruby,python,css,coffee,haskell set sw=4 ts=4 et

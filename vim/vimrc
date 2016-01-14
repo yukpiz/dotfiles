@@ -201,7 +201,7 @@ let g:indent_guides_guide_size=1
 " }}}
 
 " --- rhysd/committia.vim {{{
-NeoBundle 'rhysd/committia.vim'
+NeoBundle 'yukpiz/committia.vim'
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
     setl spell
@@ -423,6 +423,8 @@ set noundofile
 " and then delete the backup file when have successfully save.
 set writebackup
 set nobackup
+
+set binary noeol
 " }}}
 
 " --- Key Stroke {{{

@@ -383,6 +383,10 @@ endfunction
 NeoBundleLazy 'mattn/qiita-vim'
 " }}}
 
+" --- kana/vim-fakeclip {{{
+NeoBundle 'kana/vim-fakeclip'
+" }}}
+
 
 call neobundle#end()
 "とりあえずcall系のプラグイン設定はここに退避
@@ -523,11 +527,9 @@ set foldenable
 
 " --- Register {{{
 "Use a register of clipboard.
-if has('xterm_clipboard')
-    set clipboard+=autoselect
-    set clipboard+=unnamed
-    set clipboard+=unnamedplus
-endif
+set clipboard+=autoselect
+set clipboard+=unnamed
+set clipboard+=unnamedplus
 " }}}
 
 " --- Command Mode {{{

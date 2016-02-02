@@ -136,7 +136,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'yukpiz/nerdtree'
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeDirArrows = '+'
-let g:NERDTreeWinSize = 35
+let g:NERDTreeWinSize = 28
 " }}}
 
 " --- haya14busa/incsearch.vim {{{

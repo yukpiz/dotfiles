@@ -84,10 +84,6 @@ filetype plugin indent off
 NeoBundle 'yukpiz/sakuramochi.vim'
 " }}}
 
-" --- yukpiz/microsoft-translate.vim {{{
-"NeoBundle 'yukpiz/microsoft-translate.vim'
-" }}}
-
 " --- thinca/vim-prettyprint {{{
 "vim-prettyprint to conveniently debug print,
 " be printed shaping the dictionary of VimScript.
@@ -262,10 +258,6 @@ set completeopt-=preview
 "NeoBundle 'basyura/TweetVim'
 " }}}
 
-" --- yukpiz/redmine.vim {{{
-"NeoBundle 'yukpiz/redmine.vim'
-" }}}
-
 " --- lambdalisue/vim-gista {{{
 NeoBundle 'lambdalisue/vim-gista'
 let g:gista#github_user = 'yukpiz'
@@ -385,6 +377,10 @@ NeoBundleLazy 'mattn/qiita-vim'
 
 " --- kana/vim-fakeclip {{{
 NeoBundle 'kana/vim-fakeclip'
+" }}}
+
+" --- yukpiz/jobb.vim {{{
+NeoBundle 'yukpiz/jobb.vim'
 " }}}
 
 

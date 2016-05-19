@@ -26,6 +26,10 @@ HISTFILESIZE=2000
 # }}}
 
 # --- Colors {{{
+if [ $TERM == 'mlterm' ]; then
+    export TERM=xterm-color
+fi
+
 case "$TERM" in
     xterm-color) color_prompt=yes;;
     mlterm) color_prompt=yes;;
@@ -81,9 +85,14 @@ if [ -e "$HOME/.rbenv" ]; then
     fi
 fi
 
+# Arduino setup
+if [ -e "/usr/local/share/arduino" ]; then
+    export PATH="/usr/local/share/arduino:$PATH"
+fi
+
 # Android SDK setup
-if [ -e "/usr/local/share/android-sdk" ]; then
-    export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+if [ -e "/usr/local/share/android-sdk-linux" ]; then
+    export ANDROID_SDK_ROOT="/usr/local/share/android-sdk-linux"
     export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK_ROOT/platform-tools"
     export ANDROID_SDK_TOOLS="$ANDROID_SDK_ROOT/tools"
     export PATH="$ANDROID_SDK_PLATFORM_TOOLS:$PATH"
@@ -134,7 +143,7 @@ fi
 
 # --- Apps {{{
 if [ -z "$TMUX" -a -z "$STY" ]; then
-    if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+    if tmux has-session && tmux list-sessions | grep -qE '.*]$'; then
         tmux -2 attach && echo "tmux attached session."
     else
         tmux -2 new-session && echo "tmux created new session."

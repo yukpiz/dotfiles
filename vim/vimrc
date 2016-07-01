@@ -33,9 +33,6 @@ scriptencoding utf8
 " }}}
 
 " --- About {{{
-"------------------------------------------
-" [ About of this config ]
-"------------------------------------------
 " Configuration of Vim !!
 "
 " -- Repository
@@ -67,150 +64,76 @@ endif
 filetype off
 filetype plugin indent off
 
-" --- Shougo/neobundle.vim {{{
-"if has('vim_starting')
-    "Initialize NeoBundle.
-    set runtimepath+=~/.vim/bundle/neobundle.vim
-    call neobundle#begin(expand('~/.vim/bundle/'))
-    NeoBundleFetch 'Shougo/neobundle.vim'
-"endif
-" }}}
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" --- yukpiz/vim-railscasts-theme {{{
-"NeoBundle 'yukpiz/vim-railscasts-theme'
-" }}}
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
-" --- yukpiz/sakuramochi.vim {{{
-NeoBundle 'yukpiz/sakuramochi.vim'
-" }}}
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
-" --- thinca/vim-prettyprint {{{
-"vim-prettyprint to conveniently debug print,
-" be printed shaping the dictionary of VimScript.
-"NeoBundle 'thinca/vim-prettyprint'
-" }}}
+    call dein#add('Shougo/dein.vim')
+    call dein#add('Shougo/vimproc.vim', {
+    \    'build': {
+    \        'cygwin': 'make -f make_cygwin.mak',
+    \        'linux': 'make',
+    \        'unix': 'gmake',
+    \    }
+    \})
+    call dein#add('Shougo/unite.vim')
+    call dein#add('Shougo/unite-outline')
+    call dein#add('Shougo/neocomplete.vim')
+    call dein#add('Shougo/neosnippet')
+    call dein#add('Shougo/neosnippet-snippets')
+    call dein#add('yukpiz/sakuramochi.vim')
+    call dein#add('yukpiz/nerdtree')
+    call dein#add('yukpiz/committia.vim')
+    call dein#add('thinca/vim-prettyprint')
+    call dein#add('thinca/vim-quickrun')
+    call dein#add('thinca/vim-ambicmd')
+    call dein#add('kana/vim-submode')
+    call dein#add('kana/vim-fakeclip')
+    call dein#add('osyo-manga/vim-gift')
+    call dein#add('osyo-manga/vim-brightest')
+    call dein#add('haya14busa/incsearch.vim')
+    call dein#add('vim-jp/vital.vim')
+    call dein#add('tyru/open-browser.vim')
+    call dein#add('tyru/caw.vim')
+    call dein#add('miyakogi/conoline.vim')
+    call dein#add('lambdalisue/vim-gista')
+    call dein#add('kannokanno/previm')
+    call dein#add('kchmck/vim-coffee-script', {'lazy': 1, 'on_ft': 'coffee'})
+    call dein#add('cespare/vim-toml', {'lazy': 1, 'on_ft': 'toml'})
+    call dein#add('derekwyatt/vim-scala', {'lazy': 1, 'on_ft': 'scala'})
+    call dein#add('dag/vim2hs', {'lazy': 1, 'on_ft': 'haskell'})
+    call dein#add('vim-jp/cpp-vim', {'lazy': 1, 'on_ft': 'cpp'})
+    call dein#add('vim-jp/vim-go-extra', {'lazy': 1, 'on_ft': 'go'})
+    call dein#add('yukpiz/vim-vbnet', {'lazy': 1, 'on_ft': 'vbnet'})
+    call dein#add('hynek/vim-python-pep8-indent', {'lazy': 1, 'on_ft': 'python'})
+    call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})
+    call dein#add('mattn/vim-maketable', {'lazy': 1, 'on_ft': 'markdown'})
+    call dein#add('etaoins/vim-volt-syntax', {'lazy': 1, 'on_ft': 'volt'})
 
-" --- thinca/vim-ambicmd {{{
-" vim-ambicmd can predict and complement, to many plug-in commands.
-" :nbi<Space> and typing, and complemented by camel case,
-" will be output as :NeoBundleInstall
-NeoBundle 'thinca/vim-ambicmd'
-cnoremap <expr> <Space> ambicmd#expand('<Space>')
-" }}}
+    call dein#end()
+    call dein#save_state()
+endif
 
-" --- kana/vim-submode {{{
-NeoBundle 'kana/vim-submode'
+if dein#check_install()
+    call dein#install()
+endif
 
-" }}}
-
-" --- osyo-manga/vim-gift {{{
-"NeoBundle 'osyo-manga/vim-gift'
-" }}}
-
-" --- Shougo/vimproc.vim {{{
-NeoBundle 'Shougo/vimproc.vim', {
-\  'build': {
-\    'linux': 'make',
-\  },
-\}
-" }}}
-
-" --- itchyny/calendar.vim {{{
-" Display a very beautiful calendar on the Vim.
-" Cooperation also possible, with Google calendar.
-"NeoBundle 'itchyny/calendar.vim'
-"let g:calendar_frame = 'default'
-"let g:calendar_google_calendar = 1
-"let g:calendar_google_task = 1
-" }}}
-
-" --- Shougo/vimshell.vim {{{
-"NeoBundle 'Shougo/vimshell.vim'
-" }}}
-
-" --- yukpiz/nerdtree {{{
-NeoBundle 'yukpiz/nerdtree'
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeDirArrows = '+'
-let g:NERDTreeWinSize = 28
-" }}}
-
-" --- haya14busa/incsearch.vim {{{
-NeoBundle 'haya14busa/incsearch.vim'
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-" }}}
-
-" --- vim-jp/vital.vim {{{
-NeoBundle 'vim-jp/vital.vim'
-" }}}
-
-" --- Shougo/unite.vim {{{
-NeoBundle 'Shougo/unite.vim'
+" unite.vim configuration.
 let g:unite_enable_start_insert=0
-" }}}
 
-" --- Shougo/unite-outline {{{
-NeoBundle 'Shougo/unite-outline'
+" unite-outline configuration.
 nmap ,out :Unite outline -winheight=10<CR>
-" }}}
 
-" --- tyru/open-browser.vim {{{
-NeoBundle 'tyru/open-browser.vim'
-" }}}
-
-" --- tyru/caw.vim {{{
-NeoBundle 'tyru/caw.vim'
-nmap \c <Plug>(caw:I:toggle)
-vmap \c <Plug>(caw:I:toggle)
-
-nmap \C <Plug>(caw:I:uncomment)
-vmap \C <Plug>(caw:I:uncomment)
-" }}}
-
-" --- osyo-manga/vim-brightest {{{
-"NeoBundle 'osyo-manga/vim-brightest'
-"let g:brightest#highlight = {
-"\  'group': 'BrightestUnderline'
-"\}
-"let g:brightest#enable_filetypes = {
-"\  'markdown': 0
-"\}
-" }}}
-
-" --- nathanaelkane/vim-indent-guides {{{
-NeoBundle 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_auto_colors=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=240
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=239
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=1
-" }}}
-
-" --- miyakogi/conoline.vim {{{
-"NeoBundle 'miyakogi/conoline.vim'
-"let g:conoline_auto_enable=1
-"let g:conoline_color_normal_dark='ctermbg=236'
-"let g:conoline_color_insert_dark='ctermbg=239'
-
-" }}}
-
-" --- rhysd/committia.vim {{{
-NeoBundle 'yukpiz/committia.vim'
-let g:committia_hooks = {}
-function! g:committia_hooks.edit_open(info)
-    setl spell
-    if a:info.vcs ==# 'git' && getline(1) ==# ''
-        startinsert
-    end
-    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
-    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
-endfunction
-" }}}
-
-" --- Shougo/neocomplete.vim {{{
-NeoBundle 'Shougo/neocomplete.vim'
+" neocomplete configuration.
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_smart_case=1
 let g:neocomplete#enable_ignore_case=1
@@ -248,144 +171,31 @@ augroup NeoCompleteStyle
     autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 augroup END
 set completeopt-=preview
-" }}}
 
-" --- basyura/twibill.vim {{{
-"NeoBundle 'basyura/twibill.vim'
-" }}}
+" nerdtree configuration.
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeDirArrows = '+'
+let g:NERDTreeWinSize = 28
 
-" --- basyura/TweetVim {{{
-"NeoBundle 'basyura/TweetVim'
-" }}}
-
-" --- lambdalisue/vim-gista {{{
-NeoBundle 'lambdalisue/vim-gista'
-let g:gista#github_user = 'yukpiz'
-let g:gista#update_on_write = 1
-" }}}
-
-" --- kannokanno/previm {{{
-NeoBundleLazy 'kannokanno/previm'
-" }}}
-
-" --- kchmck/vim-coffee-script {{{
-NeoBundleLazy 'kchmck/vim-coffee-script'
-" }}}
-
-" --- derekwyatt/vim-scala {{{
-NeoBundleLazy 'derekwyatt/vim-scala'
-" }}}
-
-" --- dag/vim2hs {{{
-NeoBundleLazy 'dag/vim2hs'
-" }}}
-
-" --- vim-jp/cpp-vim {{{
-NeoBundleLazy 'vim-jp/cpp-vim'
-" }}}
-
-" --- vim-jp/vim-go-extra {{{
-NeoBundleLazy 'vim-jp/vim-go-extra'
-" }}}
-
-" --- yukpiz/vim-vbnet {{{
-NeoBundleLazy 'yukpiz/vim-vbnet'
-" }}}
-
-" --- hynek/vim-python-pep8-indent {{{
-NeoBundleLazy 'hynek/vim-python-pep8-indent'
-" }}}
-
-" --- thinca/vim-quickrun {{{
-"NeoBundleLazy 'thinca/vim-quickrun'
-"let g:quickrun_config = {}
-"let g:quickrun_config.cpp = {
-"\  'command' : 'g++',
-"\  'cmdopt' : '-std=c++11',
-"\}
-"let g:quickrun_config.go = {
-"\  'command': 'go',
-"\}
-" }}}
-
-" --- Shougo/neosnippet {{{
-"NeoBundle 'Shougo/neosnippet'
-"imap <C-s>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-s>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-s>     <Plug>(neosnippet_expand_target)
-"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\  "\<Plug>(neosnippet_expand_or_jump)"
-"\  : pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\  "\<Plug>(neosnippet_expand_or_jump)"
-"\  : "\<TAB>"
-"
-"if has('conceal')
-"    set conceallevel=2 concealcursor=i
-"endif
-"
-"let vbnet_plugin = neobundle#get('vim-vbnet')
-"if !empty(vbnet_plugin) && has_key(vbnet_plugin, 'path')
-"    let g:neosnippet#enable_snipmate_compatibility = 1
-"    let g:neosnippet#snippets_directory = ''
-"    if g:is_windows
-"        "TODO: Generic config path on Windows.
-"        let g:neosnippet#snippets_directory = 'C:\Users\yukpiz\.vim\bundle\vim-vbnet\snippet'
-"    else
-"        let g:neosnippet#snippets_directory = vbnet_plugin['path'] . '/snippet'
-"    endif
-"endif
-
-" }}}
-
-" --- Shougo/neosnippet-snippets {{{
-"NeoBundle 'Shougo/neosnippet-snippets'
-" }}}
-
-" --- plasticboy/vim-markdown {{{
-NeoBundleLazy 'rcmdnk/vim-markdown'
-let g:vim_markdown_folding_disabled = 1
-" }}}
-
-" --- mattn/vim-maketable {{{
-NeoBundleLazy 'mattn/vim-maketable'
-" }}}
-
-" --- etaoins/vim-volt-syntax {{{
-NeoBundleLazy 'etaoins/vim-volt-syntax'
-" }}}
-
-" --- thinca/vim-ref {{{
-"$ mkdir -p $HOME/.vim/vim-ref/cache
-"$ cd /tmp
-"$ wget http://jp1.php.net/distributions/manual/php_manual_ja.tar.gz
-"$ tar -zxvf php_manual_ja.tar.gz -C $HOME/.vim/vim-ref
-NeoBundleLazy 'thinca/vim-ref', {'functions': 'ref#K'}
-let g:ref_no_default_key_mappings=1
-inoremap <silent><C-k> <C-o>:call<Space>ref#K('normal')<CR><ESC>
-nnoremap <silent>K :<C-u>call<Space>ref#K('normal')<CR>
-let s:hooks = neobundle#get_hooks('vim-ref')
-function! s:hooks.on_source(bundle) abort
-    let g:ref_cache_dir = $HOME . '/.vim/vim-ref/cache'
-    let g:ref_phpmanual_path = $HOME . '/.vim/vim-ref/php-chunked-xhtml'
+" committia.vim configuration.
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+    setl spell
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
+        startinsert
+    end
+    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
 endfunction
-" }}}
 
-" --- mattn/qiita-vim {{{
-NeoBundleLazy 'mattn/qiita-vim'
-" }}}
+"vim-prettyprint to conveniently debug print,
+" be printed shaping the dictionary of VimScript.
+" vim-ambicmd can predict and complement, to many plug-in commands.
+" :nbi<Space> and typing, and complemented by camel case,
+" will be output as :NeoBundleInstall
+cnoremap <expr> <Space> ambicmd#expand('<Space>')
 
-" --- kana/vim-fakeclip {{{
-NeoBundle 'kana/vim-fakeclip'
-" }}}
-
-" --- yukpiz/jobb.vim {{{
-NeoBundle 'yukpiz/jobb.vim'
-" }}}
-
-
-call neobundle#end()
-"とりあえずcall系のプラグイン設定はここに退避
+" vim-submode configuration.
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
 call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
 call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
@@ -394,6 +204,96 @@ call submode#map('winsize', 'n', '', '>', '<C-w>>')
 call submode#map('winsize', 'n', '', '<', '<C-w><')
 call submode#map('winsize', 'n', '', '+', '<C-w>+')
 call submode#map('winsize', 'n', '', '-', '<C-w>-')
+
+" vim-brightest configuration.
+let g:brightest#highlight = {
+\  'group': 'BrightestUnderline'
+\}
+let g:brightest#enable_filetypes = {
+\  'markdown': 0
+\}
+
+" incsearch.vim configuration.
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" caw.vim configuration.
+nmap \c <Plug>(caw:I:toggle)
+vmap \c <Plug>(caw:I:toggle)
+nmap \C <Plug>(caw:I:uncomment)
+vmap \C <Plug>(caw:I:uncomment)
+
+" vim-indent-guides configuration.
+"let g:indent_guides_auto_colors=0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=240
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=239
+"let g:indent_guides_enable_on_vim_startup=1
+"let g:indent_guides_guide_size=1
+
+" conoline.vim configuration.
+let g:conoline_auto_enable=1
+let g:conoline_color_normal_dark='ctermbg=236'
+let g:conoline_color_insert_dark='ctermbg=239'
+
+" vim-gista configuration.
+let g:gista#github_user = 'yukpiz'
+let g:gista#update_on_write = 1
+
+" vim-quickrun configuration.
+let g:quickrun_config = {}
+let g:quickrun_config.cpp = {
+\  'command' : 'g++',
+\  'cmdopt' : '-std=c++11',
+\}
+let g:quickrun_config.go = {
+\  'command': 'go',
+\}
+
+" --- neosnippet configuration.
+imap <C-s>     <Plug>(neosnippet_expand_or_jump)
+smap <C-s>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-s>     <Plug>(neosnippet_expand_target)
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\  "\<Plug>(neosnippet_expand_or_jump)"
+\  : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\  "\<Plug>(neosnippet_expand_or_jump)"
+\  : "\<TAB>"
+
+if has('conceal')
+    set conceallevel=2 concealcursor=i
+endif
+
+"let vbnet_plugin = neobundle#get('vim-vbnet')
+"if !empty(vbnet_plugin) && has_key(vbnet_plugin, 'path')
+"    let g:neosnippet#enable_snipmate_compatibility = 1
+"    let g:neosnippet#snippets_directory = ''
+"    if g:is_windows
+"        let g:neosnippet#snippets_directory = 'C:\Users\yukpiz\.vim\dein\repos\github.com\yukpiz\vim-vbnet\snippet'
+"    else
+"        let g:neosnippet#snippets_directory = vbnet_plugin['path'] . '/snippet'
+"    endif
+"endif
+
+" vim-markdown configuration.
+let g:vim_markdown_folding_disabled = 1
+
+" --- thinca/vim-ref {{{
+"$ mkdir -p $HOME/.vim/vim-ref/cache
+"$ cd /tmp
+"$ wget http://jp1.php.net/distributions/manual/php_manual_ja.tar.gz
+"$ tar -zxvf php_manual_ja.tar.gz -C $HOME/.vim/vim-ref
+"NeoBundleLazy 'thinca/vim-ref', {'functions': 'ref#K'}
+"let g:ref_no_default_key_mappings=1
+"inoremap <silent><C-k> <C-o>:call<Space>ref#K('normal')<CR><ESC>
+"nnoremap <silent>K :<C-u>call<Space>ref#K('normal')<CR>
+"let s:hooks = neobundle#get_hooks('vim-ref')
+"function! s:hooks.on_source(bundle) abort
+"    let g:ref_cache_dir = $HOME . '/.vim/vim-ref/cache'
+"    let g:ref_phpmanual_path = $HOME . '/.vim/vim-ref/php-chunked-xhtml'
+"endfunction
+" }}}
 
 filetype plugin indent on
 
@@ -624,6 +524,7 @@ augroup FileTypeCustomize
     autocmd BufNewFile,BufRead *.scala set filetype=scala
     autocmd BufNewFile,BufRead *.gradle set filetype=groovy
     autocmd BufNewFile,BufRead *.volt set filetype=volt
+    autocmd BufNewFile,BufRead *.toml set filetype=toml
     autocmd FileType sql set sw=2 ts=2 et
     autocmd FileType ruby,xml,html,yaml,eruby,css,scss set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
@@ -638,18 +539,6 @@ augroup FileTypeCustomize
 
     "Syntax highlight of the standard class in Java.
     let g:java_highlight_all = 1
-augroup END
-
-augroup EnablePlugins
-    autocmd! EnablePlugins
-    autocmd FileType markdown NeoBundleSource previm vim-markdown vim-maketable
-    autocmd FileType coffee NeoBundleSource vim-coffee-script
-    autocmd FileType scala NeoBundleSource vim-scala
-    autocmd FileType haskell NeoBundleSource vim2hs
-    autocmd FileType cpp NeoBundleSource cpp-vim
-    autocmd FileType vbnet NeoBundleSource vim-vbnet
-    autocmd FileType python NeoBundleSource vim-python-pep8-indent
-    autocmd FileType volt NeoBundleSource vim-volt-syntax
 augroup END
 
 " }}}

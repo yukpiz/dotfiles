@@ -474,8 +474,15 @@ set guioptions-=T
 "Buffer of area of scrolling.
 set scrolloff=5
 " }}}
+
 " --- Tuning {{{
 set lazyredraw
+" }}}
+
+" --- Sounds {{{
+set noerrorbells
+set novisualbell
+set visualbell t_vb=
 " }}}
 
 " }}}
@@ -526,9 +533,9 @@ augroup FileTypeCustomize
     autocmd BufNewFile,BufRead *.volt set filetype=volt
     autocmd BufNewFile,BufRead *.toml set filetype=toml
     autocmd FileType sql set sw=2 ts=2 et
-    autocmd FileType ruby,xml,html,yaml,eruby,css,scss set sw=2 ts=2 et
+    autocmd FileType xml,html,yaml,eruby,css,scss set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
-    autocmd FileType python,css,coffee,haskell set sw=4 ts=4 et
+    autocmd FileType ruby,python,css,coffee,haskell set sw=4 ts=4 et
     autocmd FileType java,php,vb,sh,make set sw=4 ts=4 et
     autocmd FileType javascript set sw=4 ts=4 noet
     autocmd FileType vbnet set foldmarker=#Region,#End\ Region

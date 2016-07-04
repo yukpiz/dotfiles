@@ -35,10 +35,11 @@ case "$TERM" in
     mlterm) color_prompt=yes;;
     screen-256color) color_prompt=yes;;
     xterm) color_prompt=yes;;
+    xterm-256color) color_prompt=yes;;
     *) color_prompt=
 esac
 
-if [ -x /usr/bin/dircolors ]; then
+if type "dircolors" > /dev/null 2>&1; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
@@ -139,16 +140,21 @@ if [ -e "/usr/local/share/go" ]; then
     export PATH="$GOBIN:$PATH"
 fi
 
+# 
+if [ "$(uname)" == 'Darwin' ]; then
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+fi
+
 # }}}
 
 # --- Apps {{{
-if [ -z "$TMUX" -a -z "$STY" ]; then
-    if tmux has-session && tmux list-sessions | grep -qE '.*]$'; then
-        tmux -2 attach && echo "tmux attached session."
-    else
-        tmux -2 new-session && echo "tmux created new session."
-    fi
-fi
+#if [ -z "$TMUX" -a -z "$STY" ]; then
+#    if tmux has-session && tmux list-sessions | grep -qE '.*]$'; then
+#        tmux -2 attach && echo "tmux attached session."
+#    else
+#        tmux -2 new-session && echo "tmux created new session."
+#    fi
+#fi
 # }}}
 
 # --- Keys {{{

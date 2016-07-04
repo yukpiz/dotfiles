@@ -45,6 +45,7 @@ scriptencoding utf8
 "      Email:   yukpiz@gmail.com
 " }}}
 " --- Start-up Process {{{
+set runtimepath+=/usr/local/share/vim/vim74
 
 let g:is_windows = has('win32')
 let g:is_cygwin = has('win32unix')

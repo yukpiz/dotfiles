@@ -1,0 +1,9 @@
+[user]
+    name = yukpiz
+    email = yukpiz@gmail.com
+[core]
+    editor = vim -c \"set fenc=utf-8\"
+    editor = vim
+    quotepath = false
+[github]
+    user = yukpiz

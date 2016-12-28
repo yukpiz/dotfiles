@@ -94,6 +94,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('yukpiz/sakuramochi.vim')
     call dein#add('yukpiz/nerdtree')
     call dein#add('yukpiz/committia.vim')
+    call dein#add('yukpiz/kipidle')
     call dein#add('thinca/vim-prettyprint')
     call dein#add('thinca/vim-quickrun')
     call dein#add('thinca/vim-ambicmd')
@@ -119,6 +120,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})
     call dein#add('mattn/vim-maketable', {'lazy': 1, 'on_ft': 'markdown'})
     call dein#add('etaoins/vim-volt-syntax', {'lazy': 1, 'on_ft': 'volt'})
+    call dein#add('rustushki/JavaImp.vim', {'lazy': 1, 'on_ft': 'java'})
 
     call dein#end()
     call dein#save_state()
@@ -176,7 +178,7 @@ set completeopt-=preview
 " nerdtree configuration.
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeDirArrows = '+'
-let g:NERDTreeWinSize = 28
+let g:NERDTreeWinSize = 50
 
 " committia.vim configuration.
 let g:committia_hooks = {}
@@ -621,8 +623,6 @@ function! s:GoLangConfigurations()
         return
     endif
 
-    NeoBundleSource vim-go-extra
-    NeoBundleSource vim-quickrun
     autocmd BufWritePre <buffer> Fmt
     setl completeopt=menu,preview
     setl ts=4 noet

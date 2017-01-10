@@ -284,6 +284,9 @@ endif
 " vim-markdown configuration.
 let g:vim_markdown_folding_disabled = 1
 
+" vim-js-indent configuration.
+let g:js_indent_typescript = 1
+
 " --- thinca/vim-ref {{{
 "$ mkdir -p $HOME/.vim/vim-ref/cache
 "$ cd /tmp

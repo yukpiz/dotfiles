@@ -122,6 +122,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('etaoins/vim-volt-syntax', {'lazy': 1, 'on_ft': 'volt'})
     call dein#add('rustushki/JavaImp.vim', {'lazy': 1, 'on_ft': 'java'})
     call dein#add('leafgarland/typescript-vim', {'lazy': 1, 'on_ft': 'typescript'})
+    call dein#add('jason0x43/vim-js-indent', {'lazy': 1, 'on_ft': ['typescript', 'javascript', 'html']})
 
     call dein#end()
     call dein#save_state()

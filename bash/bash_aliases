@@ -2,9 +2,20 @@
 
 if type ls 2>/dev/null 1>/dev/null
 then
+    if [ "$(uname)" = 'Darwin' ]; then
+        alias ls='ls -G'
+        export LSCOLORS=gxfxcxdxbxegedabagacad
+    else
+        alias ls='ls --color=auto'
+    fi
     alias ll='ls -alF'
     alias la='ls -A'
     alias l='ls -CF'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 if type trash 2>/dev/null 1>/dev/null
@@ -30,5 +41,6 @@ fi
 
 if type vim 2>/dev/null 1>/dev/null
 then
+    alias vim='/usr/local/bin/vim'
     alias vim='vim -X'
 fi

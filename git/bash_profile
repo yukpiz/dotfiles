@@ -1,0 +1,5 @@
+if [ -f ~/.bashrc ] ; then
+    source $HOME/.bashrc
+    source $HOME/.gradle-tab-completion.bash
+    source $HOME/.git-completion.bash
+fi

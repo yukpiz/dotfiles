@@ -4,7 +4,7 @@ if type ls 2>/dev/null 1>/dev/null
 then
     if [ "$(uname)" = 'Darwin' ]; then
         alias ls='ls -G'
-        export LSCOLORS=gxfxcxdxbxegedabagacad
+        export LSCOLORS=gxfxcxdxcxegedabagacad
     else
         alias ls='ls --color=auto'
     fi

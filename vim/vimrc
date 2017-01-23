@@ -148,6 +148,13 @@ let g:neocomplete#max_list=14
 let g:neocomplete#max_keyword_width=80
 let g:neocomplete#min_keyword_length=2
 
+" nerdtree configuration.
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeDirArrows = '+'
+let g:NERDTreeWinSize = 30
+
+
+
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns={}
     let g:neocomplete#keyword_patterns['default']='\h\w'
@@ -177,11 +184,6 @@ augroup NeoCompleteStyle
     autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 augroup END
 set completeopt-=preview
-
-" nerdtree configuration.
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeDirArrows = '+'
-let g:NERDTreeWinSize = 50
 
 " committia.vim configuration.
 let g:committia_hooks = {}

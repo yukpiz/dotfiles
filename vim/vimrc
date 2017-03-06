@@ -547,8 +547,7 @@ augroup FileTypeCustomize
     autocmd FileType sql set sw=2 ts=2 et
     autocmd FileType xml,yaml,eruby,scss,ruby set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
-    autocmd FileType python,css,coffee,haskell,java,php,vb,sh,make,html,terraform set sw=4 ts=4 et
-    autocmd FileType javascript set sw=4 ts=4 noet
+    autocmd FileType python,css,coffee,haskell,java,php,vb,sh,make,html,terraform,javascript set sw=4 ts=4 et
     autocmd FileType vbnet set foldmarker=#Region,#End\ Region
     autocmd FileType vim set foldmarker={{{,}}}
     autocmd FileType vim let g:vim_indent_cont = 0

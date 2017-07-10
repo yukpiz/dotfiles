@@ -88,11 +88,12 @@ if dein#load_state(s:dein_dir)
     \})
     call dein#add('Shougo/unite.vim')
     call dein#add('Shougo/unite-outline')
+    call dein#add('Shougo/neomru.vim')
     call dein#add('Shougo/neocomplete.vim')
     call dein#add('Shougo/neosnippet')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('yukpiz/sakuramochi.vim')
-    call dein#add('yukpiz/nerdtree')
+    "call dein#add('yukpiz/nerdtree')
     call dein#add('yukpiz/committia.vim')
     call dein#add('yukpiz/kipidle')
     call dein#add('thinca/vim-prettyprint')
@@ -151,9 +152,9 @@ let g:neocomplete#max_keyword_width=80
 let g:neocomplete#min_keyword_length=2
 
 " nerdtree configuration.
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeDirArrows = '+'
-let g:NERDTreeWinSize = 30
+"let g:NERDTreeChDirMode = 2
+"let g:NERDTreeDirArrows = '+'
+"let g:NERDTreeWinSize = 25
 
 
 
@@ -477,7 +478,7 @@ set statusline=%!GetStatusLineLabel()
 "    autocmd WinLeave,BufLeave * set nocursorline
 "    autocmd WinEnter,BufRead * set cursorline
 "augroup END
-set guifont=Ricty:h9
+set guifont=Ricty:h12
 set guitablabel=%N:\ %{GetGuiTabLabel()}
 set guioptions-=m
 set guioptions-=T
@@ -563,6 +564,25 @@ augroup END
 
 " }}}
 " --- Functions {{{
+function! s:unite_gitignore_source()
+    let sources = []
+    if filereadable('./.gitignore')
+        for file in readfile('./.gitignore')
+            if file !~ "^#\\|^\s\*$"
+                call add(sources, file)
+            endif
+        endfor
+    endif
+    if isdirectory('./.git')
+        call add(sources, '.git')
+    endif
+    let pattern = escape(join(sources, '|'), './|')
+    call unite#custom#source('file_rec', 'ignore_pattern', pattern)
+    call unite#custom#source('file_rec/async', 'ignore_pattern', pattern)
+    call unite#custom#source('grep', 'ignore_pattern', pattern)
+endfunction
+call s:unite_gitignore_source()
+
 function! GetSyntaxName()
     return synIDattr(synID(line('.'), col('.'), 0), 'name')
 endfunction
@@ -843,9 +863,10 @@ if g:is_unix
     nnoremap ,vs :VimShell<CR>
 endif
 nnoremap ,cl :call SwitchCalendar()<CR>
-nnoremap ,nt :NERDTreeToggle<CR>
+nnoremap ,nt :Unite -start-insert file_rec/async:!<CR>
 nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,gi :Unite gista<CR>
+nnoremap ,ur :Unite -start-insert file_rec/async:!<CR>
 " }}}
 
 " }}}

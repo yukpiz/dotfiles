@@ -125,7 +125,6 @@ if dein#load_state(s:dein_dir)
     call dein#add('leafgarland/typescript-vim', {'lazy': 1, 'on_ft': 'typescript'})
     call dein#add('jason0x43/vim-js-indent', {'lazy': 1, 'on_ft': ['typescript', 'javascript', 'html']})
     call dein#add('hashivim/vim-terraform', {'lazy': 1, 'on_ft': 'tf'})
-    call dein#add('udalov/kotlin-vim', {'lazy': 1, 'on_ft': 'kotlin'})
 
     call dein#end()
     call dein#save_state()
@@ -236,8 +235,8 @@ vmap \C <Plug>(caw:I:uncomment)
 
 " vim-indent-guides configuration.
 let g:indent_guides_auto_colors=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=240 guibg=#5c4a5c
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=239 guibg=#392e39
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=240
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=239
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 
@@ -538,7 +537,6 @@ augroup END
 augroup FileTypeCustomize
     autocmd! FileTypeCustomize
     autocmd FileType * set formatoptions=""
-    autocmd BufNewFile,BufRead *.kt set filetype=kotlin
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
     autocmd BufNewFile,BufRead *.vb set filetype=vbnet

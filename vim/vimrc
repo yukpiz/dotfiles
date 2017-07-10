@@ -866,7 +866,8 @@ nnoremap ,cl :call SwitchCalendar()<CR>
 nnoremap ,nt :Unite -start-insert file_rec/async:!<CR>
 nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,gi :Unite gista<CR>
-nnoremap ,ur :Unite -start-insert file_rec/async:!<CR>
+nnoremap ,nr :Unite -start-insert file_rec/async:!<CR>
+nnoremap ,nf :Unite file
 " }}}
 
 " }}}

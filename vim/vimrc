@@ -93,7 +93,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('Shougo/neosnippet')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('yukpiz/sakuramochi.vim')
-    "call dein#add('yukpiz/nerdtree')
+    call dein#add('yukpiz/nerdtree')
     call dein#add('yukpiz/committia.vim')
     call dein#add('yukpiz/kipidle')
     call dein#add('thinca/vim-prettyprint')
@@ -152,9 +152,9 @@ let g:neocomplete#max_keyword_width=80
 let g:neocomplete#min_keyword_length=2
 
 " nerdtree configuration.
-"let g:NERDTreeChDirMode = 2
-"let g:NERDTreeDirArrows = '+'
-"let g:NERDTreeWinSize = 25
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeDirArrows = '+'
+let g:NERDTreeWinSize = 30
 
 
 

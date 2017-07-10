@@ -476,7 +476,7 @@ set statusline=%!GetStatusLineLabel()
 "    autocmd WinLeave,BufLeave * set nocursorline
 "    autocmd WinEnter,BufRead * set cursorline
 "augroup END
-set guifont=Ricty:h9
+set guifont=Ricty:h12
 set guitablabel=%N:\ %{GetGuiTabLabel()}
 set guioptions-=m
 set guioptions-=T

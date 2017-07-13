@@ -549,7 +549,7 @@ augroup FileTypeCustomize
     autocmd BufNewFile,BufRead *.toml set filetype=toml
     autocmd BufNewFile,BufRead *.tfstate set filetype=json
     autocmd FileType sql set sw=2 ts=2 et
-    autocmd FileType xml,yaml,eruby,scss,ruby,java set sw=2 ts=2 et
+    autocmd FileType xml,yaml,eruby,scss,ruby,java,kotlin set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et
     autocmd FileType python,css,coffee,haskell,php,vb,sh,make,html,terraform,javascript set sw=4 ts=4 et
     autocmd FileType vbnet set foldmarker=#Region,#End\ Region

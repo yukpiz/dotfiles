@@ -1,5 +1,3 @@
-scriptencoding utf8
-
 " --- Configuration Menu {{{
 "--------------------------
 "  [ Configuration Menu ]
@@ -102,12 +100,12 @@ if dein#load_state(s:dein_dir)
     call dein#add('kana/vim-submode')
     call dein#add('kana/vim-fakeclip')
     call dein#add('osyo-manga/vim-gift')
-    call dein#add('osyo-manga/vim-brightest')
+    "call dein#add('osyo-manga/vim-brightest')
     call dein#add('haya14busa/incsearch.vim')
     call dein#add('vim-jp/vital.vim')
     call dein#add('tyru/open-browser.vim')
     call dein#add('tyru/caw.vim')
-    call dein#add('miyakogi/conoline.vim')
+    "call dein#add('miyakogi/conoline.vim')
     call dein#add('lambdalisue/vim-gista')
     call dein#add('kannokanno/previm')
     call dein#add('nathanaelkane/vim-indent-guides')
@@ -243,9 +241,9 @@ let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 
 " conoline.vim configuration.
-let g:conoline_auto_enable=1
-let g:conoline_color_normal_dark='ctermbg=236'
-let g:conoline_color_insert_dark='ctermbg=239'
+"let g:conoline_auto_enable=1
+"let g:conoline_color_normal_dark='ctermbg=236'
+"let g:conoline_color_insert_dark='ctermbg=239'
 
 " vim-gista configuration.
 let g:gista#github_user = 'yukpiz'
@@ -320,6 +318,7 @@ filetype plugin indent on
 " it buffer and register of text,
 " and in expression internal text, etc.
 set encoding=utf-8
+scriptencoding utf8
 set fileencoding=utf-8
 set fileencodings=utf-8,sjis,ucs-bom,default,latin1
 "Line break code to be used.
@@ -568,7 +567,7 @@ function! s:unite_gitignore_source()
     let sources = []
     if filereadable('./.gitignore')
         for file in readfile('./.gitignore')
-            if file !~ "^#\\|^\s\*$"
+            if file !~? "^#\\|^\s\*$"
                 call add(sources, file)
             endif
         endfor
@@ -653,7 +652,9 @@ function! s:GoLangConfigurations()
         return
     endif
 
-    autocmd BufWritePre <buffer> Fmt
+    augroup GoFmt
+        autocmd BufWritePre <buffer> Fmt
+    augroup END
     setl completeopt=menu,preview
     setl ts=4 noet
 endfunction

@@ -84,13 +84,16 @@ if dein#load_state(s:dein_dir)
     \        'unix': 'gmake',
     \    }
     \})
+    call dein#add('cocopon/colorswatch.vim')
     call dein#add('Shougo/unite.vim')
     call dein#add('Shougo/unite-outline')
     call dein#add('Shougo/neomru.vim')
     call dein#add('Shougo/neocomplete.vim')
     call dein#add('Shougo/neosnippet')
     call dein#add('Shougo/neosnippet-snippets')
+    call dein#add('Shougo/vinarise.vim')
     call dein#add('yukpiz/sakuramochi.vim')
+    call dein#add('yukpiz/frogger.vim')
     call dein#add('yukpiz/nerdtree')
     call dein#add('yukpiz/committia.vim')
     call dein#add('yukpiz/kipidle')
@@ -108,13 +111,15 @@ if dein#load_state(s:dein_dir)
     "call dein#add('miyakogi/conoline.vim')
     call dein#add('lambdalisue/vim-gista')
     call dein#add('kannokanno/previm')
+    call dein#add('easymotion/vim-easymotion')
     call dein#add('nathanaelkane/vim-indent-guides')
     call dein#add('kchmck/vim-coffee-script', {'lazy': 1, 'on_ft': 'coffee'})
     call dein#add('cespare/vim-toml', {'lazy': 1, 'on_ft': 'toml'})
     call dein#add('derekwyatt/vim-scala', {'lazy': 1, 'on_ft': 'scala'})
     call dein#add('dag/vim2hs', {'lazy': 1, 'on_ft': 'haskell'})
     call dein#add('vim-jp/cpp-vim', {'lazy': 1, 'on_ft': 'cpp'})
-    call dein#add('vim-jp/vim-go-extra', {'lazy': 1, 'on_ft': 'go'})
+    "call dein#add('vim-jp/vim-go-extra', {'lazy': 1, 'on_ft': 'go'})
+    call dein#add('fatih/vim-go', {'lazy': 1, 'on_ft': 'go'})
     call dein#add('yukpiz/vim-vbnet', {'lazy': 1, 'on_ft': 'vbnet'})
     call dein#add('hynek/vim-python-pep8-indent', {'lazy': 1, 'on_ft': 'python'})
     call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})
@@ -645,16 +650,16 @@ function! s:XmlConfigurations()
 endfunction
 
 function! s:GoLangConfigurations()
-    if empty(system('which go')) ||
-    \  empty(system('which gofmt')) ||
-    \  empty(system('which godoc'))
-        echo 'go-lang of the environment can not be found...'
-        return
-    endif
+    "if empty(system('which go')) ||
+    "\  empty(system('which gofmt')) ||
+    "\  empty(system('which godoc'))
+    "    echo 'go-lang of the environment can not be found...'
+    "    return
+    "endif
 
-    augroup GoFmt
-        autocmd BufWritePre <buffer> Fmt
-    augroup END
+    "augroup GoFmt
+    "    autocmd BufWritePre <buffer> Fmt
+    "augroup END
     setl completeopt=menu,preview
     setl ts=4 noet
 endfunction

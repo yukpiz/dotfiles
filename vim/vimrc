@@ -139,6 +139,8 @@ if dein#check_install()
     call dein#install()
 endif
 
+"call dein#recache_runtimepath()
+
 " unite.vim configuration.
 let g:unite_enable_start_insert=0
 
@@ -410,6 +412,7 @@ set matchtime=3
 set list listchars=tab:>.
 set list listchars+=trail:_
 set display=uhex
+set re=1
 if has('syntax')
     function! ActivateInvisibleIndicator()
         syntax match InvisibleJISX0208Space "　"
@@ -426,8 +429,11 @@ if has('syntax')
 
     "execute 'set colorcolumn=' . join(range(81, 9999), ',')
     syntax on
-
     set t_Co=256
+    "if has('patch-7.4.1778')
+    "    set termguicolors
+    "else
+    "endif
     colorscheme sakuramochi
 endif
 
@@ -854,6 +860,8 @@ vnoremap k gk
 
 nnoremap <C-o> :call OpenBrowserParsedURL()<CR>
 inoremap <C-o> <ESC>:call OpenBrowserParsedURL()<CR>
+
+command! CurHi echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 " }}}
 
 " --- Buffer {{{

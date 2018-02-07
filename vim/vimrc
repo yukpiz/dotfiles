@@ -132,6 +132,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('jason0x43/vim-js-indent', {'lazy': 1, 'on_ft': ['typescript', 'javascript', 'html']})
     call dein#add('hashivim/vim-terraform', {'lazy': 1, 'on_ft': 'tf'})
     call dein#add('udalov/kotlin-vim', {'lazy': 1, 'on_ft': 'kotlin'})
+    call dein#add('keith/swift.vim', {'lazy': 1, 'on_ft': 'swift'})
 
     call dein#end()
     call dein#save_state()
@@ -560,6 +561,7 @@ augroup FileTypeCustomize
     autocmd BufNewFile,BufRead *.volt set filetype=volt
     autocmd BufNewFile,BufRead *.toml set filetype=toml
     autocmd BufNewFile,BufRead *.tfstate set filetype=json
+    autocmd BufNewFile,BufRead *.swift set filetype=swift
     autocmd FileType sql set sw=2 ts=2 et
     autocmd FileType xml,yaml,eruby,scss,ruby,java,kotlin set sw=2 ts=2 et
     autocmd FileType rst set sw=3 ts=3 et

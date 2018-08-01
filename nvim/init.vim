@@ -17,13 +17,13 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein')
-  call dein#add('Shougo/deoplete.nvim')            "https://github.com/Shougo/deoplete.nvim
-  call dein#add('yukpiz/cobalt')                   "https://github.com/yukpiz/cobalt
-  call dein#add('agude/vim-eldar')                 "https://github.com/agude/vim-eldar
-  call dein#add('fatih/vim-go')                    "https://github.com/fatih/vim-go
-  call dein#add('thinca/quickrun')                 "https://github.com/thinca/vim-quickrun
-  call dein#add('scrooloose/nerdtree')             "https://github.com/scrooloose/nerdtree
-  call dein#add('yukpiz/committia.vim')            "https://github.com/yukpiz/committia.vim
+  call dein#add('Shougo/deoplete.nvim') "https://github.com/Shougo/deoplete.nvim
+  call dein#add('yukpiz/cobalt')        "https://github.com/yukpiz/cobalt
+  call dein#add('agude/vim-eldar')      "https://github.com/agude/vim-eldar
+  call dein#add('fatih/vim-go')         "https://github.com/fatih/vim-go
+  call dein#add('thinca/quickrun')      "https://github.com/thinca/vim-quickrun
+  call dein#add('scrooloose/nerdtree')  "https://github.com/scrooloose/nerdtree
+  call dein#add('yukpiz/committia.vim') "https://github.com/yukpiz/committia.vim
 
   call dein#end()
   call dein#save_state()

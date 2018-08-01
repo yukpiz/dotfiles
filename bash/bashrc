@@ -79,6 +79,7 @@ export VTE_CJK_WIDTH=1
 
 #Using Vim for Subversion.
 export SVN_EDITOR=vim
+alias vim=nvim
 
 #rbenv
 if [ -e "$HOME/.rbenv" ]; then
@@ -95,6 +96,7 @@ if [ -e "$HOME/.pyenv" ]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
     if [ `which pyenv` ]; then
         eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)"
     fi
 fi
 

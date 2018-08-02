@@ -17,13 +17,15 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein')
-  call dein#add('Shougo/deoplete.nvim') "https://github.com/Shougo/deoplete.nvim
-  call dein#add('yukpiz/cobalt')        "https://github.com/yukpiz/cobalt
-  call dein#add('agude/vim-eldar')      "https://github.com/agude/vim-eldar
-  call dein#add('fatih/vim-go')         "https://github.com/fatih/vim-go
-  call dein#add('thinca/quickrun')      "https://github.com/thinca/vim-quickrun
-  call dein#add('scrooloose/nerdtree')  "https://github.com/scrooloose/nerdtree
-  call dein#add('yukpiz/committia.vim') "https://github.com/yukpiz/committia.vim
+  call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
+  call dein#add('yukpiz/cobalt')              "https://github.com/yukpiz/cobalt
+  call dein#add('agude/vim-eldar')            "https://github.com/agude/vim-eldar
+  call dein#add('fatih/vim-go')               "https://github.com/fatih/vim-go
+  call dein#add('thinca/quickrun')            "https://github.com/thinca/vim-quickrun
+  call dein#add('scrooloose/nerdtree')        "https://github.com/scrooloose/nerdtree
+  call dein#add('yukpiz/committia.vim')       "https://github.com/yukpiz/committia.vim
+  call dein#add('vim-jp/vital.vim')           "https://github.com/vim-jp/vital.vim
+  call dein#add('leafgarland/typescript-vim') "https://github.com/leafgarland/typescript-vim
 
   call dein#end()
   call dein#save_state()
@@ -95,6 +97,8 @@ set t_Co=256
 set clipboard+=unnamed,unnamedplus
 set mouse=a
 set cursorline
+set title
+set titlestring=neovim
 
 
 "=====================================================
@@ -106,6 +110,13 @@ function! SwitchNumber()
   else
     set nonu
   endif
+endfunction
+
+function! SetCustomTitleString()
+  let path = expand('%')
+  echo path
+  echo path
+  echo path
 endfunction
 
 "=====================================================
@@ -243,6 +254,18 @@ nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,nt :NERDTreeToggle<CR>
 nnoremap ,e :vs ~/.config/nvim/init.vim<CR>
 
+function! Hogehogehoge()
+  echo 'hoge'
+  echo 'hoge'
+  echo 'hoge'
+  echo 'hoge'
+  echo 'hoge'
+  echo 'hoge'
+  echo 'hoge'
+endfunction
 
-
-
+"filetype detect
+"autocmd BufRead,BufNewFile * echo 'hogehoge'
+augroup filetypedetect
+  autocmd BufNewFile,BufRead * echo "ftdetect test"
+augroup END

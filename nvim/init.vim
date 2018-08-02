@@ -26,6 +26,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('yukpiz/committia.vim')       "https://github.com/yukpiz/committia.vim
   call dein#add('vim-jp/vital.vim')           "https://github.com/vim-jp/vital.vim
   call dein#add('leafgarland/typescript-vim') "https://github.com/leafgarland/typescript-vim
+  call dein#add('hashivim/vim-terraform')     "https://github.com/hashivim/vim-terraform
+
+  "https://github.com/plasticboy/vim-markdown
+  call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})
 
   call dein#end()
   call dein#save_state()
@@ -124,6 +128,15 @@ endfunction
 "=====================================================
 
 "-----------------------------------------------------
+" C++
+"-----------------------------------------------------
+autocmd FileType cpp,c set ts=4 sw=4 noet
+autocmd FileType cpp,c set matchpairs+=<:>
+autocmd FileType cpp,c syntax match boost_pp /BOOST_PP_[A-z0-9_]*/
+autocmd FileType cpp,c highlight link boost_pp cppStatement
+autocmd FileType cpp,c setlocal path=,/usr/include,/usr/local/include
+
+"-----------------------------------------------------
 " Golang
 "-----------------------------------------------------
 autocmd FileType go set ts=4 noet
@@ -146,6 +159,8 @@ autocmd FileType ruby set sw=2 ts=2 et
 "-----------------------------------------------------
 autocmd FileType vim set sw=2 ts=2 et
 
+function! Hoge()
+endfunction
 "-----------------------------------------------------
 " kotlin
 "-----------------------------------------------------

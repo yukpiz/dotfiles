@@ -20,6 +20,7 @@ case $- in
 esac
 
 source ~/.git_completion
+export EDITOR=nvim
 
 # --- Histories {{{
 HISTCONTROL=ignoreboth
@@ -80,6 +81,9 @@ export VTE_CJK_WIDTH=1
 #Using Vim for Subversion.
 export SVN_EDITOR=vim
 alias vim=nvim
+# AWS certificate
+alias aws-certificate='eval `assume-role zayasu`'
+
 
 #rbenv
 if [ -e "$HOME/.rbenv" ]; then
@@ -155,10 +159,10 @@ if [ -e "/usr/local/share/go" ]; then
     export PATH="$GOBIN:$PATH"
 fi
 
-# 
 if [ "$(uname)" == 'Darwin' ]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 fi
+
 
 # }}}
 

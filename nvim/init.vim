@@ -254,18 +254,8 @@ nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,nt :NERDTreeToggle<CR>
 nnoremap ,e :vs ~/.config/nvim/init.vim<CR>
 
-function! Hogehogehoge()
-  echo 'hoge'
-  echo 'hoge'
-  echo 'hoge'
-  echo 'hoge'
-  echo 'hoge'
-  echo 'hoge'
-  echo 'hoge'
-endfunction
-
 "filetype detect
 "autocmd BufRead,BufNewFile * echo 'hogehoge'
 augroup filetypedetect
-  autocmd BufNewFile,BufRead * echo "ftdetect test"
+  autocmd BufNewFile,BufRead *.vim echo "ftdetect test"
 augroup END

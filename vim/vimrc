@@ -789,31 +789,6 @@ endfunction
 " }}}
 " --- Key Mappings {{{
 
-" --- Cheet Sheet {{{
-" # Key Mappings Cheet Sheet
-" +---------------+--------+--------+---------+--------+
-" | Command       | Normal | Insert | Command | Visual |
-" |:------------- |:------:|:------:|:-------:|:------:|
-" | map/noremap   | o      | x      | x       | o      |
-" | nmap/nnoremap | o      | x      | x       | x      |
-" | imap/inoremap | x      | o      | x       | x      |
-" | cmap/cnoremap | x      | x      | o       | x      |
-" | vmap/vnoremap | x      | x      | x       | o      |
-" | map!/noremap! | x      | o      | o       | x      |
-" +---------------+--------+--------+---------+--------+
-
-"
-" | Arguments | Description 
-" |:--------- |:------------------
-" | <buffer>  |
-" | <nowait>  |
-" | <silent>  |
-" | <special> |
-" | <script>  |
-" | <expr>    |
-" | <unique>  |
-" }}}
-
 " --- Cursor {{{
 nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>

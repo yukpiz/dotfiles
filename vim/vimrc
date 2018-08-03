@@ -1,47 +1,3 @@
-" --- Configuration Menu {{{
-"--------------------------
-"  [ Configuration Menu ]
-"--------------------------
-"
-" -- About
-" -- Start-up Process
-" -- Plugins
-"    : Thanks for creators;)
-" -- Set Options
-"    -- Encodings
-"    -- Edit Behavior
-"    -- Key Stroke
-"    -- Indents
-"    -- Text Search
-"    -- Syntax & Styles
-"    -- Fold
-"    -- Register
-"    -- Command Mode
-"    -- Insert Mode
-"    -- User Interface
-"    -- Cursor
-"    -- Tuning
-" -- File Types
-" -- Functions
-" -- Key Mappings
-"    -- Cheet Sheet
-"    -- Cursor
-"    -- Highlight
-"    -- Shortcut
-" }}}
-
-" --- About {{{
-" Configuration of Vim !!
-"
-" -- Repository
-"
-"      https://github.com/yukpiz/dotfiles.git
-"
-" -- Contact
-"
-"      Twitter: @yukpiz
-"      Email:   yukpiz@gmail.com
-" }}}
 " --- Start-up Process {{{
 set runtimepath+=/usr/local/share/vim/vim74
 
@@ -75,7 +31,6 @@ endif
 
 if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
-
     call dein#add('Shougo/dein.vim')
     call dein#add('Shougo/vimproc.vim', {
     \    'build': {
@@ -84,6 +39,8 @@ if dein#load_state(s:dein_dir)
     \        'unix': 'gmake',
     \    }
     \})
+    call dein#add('lambdalisue/vital-Whisky')
+    call dein#add('redish/redish.vim')
     call dein#add('cocopon/colorswatch.vim')
     call dein#add('Shougo/unite.vim')
     call dein#add('Shougo/unite-outline')
@@ -133,6 +90,9 @@ if dein#load_state(s:dein_dir)
     call dein#add('hashivim/vim-terraform', {'lazy': 1, 'on_ft': 'tf'})
     call dein#add('udalov/kotlin-vim', {'lazy': 1, 'on_ft': 'kotlin'})
     call dein#add('keith/swift.vim', {'lazy': 1, 'on_ft': 'swift'})
+    call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
+    call dein#add('junegunn/fzf.vim')
+    "call dein#add('lucapette/vim-textobj-underscore')
 
     call dein#end()
     call dein#save_state()
@@ -578,6 +538,21 @@ augroup END
 
 " }}}
 " --- Functions {{{
+"function! s:get_weather(city, country_code)
+"    let vital = vital#of('vital')
+"    let Http = vital.import('Web.HTTP')
+"    let Json = vital.import('Web.JSON')
+"
+"    let appid = '9c4eeb5910dd7e36cc7f8979c6344cb9'
+"    let params = {'q': a:city.','.a:country_code, 'appid': appid}
+"    let response = Http.get('http://api.openweathermap.org/data/2.5/weather', params)
+"    let json_string = response['content']
+"    let content = Json.decode(json_string)
+"    echo content
+"    return content
+"endfunction
+"call s:get_weather('Meguro', 'jp')
+
 function! s:unite_gitignore_source()
     let sources = []
     if filereadable('./.gitignore')

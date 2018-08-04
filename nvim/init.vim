@@ -17,12 +17,10 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein')
-  if has('nvim')
-    call dein#add('Shougo/deoplete.nvim')     "https://github.com/Shougo/deoplete.nvim
-  else
-    call dein#add('Shougo/neocomplete.vim')   "https://github.com/Shougo/neocomplete.vim
-    "call dein#add('roxma/nvim-yarp')
-    "call dein#add('roxma/vim-hug-neovim-rpc')
+  call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
   endif
   call dein#add('yukpiz/cobalt')              "https://github.com/yukpiz/cobalt
   call dein#add('agude/vim-eldar')            "https://github.com/agude/vim-eldar
@@ -126,6 +124,18 @@ set cursorline
 set title
 set titlestring=neovim
 set pyxversion=3
+set backspace=indent,eol,start
+set scrolloff=3
+set lazyredraw
+set noerrorbells
+set novisualbell
+set visualbell t_vb=
+set numberwidth=6
+if has('wildmenu')
+    set wildmenu
+    set wildchar=<Tab>
+    set wildmode=full
+endif
 
 
 "=====================================================
@@ -160,7 +170,7 @@ autocmd FileType cpp,c setlocal path=,/usr/include,/usr/local/include
 "-----------------------------------------------------
 " Golang
 "-----------------------------------------------------
-autocmd FileType go set ts=4 noet
+autocmd FileType go set ts=4 sw=4 noet
 autocmd FileType go set completeopt=menu,preview
 
 "-----------------------------------------------------
@@ -180,8 +190,6 @@ autocmd FileType ruby set sw=2 ts=2 et
 "-----------------------------------------------------
 autocmd FileType vim set sw=2 ts=2 et
 
-function! Hoge()
-endfunction
 "-----------------------------------------------------
 " kotlin
 "-----------------------------------------------------
@@ -286,6 +294,7 @@ inoremap <C-l> <Right>
 
 nnoremap <silent> <Esc><Esc> :noh<CR>
 
+nnoremap ,nr :Unite file -start-insert<CR>
 nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,nt :NERDTreeToggle<CR>
 nnoremap ,e :vs ~/.config/nvim/init.vim<CR>

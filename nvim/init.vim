@@ -103,6 +103,10 @@ set mouse=a
 set cursorline
 set title
 set titlestring=neovim
+set foldmethod=marker
+set foldopen+=jump
+set foldmarker={{{,}}}
+set foldenable
 
 
 "=====================================================

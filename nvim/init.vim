@@ -18,10 +18,16 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('~/.cache/dein')
   call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
   call dein#add('yukpiz/cobalt')              "https://github.com/yukpiz/cobalt
   call dein#add('agude/vim-eldar')            "https://github.com/agude/vim-eldar
+  call dein#add('Shougo/unite.vim')           "https://github.com/Shougo/unite.vim
+  call dein#add('Shougo/unite-outline')       "https://github.com/Shougo/unite-outlinE
   call dein#add('fatih/vim-go')               "https://github.com/fatih/vim-go
-  call dein#add('thinca/quickrun')            "https://github.com/thinca/vim-quickrun
+  call dein#add('thinca/vim-quickrun')        "https://github.com/thinca/vim-quickrun
   call dein#add('scrooloose/nerdtree')        "https://github.com/scrooloose/nerdtree
   call dein#add('yukpiz/committia.vim')       "https://github.com/yukpiz/committia.vim
   call dein#add('vim-jp/vital.vim')           "https://github.com/vim-jp/vital.vim
@@ -38,7 +44,21 @@ endif
 "-----------------------------------------------------
 " deoplete.nvim
 "-----------------------------------------------------
+let g:python_host_prog = "/usr/bin/python"
+let g:python3_host_prog = "/usr/local/bin/python3"
 let g:deoplete#enable_at_startup = 1
+
+"-----------------------------------------------------
+" neocomplete.nvim
+"-----------------------------------------------------
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_smart_case=1
+let g:neocomplete#enable_ignore_case=1
+let g:neocomplete#enable_camel_case=0
+let g:neocomplete#max_list=14
+let g:neocomplete#max_keyword_width=80
+let g:neocomplete#min_keyword_length=2
+
 
 "-----------------------------------------------------
 " vim-quickrun
@@ -107,6 +127,19 @@ set foldmethod=marker
 set foldopen+=jump
 set foldmarker={{{,}}}
 set foldenable
+set pyxversion=3
+set backspace=indent,eol,start
+set scrolloff=3
+set lazyredraw
+set noerrorbells
+set novisualbell
+set visualbell t_vb=
+set numberwidth=6
+if has('wildmenu')
+    set wildmenu
+    set wildchar=<Tab>
+    set wildmode=full
+endif
 
 
 "=====================================================
@@ -121,9 +154,7 @@ function! SwitchNumber()
 endfunction
 
 function! SetCustomTitleString()
-  let path = expand('%')
-  echo path
-  echo path
+  let path = expand('%:p')
   echo path
 endfunction
 
@@ -143,7 +174,7 @@ autocmd FileType cpp,c setlocal path=,/usr/include,/usr/local/include
 "-----------------------------------------------------
 " Golang
 "-----------------------------------------------------
-autocmd FileType go set ts=4 noet
+autocmd FileType go set ts=4 sw=4 noet
 autocmd FileType go set completeopt=menu,preview
 
 "-----------------------------------------------------
@@ -163,8 +194,6 @@ autocmd FileType ruby set sw=2 ts=2 et
 "-----------------------------------------------------
 autocmd FileType vim set sw=2 ts=2 et
 
-function! Hoge()
-endfunction
 "-----------------------------------------------------
 " kotlin
 "-----------------------------------------------------
@@ -269,12 +298,12 @@ inoremap <C-l> <Right>
 
 nnoremap <silent> <Esc><Esc> :noh<CR>
 
+nnoremap ,nr :Unite file -start-insert<CR>
 nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,nt :NERDTreeToggle<CR>
 nnoremap ,e :vs ~/.config/nvim/init.vim<CR>
 
 "filetype detect
-"autocmd BufRead,BufNewFile * echo 'hogehoge'
-augroup filetypedetect
-  autocmd BufNewFile,BufRead *.vim echo "ftdetect test"
-augroup END
+"augroup filetypedetect
+"  "autocmd BufNew,BufRead * call SetCustomTitleString()
+"augroup END

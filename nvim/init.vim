@@ -127,7 +127,6 @@ set foldmethod=marker
 set foldopen+=jump
 set foldmarker={{{,}}}
 set foldenable
-set pyxversion=3
 set backspace=indent,eol,start
 set scrolloff=3
 set lazyredraw

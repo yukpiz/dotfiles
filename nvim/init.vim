@@ -33,6 +33,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('vim-jp/vital.vim')           "https://github.com/vim-jp/vital.vim
   call dein#add('leafgarland/typescript-vim') "https://github.com/leafgarland/typescript-vim
   call dein#add('hashivim/vim-terraform')     "https://github.com/hashivim/vim-terraform
+  call dein#add('previm/previm')              "https://github.com/previm/previm
+  call dein#add('tyru/open-browser.vim')      "https://github.com/tyru/open-browser.vim
 
   "https://github.com/plasticboy/vim-markdown
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})

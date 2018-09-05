@@ -152,12 +152,18 @@ if [ -e "/usr/local/share/sbt" ]; then
 fi
 
 # Go lang setup
-if [ -e "/usr/local/share/go" ]; then
-    export GOROOT="/usr/local/share/go"
-    export GOPATH="$GOROOT/extend-pkgs"
-    export GOBIN="$GOROOT/bin"
-    export PATH="$GOBIN:$PATH"
+if [ -e "$HOME/.goenv" ]; then
+    export GOENV_ROOT="$HOME/.goenv"
+    export PATH="$GOENV_ROOT/bin:$PATH"
+    export GOPATH="$HOME/labo/go"
+    eval "$(goenv init -)"
 fi
+#if [ -e "/usr/local/share/go" ]; then
+#    export GOROOT="/usr/local/share/go"
+#    export GOPATH="$GOROOT/extend-pkgs"
+#    export GOBIN="$GOROOT/bin"
+#    export PATH="$GOBIN:$PATH"
+#fi
 
 if [ "$(uname)" == 'Darwin' ]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"

@@ -80,7 +80,6 @@ export VTE_CJK_WIDTH=1
 
 #Using Vim for Subversion.
 export SVN_EDITOR=vim
-alias vim=nvim
 # AWS certificate
 alias aws-certificate='eval `assume-role zayasu`'
 

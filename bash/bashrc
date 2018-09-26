@@ -154,6 +154,7 @@ fi
 if [ -e "$HOME/.goenv" ]; then
     export GOENV_ROOT="$HOME/.goenv"
     export PATH="$GOENV_ROOT/bin:$PATH"
+    export PATH="$GOPATH/bin:$PATH"
     export GOPATH="$HOME/labo/go"
     eval "$(goenv init -)"
 fi

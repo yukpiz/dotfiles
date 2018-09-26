@@ -50,6 +50,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('Shougo/neosnippet')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/vinarise.vim')
+    call dein#add('yukpiz/cobalt')
     call dein#add('yukpiz/sakuramochi.vim')
     call dein#add('yukpiz/frogger.vim')
     call dein#add('yukpiz/nerdtree')
@@ -398,7 +399,7 @@ if has('syntax')
     "    set termguicolors
     "else
     "endif
-    colorscheme sakuramochi
+    colorscheme cobalt
 endif
 
 " }}}

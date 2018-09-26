@@ -19,3 +19,5 @@
     lg = log
     ps = push
     pl = pull
+[credential]
+	helper = store

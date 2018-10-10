@@ -833,7 +833,7 @@ if g:is_unix
     nnoremap ,vs :VimShell<CR>
 endif
 nnoremap ,cl :call SwitchCalendar()<CR>
-nnoremap ,nt :Unite -start-insert file_rec/async:!<CR>
+nnoremap ,nt :NERDTreeToggle<CR>
 nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,gi :Unite gista<CR>
 nnoremap ,nr :Unite -start-insert file_rec/async:!<CR>

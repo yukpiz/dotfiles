@@ -1,0 +1,60 @@
+[global_config]
+  title_transmit_bg_color = "#b46cb3"
+[keybindings]
+  next_tab = <Primary><Shift>Right
+  prev_tab = <Primary><Shift>Left
+  split_horiz = <Primary><Shift>e
+  split_vert = <Primary><Shift>d
+  zoom_in = <Primary>asciicircum
+  zoom_out = <Primary>minus
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 32e6a230-0755-460d-873b-6573d144e5b8
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      position = 1080:27
+      size = 3840, 2072
+      title = /bin/bash
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 1914
+      ratio = 0.499087353325
+      type = HPaned
+    [[[child3]]]
+      order = 1
+      parent = child1
+      position = 1034
+      ratio = 0.500241896468
+      type = VPaned
+    [[[terminal2]]]
+      order = 0
+      parent = child1
+      profile = default
+      type = Terminal
+      uuid = 340b9077-b2ff-4951-9eb2-1d841511556c
+    [[[terminal4]]]
+      order = 0
+      parent = child3
+      profile = default
+      type = Terminal
+      uuid = 285485ab-8d8c-4408-b70f-ca25221ef22b
+    [[[terminal5]]]
+      order = 1
+      parent = child3
+      profile = default
+      type = Terminal
+      uuid = 32e6a230-0755-460d-873b-6573d144e5b8
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    foreground_color = "#eeeeec"
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"

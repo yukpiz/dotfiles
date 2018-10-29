@@ -80,6 +80,7 @@ fi
 if [ -e $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases
 fi
+alias vim=nvim
 # }}}
 
 # --- Paths & Variables {{{

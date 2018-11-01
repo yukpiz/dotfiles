@@ -36,6 +36,13 @@ if dein#load_state('~/.cache/dein')
   call dein#add('previm/previm')              "https://github.com/previm/previm
   call dein#add('tyru/open-browser.vim')      "https://github.com/tyru/open-browser.vim
 
+  call dein#add('LeafCage/foldCC')
+  call dein#add('andymass/vim-matchup')
+  call dein#add('lambdalisue/gina.vim')
+  call dein#add('cohama/lexima.vim')
+  call dein#add('machakann/vim-highlightedyank')
+  call dein#add('aiya000/vim-fmap')
+
   "https://github.com/plasticboy/vim-markdown
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})
 
@@ -93,6 +100,7 @@ filetype plugin indent on
 syntax enable
 
 color cobalt
+let g:python_host_prog = ''
 
 set encoding=utf-8
 scriptencoding=utf8

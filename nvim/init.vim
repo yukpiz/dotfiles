@@ -18,6 +18,8 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('~/.cache/dein')
   call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
+  "call dein#add('prabirshrestha/async.vim')
+  "call dein#add('prabirshrestha/vim-lsp')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
@@ -49,6 +51,19 @@ if dein#load_state('~/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
+
+"-----------------------------------------------------
+" vim-lsp
+"-----------------------------------------------------
+"let g:lsp_signs_enabled = 1         " enable signs
+"let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+"if executable('go-langserver')
+"  au User lsp_setup call lsp#register_server({
+"    \ 'name': 'go-langserver',
+"    \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
+"    \ 'whitelist': ['go'],
+"    \ })
+"endif
 
 "-----------------------------------------------------
 " deoplete.nvim

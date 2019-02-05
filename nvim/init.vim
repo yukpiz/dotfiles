@@ -44,6 +44,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('cohama/lexima.vim')
   call dein#add('machakann/vim-highlightedyank')
   call dein#add('aiya000/vim-fmap')
+  call dein#add('tell-k/vim-autopep8')
 
   "https://github.com/plasticboy/vim-markdown
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})
@@ -284,6 +285,8 @@ autocmd FileType rst set sw=2 ts=2 et
 " Python
 "-----------------------------------------------------
 autocmd FileType python set sw=4 ts=4 et
+let g:autopep8_disable_show_diff=1
+autocmd BufWritePre,FileWritePre *.py Autopep8
 
 "-----------------------------------------------------
 " CoffeeScript

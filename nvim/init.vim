@@ -66,6 +66,12 @@ endif
 "endif
 
 "-----------------------------------------------------
+" vim-go
+"-----------------------------------------------------
+"let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
+"set foldmethod=syntax
+
+"-----------------------------------------------------
 " deoplete.nvim
 "-----------------------------------------------------
 let g:deoplete#enable_at_startup = 1
@@ -146,7 +152,7 @@ set mouse=a
 set cursorline
 set title
 set titlestring=neovim
-set foldmethod=marker
+"set foldmethod=marker
 set foldopen+=jump
 set foldmarker={{{,}}}
 set foldenable
@@ -208,6 +214,9 @@ autocmd FileType cpp,c setlocal path=,/usr/include,/usr/local/include
 "-----------------------------------------------------
 autocmd FileType go set ts=4 sw=4 noet
 autocmd FileType go set completeopt=menu,preview
+"set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+"autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
+let g:go_fmt_command = "goimports"
 
 "-----------------------------------------------------
 " Java

@@ -45,6 +45,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('machakann/vim-highlightedyank')
   call dein#add('aiya000/vim-fmap')
   call dein#add('tell-k/vim-autopep8')
+  call dein#add('slim-template/vim-slim')
+  "call dein#add('yuttie/comfortable-motion.vim')
 
   "https://github.com/plasticboy/vim-markdown
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})
@@ -52,6 +54,12 @@ if dein#load_state('~/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
+
+"-----------------------------------------------------
+" comfortable-motion.vim
+"-----------------------------------------------------
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
 
 "-----------------------------------------------------
 " vim-lsp
@@ -347,7 +355,13 @@ nnoremap <silent> <Esc><Esc> :noh<CR>
 nnoremap ,nr :Unite file -start-insert<CR>
 nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,nt :NERDTreeToggle<CR>
+nnoremap ,tn :tabnew<CR>
 nnoremap ,e :vs ~/.config/nvim/init.vim<CR>
+
+nnoremap <C-Left> gT
+nnoremap <C-Right> gt
+inoremap <C-Left> <Esc>gT
+inoremap <C-Right> <Esc>gt
 
 "filetype detect
 "augroup filetypedetect

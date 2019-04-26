@@ -24,8 +24,9 @@ export EDITOR=nvim
 
 # --- Histories {{{
 HISTCONTROL=ignoreboth
-HISTSIZE=99999
+HISTSIZE=999999
 HISTFILESIZE=2000
+export PROMPT_COMMAND="history -a"
 # }}}
 
 # --- Colors {{{
@@ -63,11 +64,11 @@ if [ "$color_prompt" = yes ]; then
     c="[\u@\w]"
     u=""
     p="\$"
-    #PS1="\[\033[01;32m\]›››\[\033[00m\]"
-    #PS1="\e[38;5;212m›››"
-    PS1="\n\[\e[30;48;5;89m\]\[\e[38;5;255m\]\$(parse_git_branch)\[\e[0m\]\[\e[38;5;169m\] \h\[\e[38;5;163m\] [\u@\w]\[\e[0m\]\[\e[38;5;169m\] (⁎ᵕᴗᵕ⁎)ﾉ ››› \[\e[0m\]"
-    #PS1="\$(printf '\[\033[01;32m\]%s\[\033[00m\]\[\033[00;32m\]%s\[\033[00m\]\[\033[01;33m\]%s\[\033[00m\]\[\033[00;37m\]%s\[\033[00m\]' ${h} ${c} ${u} ${p})"
-    #PS1="\[\e[38;5;133m\]\h\[\e[0m\]\[\e[38;5;169m\][\u@\w] ››› \[\e[0m\]"
+    tip=`hostname -I`
+    IFS=' '
+    set -- $tip
+
+    PS1="\n\[\e[30;48;5;89m\]\[\e[38;5;255m\]\$(parse_git_branch)\[\e[0m\]\[\e[38;5;169m\] \h\[\e[38;5;163m\] [\u@$1:\w]\[\e[38;5;169m\]\[\e[0m\] "
 fi
 
 #parse_git_branch() {
@@ -163,10 +164,9 @@ fi
 if [ -e "$HOME/.goenv" ]; then
     export GOENV_ROOT="$HOME/.goenv"
     export PATH="$GOENV_ROOT/bin:$PATH"
-    export PATH="$GOPATH/bin:$PATH"
-    export GOPATH="$HOME/labo/go"
-    export PATH="$GOPATH/bin:$PATH"
     eval "$(goenv init -)"
+    # Rewrite $GOPATH setting from home directory
+    export PATH="$GOPATH/bin:$PATH"
 fi
 #if [ -e "/usr/local/share/go" ]; then
 #    export GOROOT="/usr/local/share/go"
@@ -195,3 +195,9 @@ fi
 # --- Keys {{{
 stty -ixon -ixoff
 # }}}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/yukpiz/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/yukpiz/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/yukpiz/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/yukpiz/Downloads/google-cloud-sdk/completion.bash.inc'; fi

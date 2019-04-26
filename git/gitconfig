@@ -5,6 +5,10 @@
     editor = vim -c \"set fenc=utf-8\"
     editor = vim
     quotepath = false
+[url "git@github.com:redish"]
+    insteadOf = "https://github.com/redish"
+[url "git@github.com:yukpiz"]
+    insteadOf = "https://github.com/yukpiz"
 [github]
     user = yukpiz
 [alias]

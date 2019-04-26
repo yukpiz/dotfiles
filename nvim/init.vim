@@ -18,17 +18,20 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('~/.cache/dein')
   call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
-  "call dein#add('prabirshrestha/async.vim')
-  "call dein#add('prabirshrestha/vim-lsp')
+  call dein#add('prabirshrestha/async.vim')
+  call dein#add('prabirshrestha/vim-lsp')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
+    call dein#add('fatih/vim-go')               "https://github.com/fatih/vim-go
+  else
+    call dein#add('fatih/vim-go')               "https://github.com/fatih/vim-go
+    "call dein#add('zchee/nvim-go', {'build': 'make'})
   endif
   call dein#add('yukpiz/cobalt')              "https://github.com/yukpiz/cobalt
   call dein#add('agude/vim-eldar')            "https://github.com/agude/vim-eldar
   call dein#add('Shougo/unite.vim')           "https://github.com/Shougo/unite.vim
   call dein#add('Shougo/unite-outline')       "https://github.com/Shougo/unite-outlinE
-  call dein#add('fatih/vim-go')               "https://github.com/fatih/vim-go
   call dein#add('thinca/vim-quickrun')        "https://github.com/thinca/vim-quickrun
   call dein#add('scrooloose/nerdtree')        "https://github.com/scrooloose/nerdtree
   call dein#add('yukpiz/committia.vim')       "https://github.com/yukpiz/committia.vim
@@ -46,6 +49,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('aiya000/vim-fmap')
   call dein#add('tell-k/vim-autopep8')
   call dein#add('slim-template/vim-slim')
+  call dein#add('cespare/vim-toml')
   "call dein#add('yuttie/comfortable-motion.vim')
 
   "https://github.com/plasticboy/vim-markdown
@@ -225,6 +229,7 @@ autocmd FileType go set ts=4 sw=4 noet
 autocmd FileType go set completeopt=menu,preview
 "set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 "autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
+autocmd BufWritePost,FileWritePost *.go GoImports
 let g:go_fmt_command = "goimports"
 
 "-----------------------------------------------------

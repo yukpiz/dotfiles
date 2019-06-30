@@ -17,7 +17,8 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein')
-  call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
+  call dein#add('neoclide/coc.nvim')
+  "call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
   call dein#add('prabirshrestha/async.vim')
   call dein#add('prabirshrestha/vim-lsp')
   if !has('nvim')
@@ -50,10 +51,18 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tell-k/vim-autopep8')
   call dein#add('slim-template/vim-slim')
   call dein#add('cespare/vim-toml')
+  call dein#add('kana/vim-fakeclip')
+
+  call dein#add('vim-scripts/SQLUtilities') "Depends on SQLUtilities
+  call dein#add('vim-scripts/Align')
   "call dein#add('yuttie/comfortable-motion.vim')
 
   "https://github.com/plasticboy/vim-markdown
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'markdown'})
+
+  "codereview
+  call dein#add('junkblocker/patchreview-vim')
+  call dein#add('codegram/vim-codereview')
 
   call dein#end()
   call dein#save_state()
@@ -87,7 +96,7 @@ let g:comfortable_motion_scroll_up_key = "k"
 "-----------------------------------------------------
 " deoplete.nvim
 "-----------------------------------------------------
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 "-----------------------------------------------------
 " neocomplete.nvim
@@ -135,6 +144,11 @@ syntax enable
 
 color cobalt
 let g:python_host_prog = ''
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight LineNr ctermbg=none
+highlight Folded ctermbg=none
+highlight EndOfBuffer ctermbg=none
 
 set encoding=utf-8
 scriptencoding=utf8
@@ -160,7 +174,6 @@ set list listchars+=trail:_
 set display=uhex
 set re=1
 set t_Co=256
-set clipboard+=unnamed,unnamedplus
 set mouse=a
 set cursorline
 set title
@@ -202,6 +215,11 @@ endfunction
 "=====================================================
 " LANGUAGE SETTINGS
 "=====================================================
+
+"-----------------------------------------------------
+" proto
+"-----------------------------------------------------
+autocmd FileType proto set ts=4 sw=4 et
 
 "-----------------------------------------------------
 " json
@@ -372,3 +390,5 @@ inoremap <C-Right> <Esc>gt
 "augroup filetypedetect
 "  "autocmd BufNew,BufRead * call SetCustomTitleString()
 "augroup END
+
+set clipboard=unnamedplus

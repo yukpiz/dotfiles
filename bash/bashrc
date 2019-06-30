@@ -21,6 +21,7 @@ esac
 
 source ~/.git_completion
 export EDITOR=nvim
+export NVIM_LOG_FILE=${HOME}/.config/.nvim/neovim.log
 
 # --- Histories {{{
 HISTCONTROL=ignoreboth
@@ -81,7 +82,6 @@ fi
 if [ -e $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases
 fi
-alias vim=nvim
 # }}}
 
 # --- Paths & Variables {{{
@@ -201,3 +201,5 @@ if [ -f '/home/yukpiz/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/yukpiz/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/yukpiz/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

@@ -43,3 +43,8 @@ then
     alias vim='/usr/local/bin/vim'
     alias vim='vim -X'
 fi
+alias vim='nvim'
+alias gopath='cd $GOPATH'
+alias go125='cd $GOPATH/../1.12.5/'
+alias go124='cd $GOPATH/../1.12.4/'
+alias go119='cd $GOPATH/../1.11.9/'

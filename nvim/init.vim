@@ -180,8 +180,11 @@ set title
 set titlestring=neovim
 "set foldmethod=marker
 set foldopen+=jump
-set foldmarker={{{,}}}
+"set foldmarker={{{,}}}
 set foldenable
+set foldmethod=syntax
+set foldnestmax=1
+let g:go_fmt_experimental = 1
 set backspace=indent,eol,start
 set scrolloff=3
 set lazyredraw
@@ -230,6 +233,7 @@ autocmd FileType json set ts=2 sw=2 et
 " markdown
 "-----------------------------------------------------
 autocmd FileType markdown set ts=4 sw=4 noet
+let g:vim_markdown_folding_disabled = 1
 
 "-----------------------------------------------------
 " C++

@@ -21,6 +21,7 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
   call dein#add('prabirshrestha/async.vim')
   call dein#add('prabirshrestha/vim-lsp')
+  call dein#add('majutsushi/tagbar')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
@@ -52,6 +53,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('slim-template/vim-slim')
   call dein#add('cespare/vim-toml')
   call dein#add('kana/vim-fakeclip')
+  call dein#add('bpietravalle/vim-bolt')
 
   call dein#add('vim-scripts/SQLUtilities') "Depends on SQLUtilities
   call dein#add('vim-scripts/Align')
@@ -92,6 +94,39 @@ let g:comfortable_motion_scroll_up_key = "k"
 "-----------------------------------------------------
 "let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
 "set foldmethod=syntax
+
+"-----------------------------------------------------
+" tagbar
+"-----------------------------------------------------
+let g:tagbar_left = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+  \ }
 
 "-----------------------------------------------------
 " deoplete.nvim
@@ -182,9 +217,6 @@ set titlestring=neovim
 set foldopen+=jump
 "set foldmarker={{{,}}}
 set foldenable
-set foldmethod=syntax
-set foldnestmax=1
-let g:go_fmt_experimental = 1
 set backspace=indent,eol,start
 set scrolloff=3
 set lazyredraw
@@ -197,7 +229,6 @@ if has('wildmenu')
     set wildchar=<Tab>
     set wildmode=full
 endif
-
 
 "=====================================================
 " CUSTOM FUNCTIONS
@@ -218,6 +249,21 @@ endfunction
 "=====================================================
 " LANGUAGE SETTINGS
 "=====================================================
+
+"-----------------------------------------------------
+" hog
+"-----------------------------------------------------
+autocmd FileType hog set ts=2 sw=2 et
+
+"-----------------------------------------------------
+" typescript
+"-----------------------------------------------------
+autocmd FileType typescript set ts=2 sw=2 et
+
+"-----------------------------------------------------
+" bolt
+"-----------------------------------------------------
+autocmd FileType bolt set ts=2 sw=2 et
 
 "-----------------------------------------------------
 " proto
@@ -249,10 +295,28 @@ autocmd FileType cpp,c setlocal path=,/usr/include,/usr/local/include
 "-----------------------------------------------------
 autocmd FileType go set ts=4 sw=4 noet
 autocmd FileType go set completeopt=menu,preview
+autocmd FileType go set foldexpr=MyFold(v:lnum)
+autocmd FileType go set foldmethod=expr
+autocmd FileType go set nocursorcolumn
+autocmd FileType go syntax sync minlines=256
+autocmd FileType go set synmaxcol=300
+autocmd FileType go set re=1
+
+function! MyFold(lnum)
+  let line = getline(a:lnum)
+  if line =~ '^[func|type]'
+    return '>1'
+  elseif line =~ '^}'
+    return '<1'
+  endif
+  return -1
+endfunction
+
 "set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
 "autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 autocmd BufWritePost,FileWritePost *.go GoImports
 let g:go_fmt_command = "goimports"
+let g:go_fmt_experimental = 1
 
 "-----------------------------------------------------
 " Java
@@ -379,6 +443,7 @@ inoremap <C-l> <Right>
 
 nnoremap <silent> <Esc><Esc> :noh<CR>
 
+nnoremap ,tt :TagbarToggle<CR>
 nnoremap ,nr :Unite file -start-insert<CR>
 nnoremap ,nu :call SwitchNumber()<CR>
 nnoremap ,nt :NERDTreeToggle<CR>

@@ -69,7 +69,7 @@ if [ "$color_prompt" = yes ]; then
     IFS=' '
     set -- $tip
 
-    PS1="\n\[\e[30;48;5;89m\]\[\e[38;5;255m\]\$(parse_git_branch)\[\e[0m\]\[\e[38;5;169m\] \h\[\e[38;5;163m\] [\u@$1:\w]\[\e[38;5;169m\]\[\e[0m\] "
+    PS1="\n\[\e[30;48;5;89m\]\[\e[38;5;255m\]\$(parse_git_branch)\[\e[0m\]\[\e[38;5;169m\] \h\[\e[38;5;163m\] [\u@$1:\w]\[\e[38;5;169m\]\[\e[0m\]\n\[\e[38;5;163m\] $ \[\e[0m\]"
 fi
 
 #parse_git_branch() {

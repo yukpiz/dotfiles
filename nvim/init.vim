@@ -422,6 +422,34 @@ autocmd FileType terraform set sw=4 ts=4 et
 "-----------------------------------------------------
 autocmd FileType make set sw=4 ts=4 et
 
+"=====================================================
+" TERMINAL
+"=====================================================
+
+function! s:bufnew()
+  if &buftype == "terminal" && &filetype == ""
+    set filetype=terminal
+  endif
+endfunction
+
+function! s:filetype()
+  call feedkeys("i")
+endfunction
+
+augroup Terminal
+  autocmd!
+  autocmd BufNew * call timer_start(0, { -> s:bufnew() })
+  autocmd FileType terminal call s:filetype()
+augroup END
+
+"=====================================================
+" COMMANDS
+"=====================================================
+
+command! YukGitLog vsplit|vertical resize -100|:te git log
+command! YukGitCommit vsplit|:te lazygit
+command! YukGore vsplit|vertical resize -50|:te gore
+command! YukTerm vsplit|:te
 
 "=====================================================
 " KEYMAPS
@@ -454,10 +482,5 @@ nnoremap <C-Left> gT
 nnoremap <C-Right> gt
 inoremap <C-Left> <Esc>gT
 inoremap <C-Right> <Esc>gt
-
-"filetype detect
-"augroup filetypedetect
-"  "autocmd BufNew,BufRead * call SetCustomTitleString()
-"augroup END
 
 set clipboard=unnamedplus

@@ -22,6 +22,7 @@ esac
 source ~/.git_completion
 export EDITOR=nvim
 export NVIM_LOG_FILE=${HOME}/.config/.nvim/neovim.log
+export COMPOSE_API_VERSION=1.25
 
 # --- Histories {{{
 HISTCONTROL=ignoreboth

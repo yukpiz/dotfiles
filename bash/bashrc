@@ -21,8 +21,10 @@ esac
 
 source ~/.git_completion
 export EDITOR=nvim
+export PATH="$HOME/.tfenv/bin:$PATH"
 export NVIM_LOG_FILE=${HOME}/.config/.nvim/neovim.log
 export COMPOSE_API_VERSION=1.25
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # --- Histories {{{
 HISTCONTROL=ignoreboth
@@ -163,6 +165,7 @@ fi
 
 # Go lang setup
 if [ -e "$HOME/.goenv" ]; then
+    export GO111MODULE=on
     export GOENV_ROOT="$HOME/.goenv"
     export PATH="$GOENV_ROOT/bin:$PATH"
     eval "$(goenv init -)"

@@ -1,5 +1,6 @@
 [global_config]
   title_transmit_bg_color = "#b46cb3"
+  enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, CjkWidthWide
   title_use_system_font = False
   title_font = HackGen 15
 [keybindings]
@@ -12,7 +13,7 @@
   prev_tab = <Primary><Shift>Left
 [profiles]
   [[default]]
-    background_darkness = 0.8
+    background_darkness = 0.85
     background_type = transparent
     cursor_color = "#aaaaaa"
     font = HackGen Bold 12

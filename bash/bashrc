@@ -28,6 +28,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=999999
 HISTFILESIZE=2000
 export PROMPT_COMMAND="history -a"
+export PATH="$HOME/.tfenv/bin:$PATH"
 # }}}
 
 # --- Colors {{{

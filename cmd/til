@@ -1,0 +1,4 @@
+#/bin/bash
+
+cd ${HOME}/labo/repos/private/til
+vim -c NERDTreeToggle

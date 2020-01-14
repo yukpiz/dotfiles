@@ -1,6 +1,7 @@
 [global_config]
   title_font = HackGen 15
   title_transmit_bg_color = "#b46cb3"
+  enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, CjkWidthWide
   title_use_system_font = False
 [keybindings]
   close_term = <Primary><Shift>p
@@ -10,6 +11,16 @@
   split_vert = <Primary><Shift>d
   zoom_in = <Primary>equal
   zoom_out = <Primary>minus
+[profiles]
+  [[default]]
+    background_darkness = 0.85
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = HackGen Bold 12
+    foreground_color = "#eeeeec"
+    scrollback_lines = 100000
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    use_system_font = False
 [layouts]
   [[default]]
     [[[child0]]]

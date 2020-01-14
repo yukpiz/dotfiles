@@ -54,6 +54,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('cespare/vim-toml')
   call dein#add('kana/vim-fakeclip')
   call dein#add('bpietravalle/vim-bolt')
+  call dein#add('aklt/plantuml-syntax')
 
   call dein#add('vim-scripts/SQLUtilities') "Depends on SQLUtilities
   call dein#add('vim-scripts/Align')
@@ -299,7 +300,7 @@ autocmd FileType go set foldexpr=MyFold(v:lnum)
 autocmd FileType go set foldmethod=expr
 autocmd FileType go set nocursorcolumn
 autocmd FileType go syntax sync minlines=256
-autocmd FileType go set synmaxcol=300
+"autocmd FileType go set synmaxcol=300
 autocmd FileType go set re=1
 
 function! MyFold(lnum)
@@ -317,6 +318,13 @@ endfunction
 autocmd BufWritePost,FileWritePost *.go GoImports
 let g:go_fmt_command = "goimports"
 let g:go_fmt_experimental = 1
+
+"-----------------------------------------------------
+" PlantUML 
+"-----------------------------------------------------
+autocmd BufRead,BufNewFile *.uml setfiletype plantuml
+autocmd FileType plantuml command! OpenUML :!xdg-open %
+autocmd FileType plantuml set sw=2 ts=2 et
 
 "-----------------------------------------------------
 " Java
@@ -410,7 +418,7 @@ autocmd FileType sh set sw=4 ts=4 et
 "-----------------------------------------------------
 " HTML
 "-----------------------------------------------------
-autocmd FileType html set sw=4 ts=4 et
+autocmd FileType html set sw=2 ts=2 et
 
 "-----------------------------------------------------
 " terraform
@@ -422,6 +430,34 @@ autocmd FileType terraform set sw=4 ts=4 et
 "-----------------------------------------------------
 autocmd FileType make set sw=4 ts=4 et
 
+"=====================================================
+" TERMINAL
+"=====================================================
+
+function! s:bufnew()
+  if &buftype == "terminal" && &filetype == ""
+    set filetype=terminal
+  endif
+endfunction
+
+function! s:filetype()
+  call feedkeys("i")
+endfunction
+
+augroup Terminal
+  autocmd!
+  autocmd BufNew * call timer_start(0, { -> s:bufnew() })
+  autocmd FileType terminal call s:filetype()
+augroup END
+
+"=====================================================
+" COMMANDS
+"=====================================================
+
+command! YukGitLog vsplit|vertical resize -100|:te git log
+command! YukGitCommit vsplit|:te lazygit
+command! YukGore vsplit|vertical resize -50|:te gore
+command! YukTerm vsplit|:te
 
 "=====================================================
 " KEYMAPS
@@ -454,10 +490,5 @@ nnoremap <C-Left> gT
 nnoremap <C-Right> gt
 inoremap <C-Left> <Esc>gT
 inoremap <C-Right> <Esc>gt
-
-"filetype detect
-"augroup filetypedetect
-"  "autocmd BufNew,BufRead * call SetCustomTitleString()
-"augroup END
 
 set clipboard=unnamedplus

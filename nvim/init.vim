@@ -67,8 +67,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('junkblocker/patchreview-vim')
   call dein#add('codegram/vim-codereview')
 
-  call dein#add('posva/vim-vue')
-
   call dein#end()
   call dein#save_state()
 endif

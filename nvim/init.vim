@@ -12,6 +12,7 @@ endif
 "-----------------------------------------------------
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/preservim/nerdtree
 
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
@@ -21,6 +22,11 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('Shougo/deoplete.nvim')       "https://github.com/Shougo/deoplete.nvim
   call dein#add('prabirshrestha/async.vim')
   call dein#add('prabirshrestha/vim-lsp')
+  call dein#add('mattn/vim-lsp-settings')
+  "call dein#add('prabirshrestha/asyncomplete.vim')
+  "call dein#add('prabirshrestha/asyncomplete-lsp.vim')
+  "call dein#add('Shougo/deoplete.nvim')
+  "call dein#add('lighttiger2505/deoplete-vim-lsp')
   call dein#add('majutsushi/tagbar')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
@@ -35,13 +41,15 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/unite.vim')           "https://github.com/Shougo/unite.vim
   call dein#add('Shougo/unite-outline')       "https://github.com/Shougo/unite-outlinE
   call dein#add('thinca/vim-quickrun')        "https://github.com/thinca/vim-quickrun
-  call dein#add('scrooloose/nerdtree')        "https://github.com/scrooloose/nerdtree
+  call dein#add('preservim/nerdtree')        "https://github.com/scrooloose/nerdtree
   call dein#add('yukpiz/committia.vim')       "https://github.com/yukpiz/committia.vim
   call dein#add('vim-jp/vital.vim')           "https://github.com/vim-jp/vital.vim
   call dein#add('leafgarland/typescript-vim') "https://github.com/leafgarland/typescript-vim
   call dein#add('hashivim/vim-terraform')     "https://github.com/hashivim/vim-terraform
   call dein#add('previm/previm')              "https://github.com/previm/previm
   call dein#add('tyru/open-browser.vim')      "https://github.com/tyru/open-browser.vim
+  call dein#add('franbach/miramare')
+  call dein#add('posva/vim-vue')
 
   call dein#add('LeafCage/foldCC')
   call dein#add('andymass/vim-matchup')
@@ -89,12 +97,17 @@ let g:comfortable_motion_scroll_up_key = "k"
 "    \ 'whitelist': ['go'],
 "    \ })
 "endif
+let g:lsp_diagnostics_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_highlights_enabled = 1
+let g:lsp_textprop_enabled = 1
 
 "-----------------------------------------------------
 " vim-go
 "-----------------------------------------------------
 "let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
 "set foldmethod=syntax
+
 
 "-----------------------------------------------------
 " tagbar
@@ -132,7 +145,7 @@ let g:tagbar_type_go = {
 "-----------------------------------------------------
 " deoplete.nvim
 "-----------------------------------------------------
-"let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 "-----------------------------------------------------
 " neocomplete.nvim
@@ -178,7 +191,11 @@ endfunction
 filetype plugin indent on
 syntax enable
 
-color cobalt
+let g:miramare_enable_italic = 1
+let g:miramare_disable_italic_comment = 1
+
+colorscheme miramare
+
 let g:python_host_prog = ''
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -259,7 +276,8 @@ autocmd FileType hog set ts=2 sw=2 et
 "-----------------------------------------------------
 " typescript
 "-----------------------------------------------------
-autocmd FileType typescript set ts=2 sw=2 et
+au BufRead,BufNewFile,BufReadPre *.ts set filetype=typescript
+autocmd FileType typescript setlocal sw=2 sts=2 ts=2 et
 
 "-----------------------------------------------------
 " bolt
@@ -393,7 +411,7 @@ autocmd FileType rst set sw=2 ts=2 et
 "-----------------------------------------------------
 autocmd FileType python set sw=4 ts=4 et
 let g:autopep8_disable_show_diff=1
-autocmd BufWritePre,FileWritePre *.py Autopep8
+"autocmd BufWritePre,FileWritePre *.py Autopep8
 
 "-----------------------------------------------------
 " CoffeeScript

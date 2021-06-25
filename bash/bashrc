@@ -96,7 +96,7 @@ export VTE_CJK_WIDTH=1
 export SVN_EDITOR=vim
 # AWS certificate
 alias aws-certificate='eval `assume-role zayasu`'
-
+function assume-role { eval $( $(which assume-role) $@); }
 
 #rbenv
 if [ -e "$HOME/.rbenv" ]; then
@@ -208,3 +208,11 @@ if [ -f '/home/yukpiz/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home
 if [ -f '/home/yukpiz/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/yukpiz/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/__tabtab.bash ] && . ~/.config/tabtab/__tabtab.bash || true
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

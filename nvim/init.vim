@@ -23,6 +23,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('prabirshrestha/async.vim')
   call dein#add('prabirshrestha/vim-lsp')
   call dein#add('mattn/vim-lsp-settings')
+  call dein#add('pantharshit00/vim-prisma')
   "call dein#add('prabirshrestha/asyncomplete.vim')
   "call dein#add('prabirshrestha/asyncomplete-lsp.vim')
   "call dein#add('Shougo/deoplete.nvim')
@@ -50,6 +51,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tyru/open-browser.vim')      "https://github.com/tyru/open-browser.vim
   call dein#add('franbach/miramare')
   call dein#add('posva/vim-vue')
+  call dein#add('othree/html5.vim')
 
   call dein#add('LeafCage/foldCC')
   call dein#add('andymass/vim-matchup')
@@ -62,7 +64,11 @@ if dein#load_state('~/.cache/dein')
   call dein#add('cespare/vim-toml')
   call dein#add('kana/vim-fakeclip')
   call dein#add('bpietravalle/vim-bolt')
+
+  "plant uml
+  "call dein#add('weirongxu/plantuml-previewer.vim')
   call dein#add('aklt/plantuml-syntax')
+  call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'], 'build': 'cd app & yarn install' })
 
   call dein#add('vim-scripts/SQLUtilities') "Depends on SQLUtilities
   call dein#add('vim-scripts/Align')
@@ -269,6 +275,12 @@ endfunction
 "=====================================================
 
 "-----------------------------------------------------
+" vue
+"-----------------------------------------------------
+autocmd FileType vue set ts=2 sw=2 et
+
+
+"-----------------------------------------------------
 " hog
 "-----------------------------------------------------
 autocmd FileType hog set ts=2 sw=2 et
@@ -277,12 +289,18 @@ autocmd FileType hog set ts=2 sw=2 et
 " typescript
 "-----------------------------------------------------
 au BufRead,BufNewFile,BufReadPre *.ts set filetype=typescript
+au BufRead,BufNewFile,BufReadPre *.tsx set filetype=typescript
 autocmd FileType typescript setlocal sw=2 sts=2 ts=2 et
 
 "-----------------------------------------------------
 " bolt
 "-----------------------------------------------------
 autocmd FileType bolt set ts=2 sw=2 et
+
+"-----------------------------------------------------
+" prisma
+"-----------------------------------------------------
+autocmd FileType prisma set ts=2 sw=2 et
 
 "-----------------------------------------------------
 " proto
@@ -297,7 +315,7 @@ autocmd FileType json set ts=2 sw=2 et
 "-----------------------------------------------------
 " markdown
 "-----------------------------------------------------
-autocmd FileType markdown set ts=4 sw=4 noet
+autocmd FileType markdown set ts=4 sw=4 et
 let g:vim_markdown_folding_disabled = 1
 
 "-----------------------------------------------------
@@ -341,7 +359,7 @@ let g:go_fmt_experimental = 1
 " PlantUML 
 "-----------------------------------------------------
 autocmd BufRead,BufNewFile *.uml setfiletype plantuml
-autocmd FileType plantuml command! OpenUML :!xdg-open %
+autocmd FileType plantuml command! OpenUML :!google-chrome %
 autocmd FileType plantuml set sw=2 ts=2 et
 
 "-----------------------------------------------------
